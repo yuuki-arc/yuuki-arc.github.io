@@ -82,12 +82,12 @@ Time.zone = "Tokyo"
 
 activate :blog do |blog|
   blog.prefix = "blog"
-  blog.taglink = "tags/:tag.html"
+  # blog.taglink = "tags/:tag.html"
   # blog.layout = "layouts/layout"
   blog.default_extension = ".md"
 
-  blog.tag_template = "tag.html"
-  blog.calendar_template = "calendar.html"
+  # blog.tag_template = "tag.html"
+  # blog.calendar_template = "calendar.html"
 
   blog.paginate = true
   blog.per_page = 5
