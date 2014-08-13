@@ -71,7 +71,39 @@ configure :build do
   # set :http_prefix, "/Content/images/"
 end
 
+# デプロイ設定
 activate :deploy do |deploy|
   deploy.method = :git
   deploy.branch = 'master'
 end
+
+# ブログ基本設定
+Time.zone = "Tokyo"
+
+activate :blog do |blog|
+  blog.prefix = "blog"
+  blog.taglink = "tags/:tag.html"
+  # blog.layout = "layouts/layout"
+  blog.default_extension = ".md"
+
+  blog.tag_template = "tag.html"
+  blog.calendar_template = "calendar.html"
+
+  blog.paginate = true
+  blog.per_page = 5
+  blog.page_link = "page/:num"
+end
+
+# markdown
+set :markdown_engine, :redcarpet
+#set :markdown, :fenced_code_blocks => true, :smartypants => true
+set :markdown, :fenced_code_blocks => true, :tables => true, :autolink => true, :gh_blockcode => true
+activate :syntax, :line_numbers => true
+
+# syntax hilight
+activate :rouge_syntax, :lineanchor => 'line'
+activate :directory_indexes
+
+# Atom
+page "/feed.xml", :layout => false
+activate :livereload
