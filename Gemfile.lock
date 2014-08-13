@@ -7,6 +7,7 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
+    addressable (2.3.6)
     bootstrap-sass (3.2.0.1)
       sass (~> 3.2)
     celluloid (0.15.2)
@@ -54,6 +55,10 @@ GEM
       middleman-sprockets (>= 3.1.2)
       sass (>= 3.2.17, < 4.0)
       uglifier (~> 2.5)
+    middleman-blog (3.5.3)
+      addressable (~> 2.3.5)
+      middleman-core (~> 3.2)
+      tzinfo (>= 0.3.0)
     middleman-core (3.3.4)
       activesupport (~> 4.1.0)
       bundler (~> 1.1)
@@ -128,6 +133,7 @@ PLATFORMS
 DEPENDENCIES
   bootstrap-sass
   middleman (~> 3.3.3)
+  middleman-blog
   middleman-deploy
   middleman-livereload (~> 3.1.0)
   tzinfo-data
