@@ -88,12 +88,7 @@ set :css_dir, 'css'
 
 set :js_dir, 'js'
 
-set :images_dir, 'images'
-
-after_configuration do
-  sprockets.append_path "#{root}/source/css-theme"
-  sprockets.append_path "#{root}/source/js-theme"
-end
+set :images_dir, 'img'
 
 # Build-specific configuration
 configure :build do

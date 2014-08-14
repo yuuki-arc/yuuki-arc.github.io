@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Banzhow</title>
+
+    <!-- font-awesome -->
+    <%= stylesheet_link_tag 'font-awesome.min' %>
+    <!--[if lt IE 9]>
+    <%= stylesheet_link_tag 'html5' %>
+    <![endif]-->
+    <!--[if IE 7]>
+    <%= stylesheet_link_tag 'font-awewsome-ie7' %>
+    <![endif]-->
+
+    <!-- Bootstrap core CSS -->
+    <%= stylesheet_link_tag 'all' %>
+
+    <!-- custom CSS -->
+    <%= stylesheet_link_tag 'style' %>
+    <!--[if lte IE 8]>
+    <%= stylesheet_link_tag 'ie8' %>
+    <![endif]-->
+    <!--[if lte IE 7]>
+    <%= stylesheet_link_tag 'ie7' %>
+    <![endif]-->
+
+    <!-- JavaScript -->
+    <%= javascript_include_tag "all" %>
+    <!--[if lte IE 7]>
+    <%= javascript_include_tag "jquery.boxsizing" %>
+    <![endif]-->
+    <%= javascript_include_tag "banzhow" %>
+  </head>
+
+
+  <body>
+
+
+    <nav class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+
+          <a class="navbar-brand" href="index.html">Banzhow</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="active"><a href="index.html">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">Portfolio <i class="fa fa-angle-down"></i></a>
+              <ul class="dropdown-menu">
+                <li><a href="portfolio-1-col.html">1 Column Portfolio</a></li>
+                <li><a href="portfolio-2-col.html">2 Column Portfolio</a></li>
+                <li><a href="portfolio-3-col.html">3 Column Portfolio</a></li>
+                <li><a href="portfolio-item.html">Single Portfolio Item</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">Blog <i class="fa fa-angle-down"></i></a>
+              <ul class="dropdown-menu">
+                <li><a href="blog-home-1.html">Blog Home</a></li>
+                <li><a href="blog-post.html">Blog Post</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">Other Pages <i class="fa fa-angle-down"></i></a>
+              <ul class="dropdown-menu">
+                <li><a href="full-width.html">Full Width Page</a></li>
+                <li><a href="sidebar.html">Sidebar Page</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="404.html">404</a></li>
+              </ul>
+            </li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container -->
+    </nav>

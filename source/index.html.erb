@@ -1,91 +1,225 @@
-  <!-- INTRO-->
-  <!--===============================================================-->
-<div id="home">
-  <div class="bg-intro">
-    <div class="container container-intro">
-      <div class="row-intro row">
-        <div class="col-sm-5 col-xs-12">
-          <h1 class="title-intro animated fadeInDown">YUUKI:ZERO-D</h1>
-          <h2 class="subtitle-intro animated fadeInLeft">under construction...</h2>
-          <div class="btn-delay animated fadeInUp">
-            <a href="#features" class="btn btn-white scroll-smooth">GET STARTED</a>
-          </div>
+---
+layout: layout
+---
+
+<div id="myCarousel" class="carousel slide">
+  <!-- Indicators -->
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+      <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner">
+      <div class="item active">
+        <div class="fill" style="background-image:url('img/slide/slide1.png');"></div>
+        <div class="carousel-caption">
+          <h2>clean and modern design</h2>
+          <a href="#" class="button">DOWNLOAD</a>
         </div>
-        <!-- SLIDER-BROWSER-->
-        <!--===============================================================-->
-        <div class="col-browser col-sm-7 col-xs-12">
-          <div class="col-sl animated fadeInDown">
-            <img class="img-browser" src="images/browser-slider/browser.png" alt="browser">
-            <div class="wrapper-sl wrapper-browser">
-              <ul id="slider-intro" class="slider" >
-                <li><img src="images/browser-slider/652x340.gif" alt="slide-1"/></li>
-                <li><img src="images/browser-slider/652x340.gif" alt="slide-2"/></li>
-              </ul>
-                <div class="wrapper-nav">
-                  <div class="div-p div-p-browser"><i id="p-intro"></i></div>
-                  <div class="div-n div-n-browser"><i id="n-intro"></i></div>
-                </div>
-            </div>
-          </div>
-        </div><!-- SLIDER-BROWSER-END-->
+      </div>
+      <div class="item">
+        <div class="fill" style="background-image:url('img/slide/slide2.png');"></div>
+        <div class="carousel-caption">
+          <h2>fully responsive and retina ready</h2>
+          <a href="#" class="button">SEE MORE</a>
+        </div>
+      </div>
+      <div class="item">
+        <div class="fill" style="background-image:url('img/slide/slide3.png');"></div>
+        <div class="carousel-caption">
+          <h2>based on twitter bootstrap</h2>
+          <a href="#" class="button">DOWNLOAD</a>
+        </div>
       </div>
     </div>
-  </div>
+
+    <!-- Controls -->
+    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+      <i class="fa fa-angle-left"></i>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+      <i class="fa fa-angle-right"></i>
+    </a>
 </div>
 
-<!-- POSTS -->
-<!--===============================================================-->
-<div id="news-blog">
-  <div class="bg-blog">
-    <div class="container">
-      <div class="row-blog-header row">
-        <div class="col-sm-12">
-        <h1 class="header-title">LATEST POSTS</h1>
-        <h2 class="subtitle">We have included a fully featured blog page</h2>
-        <hr>
+<div class="section">
+
+  <div class="container">
+
+    <div class="row">
+      <div class="col-md-4 col-sm-4">
+        <div class="block-icon">
+          <i class="fa fa-rocket"></i>
+        </div>
+
+        <div class="block-body">
+          <h2>Creative design</h2>
+          <div class="line-subtitle"></div>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam dignissim placerat lectus, at ornare sapien tempor eget. Etiam vel vestibulum nisl</p>
         </div>
       </div>
-      <div class="row-blog row">
-        <div class="col-blog col-sm-4 wow fadeInLeft">
-          <img src="images/blog/middleman.png" alt="blog-pic">
-          <h1 class="title-blog"><a href="blog-post.html">Portfolio items</a></h1>
-          <p class="date-blog">February 11, 2014 by Mark</p>
-          <p class="p-blog">Sed feugiat est vel ante vulputate adipiscing. Suspendisse ut blandit lacus. Ut consequat dui eu dolor mollis euismod. Aenean id condimentum mauris. </p>
-          <a href="blog-post.html" class="btn btn-flat">Read More   »</a>
+      <div class="col-md-4 col-sm-4">
+        <div class="block-icon">
+          <i class="fa fa-users"></i>
         </div>
-        <div class="col-blog col-sm-4 wow fadeInUp">
-          <img src="images/blog/middleman.png" alt="blog-pic">
-          <h1 class="title-blog"><a href="blog-post.html">Pixel perfect</a></h1>
-          <p class="date-blog">January 27, 2014 by John</p>
-          <p class="p-blog">Sed feugiat est vel ante vulputate adipiscing. Suspendisse ut blandit lacus. Ut consequat dui eu dolor mollis euismod. Aenean id condimentum mauris.</p>
-          <a href="blog-post.html" class="btn btn-flat">Read More   »</a>
+
+        <div class="block-body">
+          <h2>Built for humans</h2>
+          <div class="line-subtitle"></div>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam dignissim placerat lectus, at ornare sapien tempor eget. Etiam vel vestibulum nisl</p>
         </div>
-        <div class="col-blog col-sm-4 wow fadeInRight">
-          <img src="images/blog/middleman.png" alt="blog-pic">
-          <h1 class="title-blog"><a href="blog-post.html">Responsive</a></h1>
-          <p class="date-blog">February 11, 2014 by Mark</p>
-          <p class="p-blog">Sed feugiat est vel ante vulputate adipiscing. Suspendisse ut blandit lacus. Ut consequat dui eu dbolor mollis euismod. Aenean id condimentum mauris.</p>
-          <a href="blog-post.html" class="btn btn-flat">Read More   »</a>
+      </div>
+      <div class="col-md-4 col-sm-4">
+        <div class="block-icon">
+          <i class="fa fa-cog"></i>
+        </div>
+
+        <div class="block-body">
+          <h2>Easy customization</h2>
+          <div class="line-subtitle"></div>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam dignissim placerat lectus, at ornare sapien tempor eget. Etiam vel vestibulum nisl</p>
+        </div>
+      </div>
+    </div><!-- /.row -->
+
+  </div><!-- /.container -->
+
+</div><!-- /.section -->
+
+<div class="section-colored home">
+
+  <div class="container">
+
+    <div class="row">
+      <div class="col-md-9 col-sm-8">
+        <h2>We can make real your bussiness project</h2>
+      </div>
+      <div class="col-md-3 col-sm-4">
+        <a href="#" class="btn btn-danger btn-lg">Contact with us</a>
+      </div>
+    </div><!-- /.row -->
+
+  </div><!-- /.container -->
+
+</div><!-- /.section-colored -->
+
+<div class="section" id="recent-projects" style="position: relative;">
+
+  <div class="container">
+
+    <div class="row">
+      <div class="col-lg-12">
+        <h2 class="section-title">Recent projects</h2>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-6">
+        <a href="portfolio-item.html" class="link-portfolio">
+          <div class="overlay-portfolio">
+            <h3>Banzhow Template</h3>
+            <small class="text-muted">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pulvinar quam sed consequat adipiscing.
+            </small>
+          </div><!-- /.overlay-portfolio -->
+          <img class="img-responsive img-home-portfolio" src="img/portfolio_1.png" alt="portfolio 1">
+        </a>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-6">
+        <a href="portfolio-item.html" class="link-portfolio">
+          <div class="overlay-portfolio">
+            <h3>Banzhow Template</h3>
+            <small class="text-muted">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pulvinar quam sed consequat adipiscing.
+            </small>
+          </div><!-- /.overlay-portfolio -->
+          <img class="img-responsive img-home-portfolio" src="img/portfolio_2.png" alt="portfolio 2">
+        </a>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-6">
+        <a href="portfolio-item.html" class="link-portfolio">
+          <div class="overlay-portfolio">
+            <h3>Banzhow Template</h3>
+            <small class="text-muted">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pulvinar quam sed consequat adipiscing.
+            </small>
+          </div><!-- /.overlay-portfolio -->
+          <img class="img-responsive img-home-portfolio" src="img/portfolio_3.png" alt="portfolio 3">
+        </a>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-6">
+        <a href="portfolio-item.html" class="link-portfolio">
+          <div class="overlay-portfolio">
+            <h3>Banzhow Template</h3>
+            <small class="text-muted">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pulvinar quam sed consequat adipiscing.
+            </small>
+          </div><!-- /.overlay-portfolio -->
+          <img class="img-responsive img-home-portfolio" src="img/portfolio_4.png" alt="portfolio 4">
+        </a>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-6">
+        <a href="portfolio-item.html" class="link-portfolio">
+          <div class="overlay-portfolio">
+            <h3>Banzhow Template</h3>
+            <small class="text-muted">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pulvinar quam sed consequat adipiscing.
+            </small>
+          </div><!-- /.overlay-portfolio -->
+          <img class="img-responsive img-home-portfolio" src="img/portfolio_5.png" alt="portfolio 5">
+        </a>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-6">
+        <a href="portfolio-item.html" class="link-portfolio">
+          <div class="overlay-portfolio">
+            <h3>Banzhow Template</h3>
+            <small class="text-muted">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pulvinar quam sed consequat adipiscing.
+            </small>
+          </div><!-- /.overlay-portfolio -->
+          <img class="img-responsive img-home-portfolio" src="img/portfolio_6.png" alt="portfolio 6">
+        </a>
+      </div>
+    </div><!-- /.row -->
+
+  </div><!-- /.container -->
+
+</div><!-- /.section -->
+
+<div class="section-colored">
+
+  <div class="container">
+    <h3 class="section-title text-center">Some of Our Clients</h3>
+
+    <div class="container clients">
+
+      <div class="row">
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+          <a href="#"><img class="img-responsive" src="img/client-1.png" alt="client 1"></a>
+        </div>
+
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+          <a href="#"><img class="img-responsive" src="img/client-2.png" alt="client 2"></a>
+        </div>
+
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+          <a href="#"><img class="img-responsive" src="img/client-3.png" alt="client 3"></a>
+        </div>
+
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+          <a href="#"><img class="img-responsive" src="img/client-4.png" alt="client 4"></a>
+        </div>
+
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+          <a href="#"><img class="img-responsive" src="img/client-5.png" alt="client 5"></a>
+        </div>
+
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+          <a href="#"><img class="img-responsive" src="img/client-6.png" alt="client 6"></a>
         </div>
       </div><!-- /.row -->
-    </div>
-  </div>
-</div>
 
-  <!-- FOOTER-->
-  <!--===============================================================-->
-  <div class="bg-footer">
-    <div class="container">
-      <div class="row row-footer">
-        <div class="col-md-12">
-          <div class="wrapper-social">
-            <a href="#"><i class="fa fa-facebook facebook-footer wow bounce"></i></a>
-            <a href="#"><i class="fa fa-twitter twitter-footer wow bounce"  data-wow-delay="0.2s"></i></a>
-            <a href="#"><i class="fa fa-github github-footer wow bounce"  data-wow-delay="0.3s"></i></a>
-            <a href="#"><i class="fa fa-apple apple-footer wow bounce"  data-wow-delay="0.4s"></i></a>
-            <a href="#"><i class="fa fa-android android-footer wow bounce"  data-wow-delay="0.5s"></i></a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+    </div><!-- /.container -->
+
+  </div><!-- /.container -->
+
+</div><!-- /.section-colored -->
