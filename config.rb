@@ -78,6 +78,12 @@ activate :livereload
 #   end
 # end
 
+helpers do
+  def slashless_css_link_tag(*source)
+    (stylesheet_link_tag(*source)).gsub /\s\/>/, '>'
+  end
+end
+
 set :css_dir, 'css'
 
 set :js_dir, 'js'
