@@ -1,64 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Flanzo is a blazing fast responsive HTML5 CSS3 Bootstrap 3 template featuring great hover effects, responsive lightbox, working contact form, blog page and more">
-    <meta name="author" content="Mamoot Studio">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YUUKI:ZERO-D</title>
-    <!-- Bootstrap core CSS / GOOGLE FONTS / PLUGINS-CSS / THEME-CSS -->
-    <%= stylesheet_link_tag "app_blog" %>
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-    <![endif]-->
-  </head>
-<body>
-  <!-- BLOG-TOP -->
-  <!--===============================================================-->
-  <div class="bg-top">
-    <div class="container">
-      <div class="row">
-        <a href="index.html"><img class="logo" src="images/logo.png" alt="logo"></a>
-      </div>
-    </div>
-  </div>
+<%= partial "layouts/header" %>
+<div class="section-header">
+  <div class="container">
+    <div class="row">
 
-  <%= yield %>
-
-  <!-- FOOTER-->
-  <!--===============================================================-->
-  <div class="bg-footer">
-    <div class="container">
-      <div class="row row-footer">
-        <div class="col-md-12">
-          <div class="wrapper-social">
-            <a href="#"><i class="fa fa-facebook facebook-footer"></i></a>
-            <a href="#"><i class="fa fa-twitter twitter-footer"></i></a>
-            <a href="#"><i class="fa fa-dribbble dribbble-footer"></i></a>
-            <a href="#"><i class="fa fa-tumblr youtube-footer"></i></a>
-          </div>
-        </div>
+      <div class="col-lg-12">
+        <h1 class="page-header">Blog</h1>
       </div>
-    </div>
-  </div>
-  <!-- FOOTER-BOTTOM-->
-  <!--===============================================================-->
-  <div class="bg-footer-bottom">
-    <div class="container">
-      <div class="row-footer-bottom row">
-        <div class="col-sm-12">
-          <p>&copy;2013 All Rights Reserved by Mamoot Studio.</p>
-        </div>
 
-      </div>
     </div>
-  </div>
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <%= javascript_include_tag  "app_blog" %>
-  </body>
-</html>
+  </div> <!-- /.container -->
+</div> <!-- /.section-colored -->
+
+<div class="container container-int">
+
+  <ol class="breadcrumb">
+    <li><a href="/">Home</a></li>
+    <li class="active">Blog</li>
+  </ol>
+
+  <div class="row">
+
+    <div class="col-md-8 col-sm-8">
+<%= yield %>
+    </div>
+
+<%= partial "layouts/sidebar" %>
+
+  </div><!-- /.row -->
+
+</div><!-- /.container -->
+
+<%= partial "layouts/footer" %>
