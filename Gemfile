@@ -1,13 +1,14 @@
 # If you have OpenSSL installed, we recommend updating
 # the following line to use "https"
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 
 gem "middleman", "~>3.3.3"
 gem "middleman-blog"
 gem "middleman-deploy"
 gem "middleman-syntax"
-gem "middleman-rouge"
-gem 'redcarpet'
+gem "rouge"
+gem "redcarpet"
+gem "compass"
 
 # Live-reloading plugin
 gem "middleman-livereload", "~> 3.1.0"

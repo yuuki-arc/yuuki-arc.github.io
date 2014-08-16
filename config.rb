@@ -7,9 +7,9 @@ Time.zone = "Tokyo"
 activate :blog do |blog|
   blog.prefix = "blog"
   blog.permalink = "{year}/{month}/{day}/{title}"
-  blog.sources = "articles/{year}/{month}-{day}-{title}.html"
+  blog.sources = "archives/{year}-{month}-{day}-{title}.html"
   blog.taglink = "tags/{tag}.html"
-  blog.layout = "blog"
+  blog.layout = "blog-post"
   blog.summary_separator = /(READMORE)/
   blog.summary_length = 250
   blog.year_link = "{year}.html"
@@ -17,8 +17,8 @@ activate :blog do |blog|
   blog.day_link = "{year}/{month}/{day}.html"
   blog.default_extension = ".md"
 
-  # blog.tag_template = "blog/tag.html"
-  # blog.calendar_template = "blog/calendar.html"
+  blog.tag_template = "blog/tag.html"
+  blog.calendar_template = "blog/calendar.html"
 
   # Enable pagination
   blog.paginate = true
@@ -33,9 +33,9 @@ page "/feed.xml", layout: false
 ###
 
 # Change Compass configuration
-# compass_config do |config|
-#   config.output_style = :compact
-# end
+compass_config do |config|
+  config.output_style = :compact
+end
 
 ###
 # Page options, layouts, aliases and proxies
@@ -53,6 +53,7 @@ page "/feed.xml", layout: false
 # with_layout :admin do
 #   page "/admin/*"
 # end
+#page 'archives/*', layout: :blog-post
 
 # Proxy pages (http://middlemanapp.com/basics/dynamic-pages/)
 # proxy "/this-page-has-no-template.html", "/template-file.html", locals: {
@@ -107,12 +108,25 @@ end
 
 # markdown
 set :markdown_engine, :redcarpet
-#set :markdown, :fenced_code_blocks => true, :smartypants => true
-set :markdown, :fenced_code_blocks => true, :tables => true, :autolink => true, :gh_blockcode => true
-activate :syntax, :line_numbers => true
 
-# syntax hilight
-activate :rouge_syntax, :lineanchor => 'line'
+set(:markdown,
+    no_intra_emphasis:   true,
+    tables:              true,
+    fenced_code_blocks:  true,
+    autolink:            true,
+    strikethrough:       true,
+    lax_html_blocks:     true,
+    space_after_headers: true,
+    superscript:         true,
+    smartypants:         true,
+    with_toc_data:       true
+   )
+
+# #set :markdown, :fenced_code_blocks => true, :smartypants => true
+set :markdown, :fenced_code_blocks => true, :tables => true, :autolink => true, :gh_blockcode => true
+activate :syntax
+#
+activate :rouge_syntax
 activate :directory_indexes
 
 # デプロイ設定

@@ -3,9 +3,32 @@
  *= require style
  */
 
+@import "compass/css3";
 @import url(http://fonts.googleapis.com/css?family=Righteous&subset=latin,latin-ext);
+@import url(http://fonts.googleapis.com/css?family=Source+Code+Pro:300);
 
 .navbar-inverse .navbar-brand,
 .footer-brand {
   font-family: 'Righteous', cursive;
 }
+
+pre {
+  padding: rem-calc(12) rem-calc(10) rem-calc(12) rem-calc(10) ;
+  margin-bottom: rem-calc(24);
+  line-height: rem-calc(22);
+  @include border-radius(6px);
+  font-family: 'Source Code Pro', sans-serif;
+  font-weight: lighter;
+/*  font-size: 15px; */
+  span {
+    font-family: 'Source Code Pro', sans-serif !important;
+    font-weight: lighter !important;
+  }
+}
+
+/*
+body {
+  font-size: 18px;
+  line-height: 28px;
+}
+*/

@@ -1,0 +1,11 @@
+---
+layout: layout
+pageable: true
+---
+<% content_for :title do %>
+  Articles tagged '<%= tagname %>'
+<% end %>
+
+<% content_for :heading do %>
+  <h1>Articles tagged '<%= tagname %>'</h1>
+<% end %>
