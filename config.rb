@@ -9,7 +9,7 @@ activate :blog do |blog|
   blog.permalink = "{year}/{month}/{day}/{title}"
   blog.sources = "archives/{year}-{month}-{day}-{title}.html"
   blog.taglink = "tags/{tag}.html"
-  blog.layout = "blog-post"
+  blog.layout = "layouts/article"
   blog.summary_separator = /(READMORE)/
   blog.summary_length = 250
   blog.year_link = "{year}.html"
@@ -53,7 +53,6 @@ end
 # with_layout :admin do
 #   page "/admin/*"
 # end
-#page 'archives/*', layout: :blog-post
 
 # Proxy pages (http://middlemanapp.com/basics/dynamic-pages/)
 # proxy "/this-page-has-no-template.html", "/template-file.html", locals: {

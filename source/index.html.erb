@@ -1,38 +1,7 @@
 ---
-layout: blog
+layout: article_list
 nav: blog
 bodyClass: blog
 pageable: true
 per_page: 4
 ---
-
-<% page_articles.each_with_index do |article, i| %>
-  <div class="post">
-    <h2 class="post-title"><%= link_to article.title, article %></h2>
-    <p class="post-meta">
-      <i class="fa fa-calendar-o first"></i> <%= article.date.strftime('%Y-%m-%d') %>
-      <i class="fa fa-user"></i> Admin
-      <%# if data.site.disqus_short_name and current_article.data.comments != false and data.site.disqus_show_comment_count == true %>
-        <i class="fa fa-comment"></i>
-        <%= link_to "10 comments", "#disqus_thread"%>
-      <%# end %>
-    </p>
-    <a href="blog-post.html" class="img-post">
-      <img src="img/post1.png" alt="post 1" class="img-responsive">
-    </a>
-    <p><%= article.body %><%#= article.summary %><%#= link_to 'Read more…', article %></p>
-    <a class="btn btn-primary" href="blog-post.html">Read More <i class="fa fa-angle-right"></i></a>
-  </div><!-- /.post -->
-<% end %>
-
-  <div class="text-center">
-    <ul class="pagination">
-      <li><a href="#"><i class="fa fa-angle-left"></i></a></li>
-      <li class="active"><a href="#">1</a></li>
-      <li><a href="#">2</a></li>
-      <li><a href="#">3</a></li>
-      <li><a href="#">4</a></li>
-      <li><a href="#">5</a></li>
-      <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
-    </ul>
-  </div><!-- /.text-center -->
