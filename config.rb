@@ -114,17 +114,18 @@ end
 set :markdown_engine, :redcarpet
 
 set(:markdown,
-    no_intra_emphasis:   true,
-    tables:              true,
     fenced_code_blocks:  true,
+    tables:              true,
     autolink:            true,
+    gh_blockcode:        true,
+    no_intra_emphasis:   true,
     strikethrough:       true,
     lax_html_blocks:     true,
     space_after_headers: true,
     superscript:         true,
     smartypants:         true,
     with_toc_data:       true
-   )
+  )
 
 # #set :markdown, :fenced_code_blocks => true, :smartypants => true
 set :markdown, :fenced_code_blocks => true, :tables => true, :autolink => true, :gh_blockcode => true
@@ -140,3 +141,7 @@ activate :deploy do |deploy|
 end
 
 set :relative_links, true
+
+activate :google_analytics do |ga|
+  ga.tracking_id = 'UA-34476431-7'
+end
