@@ -1,11 +1,8 @@
 ---
-layout: default
+layout: article_list
+bodyClass: tags
 pageable: true
+per_page: 10
 ---
-<% content_for :title do %>
-  Articles tagged '<%= tagname %>'
-<% end %>
 
-<% content_for :heading do %>
-  <h1>Articles tagged '<%= tagname %>'</h1>
-<% end %>
+<% content_for :list_title do tagname+"の記事" end %>
