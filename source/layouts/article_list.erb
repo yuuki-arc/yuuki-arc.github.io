@@ -1,16 +1,22 @@
 <% wrap_layout :layout do %>
   <% page_articles.each_with_index do |article, i| %>
     <div class="post">
-      <h2 class="post-title"><%= link_to article.title, article.path %></h2>
+      <h2 class="post-title"><%= link_to article.title, article %></h2>
       <p class="post-meta">
         <i class="fa fa-calendar-o first"></i> <%= article.date.strftime('%Y-%m-%d') %>
-        <i class="fa fa-user"></i> Admin
-        <i class="fa fa-comment"></i> <%= link_to "Comments", article.path+"#disqus_thread" %>
+        <%# <i class="fa fa-user"></i> Admin %>
+        <i class="fa fa-comment"></i> <%= link_to "Comments", article.url+"#disqus_thread" %>
+        <i class="fa fa-tags"></i>
+        <span class="tags tags-article-header">
+        <% article.tags.each do |tag| %>
+          <%= link_to tag, tag_path(tag) %>
+        <% end %>
+      </span>
       </p>
       <a href="blog-post.html" class="img-post">
         <img src="img/post1.png" alt="post 1" class="img-responsive">
       </a>
-      <p><%= article.summary %><%= link_to 'Read More <i class="fa fa-angle-right"></i>', article.path, class: "btn btn-primary" %></p>
+      <p><%= article.summary %><%= link_to 'Read More <i class="fa fa-angle-right"></i>', article, class: "btn btn-primary" %></p>
     </div><!-- /.post -->
   <% end %>
 

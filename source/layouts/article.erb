@@ -4,11 +4,14 @@
     <h1 class="post-title"><%= link_to article.title, article %></h1>
     <p class="post-meta">
       <i class="fa fa-calendar-o first"></i> <%= article.date.strftime('%Y-%m-%d') %>
-      <i class="fa fa-user"></i> Admin
-      <% if data.sites.disqus_short_name and article.data.comments != false %>
-        <i class="fa fa-comment"></i>
-        <%= link_to "Comments", "#disqus_thread"%>
+      <%# <i class="fa fa-user"></i> Admin %>
+      <i class="fa fa-comment"></i> <%= link_to "Comments", "#disqus_thread" %>
+      <i class="fa fa-tags"></i>
+      <span class="tags tags-article-header">
+      <% article.tags.each do |tag| %>
+        <%= link_to tag, tag_path(tag) %>
       <% end %>
+
     </p>
       <div class="img-post">
         <img src="img/post1.png" alt="post 1" class="img-responsive">
