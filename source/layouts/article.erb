@@ -1,53 +1,52 @@
 <% wrap_layout :layout do %>
-  <% article = current_article %>
+  <% article ||= current_article %>
+  <div class="post">
+    <h1 class="post-title"><%= link_to article.title, article %></h1>
+    <p class="post-meta">
+      <i class="fa fa-calendar-o first"></i> <%= article.date.strftime('%Y-%m-%d') %>
+      <i class="fa fa-user"></i> Admin
+      <% if data.site.disqus_short_name and article.data.comments != false and data.site.disqus_show_comment_count == true %>
+        <i class="fa fa-comment"></i>
+        <%= link_to "10 comments", "#disqus_thread"%>
+      <% end %>
+    </p>
+    <div class="img-post">
+      <img src="img/post1.png" alt="post 1" class="img-responsive">
+    </div>
+    <%= article.body %>
+  </div><!-- /.post -->
 
-    <div class="post">
-      <h1 class="post-title"><%= link_to article.title, article %></h1>
-      <p class="post-meta">
-        <i class="fa fa-calendar-o first"></i> <%= article.date.strftime('%Y-%m-%d') %>
-        <i class="fa fa-user"></i> Admin
-        <%# if data.site.disqus_short_name and current_article.data.comments != false and data.site.disqus_show_comment_count == true %>
-          <i class="fa fa-comment"></i>
-          <%= link_to "10 comments", "#disqus_thread"%>
-        <%# end %>
-      </p>
-      <div class="img-post">
-        <img src="img/post1.png" alt="post 1" class="img-responsive">
+  <!-- the comment box -->
+  <div class="well">
+    <h4>Leave a Comment:</h4>
+    <form role="form">
+      <div class="form-group">
+        <textarea class="form-control" rows="3"></textarea>
       </div>
-      <%= article.body %>
-    </div><!-- /.post -->
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
 
-    <!-- the comment box -->
-    <div class="well">
-      <h4>Leave a Comment:</h4>
-      <form role="form">
-        <div class="form-group">
-          <textarea class="form-control" rows="3"></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
-    </div>
+  <hr>
 
-    <hr>
+  <h3>2 Comments</h3>
 
-    <h3>2 Comments</h3>
+  <!-- the comments -->
+  <div class="comment-author-icon pull-left">
+    <i class="fa fa-user"></i>
+  </div>
+  <div class="comment-content pull-left">
+    <h4>John Doe <small>9:41 PM on January 24, 2014</small></h4>
+    <p>Lorem ipsum Eiusmod do culpa enim ullamco officia dolor anim Ut nulla nostrud incididunt commodo reprehenderit qui exercitation commodo velit dolore voluptate esse sunt nulla eiusmod in cillum fugiat cillum nulla consequat qui reprehenderit pariatur Ut elit sed culpa amet.</p>
+  </div>
+  <div class="clearfix"></div>
 
-    <!-- the comments -->
-    <div class="comment-author-icon pull-left">
-      <i class="fa fa-user"></i>
-    </div>
-    <div class="comment-content pull-left">
-      <h4>John Doe <small>9:41 PM on January 24, 2014</small></h4>
-      <p>Lorem ipsum Eiusmod do culpa enim ullamco officia dolor anim Ut nulla nostrud incididunt commodo reprehenderit qui exercitation commodo velit dolore voluptate esse sunt nulla eiusmod in cillum fugiat cillum nulla consequat qui reprehenderit pariatur Ut elit sed culpa amet.</p>
-    </div>
-    <div class="clearfix"></div>
-
-    <div class="comment-author-icon pull-left">
-      <i class="fa fa-user"></i>
-    </div>
-    <div class="comment-content pull-left">
-      <h4>John Doe <small>12:28 PM on January 27, 2014</small></h4>
-      <p>Lorem ipsum Eiusmod do culpa enim ullamco officia dolor anim Ut nulla nostrud incididunt commodo reprehenderit qui exercitation commodo velit dolore voluptate esse sunt nulla eiusmod in cillum fugiat cillum nulla consequat qui reprehenderit pariatur Ut elit sed culpa amet.</p>
-    </div>
-    <div class="clearfix"></div>
+  <div class="comment-author-icon pull-left">
+    <i class="fa fa-user"></i>
+  </div>
+  <div class="comment-content pull-left">
+    <h4>John Doe <small>12:28 PM on January 27, 2014</small></h4>
+    <p>Lorem ipsum Eiusmod do culpa enim ullamco officia dolor anim Ut nulla nostrud incididunt commodo reprehenderit qui exercitation commodo velit dolore voluptate esse sunt nulla eiusmod in cillum fugiat cillum nulla consequat qui reprehenderit pariatur Ut elit sed culpa amet.</p>
+  </div>
+  <div class="clearfix"></div>
 <% end %>
