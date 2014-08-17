@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Banzhow</title>
+    <title><%= current_article.title + ' | ' unless current_article.nil? %><%= data.site.title %></title>
 
     <!-- font-awesome -->
     <%= stylesheet_link_tag 'font-awesome.min' %>

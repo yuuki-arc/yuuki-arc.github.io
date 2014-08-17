@@ -10,6 +10,7 @@ gem "middleman-syntax"
 gem "rouge"
 gem "redcarpet"
 gem "compass"
+gem "nokogiri"
 
 # Live-reloading plugin
 gem "middleman-livereload", "~> 3.1.0"
