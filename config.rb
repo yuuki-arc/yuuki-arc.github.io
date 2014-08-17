@@ -131,7 +131,7 @@ set(:markdown,
 set :markdown, :fenced_code_blocks => true, :tables => true, :autolink => true, :gh_blockcode => true
 activate :syntax
 #
-activate :rouge_syntax
+#activate :rouge_syntax
 activate :directory_indexes
 
 # デプロイ設定
