@@ -93,7 +93,7 @@ configure :build do
   # activate :minify_css
 
   # Minify Javascript on build
-  # activate :minify_javascript
+  activate :minify_javascript
 
   # Enable cache buster
   # activate :asset_hash
@@ -103,6 +103,11 @@ configure :build do
 
   # Or use a different image path
   # set :http_prefix, "/Content/images/"
+
+  compass_config do |config|
+    config.output_style = :compressed
+    config.line_comments = false
+  end
 end
 
 # markdown

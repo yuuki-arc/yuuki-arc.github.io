@@ -13,8 +13,7 @@
       <a href="blog-post.html" class="img-post">
         <img src="img/post1.png" alt="post 1" class="img-responsive">
       </a>
-      <p><%= article.summary %><%= link_to 'Read more…', article %></p>
-      <a class="btn btn-primary" href="blog-post.html">Read More <i class="fa fa-angle-right"></i></a>
+      <p><%= article.summary %><%= link_to 'Read More <i class="fa fa-angle-right"></i>', article.path, class: "btn btn-primary" %></p>
     </div><!-- /.post -->
   <% end %>
 
