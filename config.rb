@@ -138,3 +138,5 @@ activate :deploy do |deploy|
   deploy.method = :git
   deploy.branch = 'master'
 end
+
+set :relative_links, true

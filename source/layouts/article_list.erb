@@ -5,10 +5,7 @@
       <p class="post-meta">
         <i class="fa fa-calendar-o first"></i> <%= article.date.strftime('%Y-%m-%d') %>
         <i class="fa fa-user"></i> Admin
-        <%# if data.site.disqus_short_name and current_article.data.comments != false and data.site.disqus_show_comment_count == true %>
-          <i class="fa fa-comment"></i>
-          <%= link_to "Comments", article.path+"#disqus_thread" %>
-        <%# end %>
+        <i class="fa fa-comment"></i> <%= link_to "Comments", article.path+"#disqus_thread" %>
       </p>
       <a href="blog-post.html" class="img-post">
         <img src="img/post1.png" alt="post 1" class="img-responsive">
