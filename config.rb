@@ -87,6 +87,10 @@ set :js_dir, 'js'
 
 set :images_dir, 'img'
 
+after_configuration do
+  sprockets.append_path 'blog/images'
+end
+
 # Build-specific configuration
 configure :build do
   # For example, change the Compass output style for deployment
@@ -126,6 +130,7 @@ set(:markdown,
     smartypants:         true,
     with_toc_data:       true
   )
+
 
 # #set :markdown, :fenced_code_blocks => true, :smartypants => true
 set :markdown, :fenced_code_blocks => true, :tables => true, :autolink => true, :gh_blockcode => true
