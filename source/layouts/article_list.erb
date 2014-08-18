@@ -13,10 +13,12 @@
         <% end %>
       </span>
       </p>
+      <%#
       <a href="blog-post.html" class="img-post">
         <img src="img/post1.png" alt="post 1" class="img-responsive">
       </a>
-      <p><%= article.summary %><%= link_to 'Read More <i class="fa fa-angle-right"></i>', article, class: "btn btn-primary" %></p>
+      %>
+      <%= article.summary %><%= link_to 'Read More <i class="fa fa-angle-right"></i>', article, class: "btn btn-primary" %>
     </div><!-- /.post -->
   <% end %>
 
