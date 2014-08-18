@@ -21,14 +21,8 @@
   <% end %>
 
   <% if paginate %>
-    <div class="text-center">
-      <ul class="pagination">
-        <% for i in 1..num_pages do %>
-          <% class_name = (i == page_number ? "active" : "") %>
-          <li><%= link_to i, "#", class: class_name %></li>
-        <% end %>
-      </ul>
-    </div><!-- /.text-center -->
+    <%= partial "layouts/pagination", :locals =>{prev_page: prev_page, next_page: next_page, page_number: page_number, num_pages: num_pages} %>
   <% end %>
+
 
 <% end %>
