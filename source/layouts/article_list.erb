@@ -20,15 +20,18 @@
     </div><!-- /.post -->
   <% end %>
 
-  <div class="text-center">
-    <ul class="pagination">
-      <li><a href="#"><i class="fa fa-angle-left"></i></a></li>
-      <li class="active"><a href="#">1</a></li>
-      <li><a href="#">2</a></li>
-      <li><a href="#">3</a></li>
-      <li><a href="#">4</a></li>
-      <li><a href="#">5</a></li>
-      <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
-    </ul>
-  </div><!-- /.text-center -->
+  <% if paginate %>
+    <div class="text-center">
+      <ul class="pagination">
+<% for page in current_page.children %>
+  <%= link_to page.data.title, page.url %>
+<% end %>
+        <% for i in 1..num_pages do %>
+          <% class_name = (i == page_number ? "active" : "") %>
+          <li><%= link_to i, "#", class: class_name %></li>
+        <% end %>
+      </ul>
+    </div><!-- /.text-center -->
+  <% end %>
+
 <% end %>
