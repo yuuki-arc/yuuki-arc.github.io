@@ -11,14 +11,15 @@
       <% article.tags.each do |tag| %>
         <%= link_to tag, tag_path(tag) %>
       <% end %>
-
     </p>
+    <%= partial "layouts/social_button", :locals =>{permalink: data.sites.url + article.url, blog_title: article.title} %>
       <%#
       <div class="img-post">
         <img src="img/post1.png" alt="post 1" class="img-responsive">
       </div>
       %>
     <%= article.body %>
+    <%= partial "layouts/social_button", :locals =>{permalink: data.sites.url + article.url, blog_title: article.title} %>
   </div><!-- /.post -->
 
   <!-- the comment box -->

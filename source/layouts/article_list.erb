@@ -13,6 +13,7 @@
         <% end %>
       </span>
       </p>
+      <%= partial "layouts/social_button", :locals =>{permalink: data.sites.url + article.url, blog_title: article.title, title: '', home_url: ''} %>
       <%#
       <a href="blog-post.html" class="img-post">
         <img src="img/post1.png" alt="post 1" class="img-responsive">
