@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title><%= current_article.title + ' | ' unless current_article.nil? %><%= data.sites.title %></title>
+    <title><%= current_article.title + ' | ' unless current_article.nil? %><%= data.site.title %></title>
 
     <!-- font-awesome -->
     <%= stylesheet_link_tag 'font-awesome.min' %>
@@ -70,7 +70,7 @@
             <span class="icon-bar"></span>
           </button>
 
-          <a class="navbar-brand" href="/"><%= data.sites.title %></a>
+          <a class="navbar-brand" href="/"><%= data.site.title %></a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
