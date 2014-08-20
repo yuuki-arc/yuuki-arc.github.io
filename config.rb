@@ -77,12 +77,6 @@ activate :livereload
 #   end
 # end
 
-helpers do
-  def slashless_css_link_tag(*source)
-    (stylesheet_link_tag(*source)).gsub /\s\/>/, '>'
-  end
-end
-
 set :css_dir, 'css'
 
 set :js_dir, 'js'
@@ -136,12 +130,12 @@ set(:markdown,
   )
 
 
-# #set :markdown, :fenced_code_blocks => true, :smartypants => true
 set :markdown, :fenced_code_blocks => true, :tables => true, :autolink => true, :gh_blockcode => true
 activate :syntax
-#
-#activate :rouge_syntax
+
 activate :directory_indexes
+
+activate :similar, :algorithm => :'word_frequency/mecab'
 
 # デプロイ設定
 activate :deploy do |deploy|

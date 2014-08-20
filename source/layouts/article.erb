@@ -20,6 +20,15 @@
       %>
     <%= article.body %>
     <%= partial "layouts/social_button", :locals =>{permalink: data.site.url + article.url, blog_title: article.title} %>
+
+    <div class="well">
+      <h3>関連記事</h3>
+      <ol class="entries">
+        <% similar_articles.first(3).each do |article| %>
+          <li><%= link_to article.title, article.url %></li>
+        <% end %>
+      </ol>
+    </div>
   </div><!-- /.post -->
 
   <!-- the comment box -->
