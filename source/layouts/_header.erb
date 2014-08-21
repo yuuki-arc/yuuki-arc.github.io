@@ -19,7 +19,7 @@
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:url" content="<%= url %>" />
     <meta name="twitter:title" content="<%= title %>" />
-    <meta name="twitter:site" content="<= data.site.twitter.account %>" />
+    <meta name="twitter:site" content="<%= data.site.twitter.account %>" />
     <meta name="twitter:description" content="<%= description %>" />
     <% if image_url %>
     <meta name="twitter:image:src" content="<%=image_url%>" />
@@ -32,14 +32,14 @@
     <meta property="og:image" content="<%=image_url%>" />
     <% end %>
 
-    <meta property="og:site_name" content="#{data.site.title}">
-    <meta property="og:description" content="#{description}">
+    <meta property="og:site_name" content="<%= data.site.title %>">
+    <meta property="og:description" content="<%= description %>">
     <meta property="og:locale" content="ja_JP">
     <meta property="fb:admins" content="815418171836508">
     <meta property="fb:app_id" content="258670484329443">
     <meta property="article:publisher" content="https://www.facebook.com/yamaoka.masaki">
 
-    <link rel="alternate" type="application/rss+xml" href="/feed.xml" title="#{data.site.title}">
+    <link rel="alternate" type="application/rss+xml" href="/feed.xml" title="<%= data.site.title %>">
     <link rel="author" href="https://plus.google.com/109349508125790933002/posts">
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
 
