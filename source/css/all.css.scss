@@ -100,6 +100,13 @@ h2 {
   vertical-align:middle;
 }
 
+@media (max-width: 480px) {
+  .share > div{
+    margin:0 0px;
+    padding:2px 4px;
+  }
+}
+
 .share > div:hover{
   opacity:0.7;
 }
@@ -134,4 +141,23 @@ h2 {
 .share .pocket{
   background:#ee4056;
   border-bottom:2px solid darkred;
+}
+
+
+@media (min-width: 768px) {
+  .container {
+    width: 760px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    width: 982px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    width: 1186px;
+  }
 }

@@ -1,17 +1,10 @@
+<% content_for :page_class do "article" end %>
+
 <% wrap_layout :layout do %>
   <% article ||= current_article %>
   <div class="post">
     <h1 class="post-title"><%= link_to article.title, article %></h1>
-    <p class="post-meta">
-      <i class="fa fa-calendar-o first"></i> <%= article.date.strftime('%Y-%m-%d') %>
-      <%# <i class="fa fa-user"></i> Admin %>
-      <i class="fa fa-comment"></i> <%= link_to "Comments", "#disqus_thread" %>
-      <i class="fa fa-tags"></i>
-      <span class="tags tags-article-header">
-      <% article.tags.each do |tag| %>
-        <%= link_to tag, tag_path(tag) %>
-      <% end %>
-    </p>
+    <%= partial "layouts/post_meta", :locals =>{article: article} %>
     <%= partial "layouts/social_button", :locals =>{permalink: data.site.url + article.url, blog_title: article.title} %>
       <%#
       <div class="img-post">
@@ -31,12 +24,15 @@
     </div>
   </div><!-- /.post -->
 
+  <%#
   <!-- the comment box -->
   <div class="well">
-    <%= partial "layouts/disqus" %>
+    <%= partial "layouts/disqus" % >
   </div>
 
   <hr>
+  %>
+
 
   <div class="text-center">
     <ul class="pagination">

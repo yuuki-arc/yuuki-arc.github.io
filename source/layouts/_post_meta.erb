@@ -1,0 +1,11 @@
+<p class="post-meta">
+  <i class="fa fa-calendar-o first"></i> <%= article.date.strftime('%Y-%m-%d') %>
+  <%# <i class="fa fa-user"></i> Admin %>
+  <%# <i class="fa fa-comment"></i> %><%#= link_to "Comments", article.url+"#disqus_thread" %>
+  <i class="fa fa-tags"></i>
+  <span class="tags tags-article-header">
+  <% article.tags.each do |tag| %>
+    <%= link_to tag, tag_path(tag) %>
+  <% end %>
+</span>
+</p>
