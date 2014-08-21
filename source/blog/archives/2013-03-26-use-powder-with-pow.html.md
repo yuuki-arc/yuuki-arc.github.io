@@ -4,7 +4,7 @@ date: 2013-03-26 00:35 JST
 tags: powder, pow, Ruby on Rails
 ---
 
-[前回のエントリ](http://yuuki-arc.jugem.jp/?eid=33)で pow をインストールしましたので、今回は powder を入れてさらに便利な環境を整えます。
+[前回のエントリ](/blog/2013/03/24/use-pow-rbenv-on-rack-server/)で pow をインストールしましたので、今回は powder を入れてさらに便利な環境を整えます。
 
 インストールは gem であれば簡単にできます。
 

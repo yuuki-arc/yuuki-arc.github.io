@@ -1,7 +1,7 @@
 ---
 title: pow + rbenv で便利なRackサーバ環境を構築
 date: 2013-03-24 19:17 JST
-tags: pow, rbenv, Ruby on Rails, Mac
+tags: pow, rbenv, Ruby on Rails, Mountain Lion, Mac
 ---
 
 Mac OS XのMountain LionでRack環境をローカルに構築する手順です。  
