@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ja">
   <head>
-    <% title = "#{current_article + ' - ' unless current_article.nil?}#{data.site.title}" %>
+    <% title = "#{current_article.title + ' - ' unless current_article.nil?}#{data.site.title}" %>
     <% description = yield_content(:description) || data.site.description %>
     <% url = "#{data.site.url}#{current_page.url}" %>
     <% image_url = data.site.url + current_page.data.image if current_page.data.image %>
