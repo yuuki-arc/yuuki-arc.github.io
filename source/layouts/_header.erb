@@ -1,12 +1,47 @@
 <!DOCTYPE html>
 <html lang="ja">
   <head>
+    <% title = "#{current_article + ' - ' unless current_article.nil?}#{data.site.title}" %>
+    <% description = yield_content(:description) || data.site.description %>
+    <% url = "#{data.site.url}#{current_page.url}" %>
+    <% image_url = data.site.url + current_page.data.image if current_page.data.image %>
+
+    <link rel="canonical" href="<%= url %>" />
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
 
-    <title><%= current_article.title + ' | ' unless current_article.nil? %><%= data.site.title %></title>
+    <title><%= title %></title>
+    <meta name="author" content="<%= data.site.author.name %>">
+    <meta name="keywords" content="<%= data.site.keywords %>" />
+    <meta name="description" content="<%= description %>" />
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:url" content="<%= url %>" />
+    <meta name="twitter:title" content="<%= title %>" />
+    <meta name="twitter:site" content="<= data.site.twitter.account %>" />
+    <meta name="twitter:description" content="<%= description %>" />
+    <% if image_url %>
+    <meta name="twitter:image:src" content="<%=image_url%>" />
+    <% end %>
+
+    <meta property="og:title" content="<%=title%>" />
+    <meta property="og:type" content="photo:photo" />
+    <meta property="og:url" content="<%=url%>" />
+    <% if image_url %>
+    <meta property="og:image" content="<%=image_url%>" />
+    <% end %>
+
+    <meta property="og:site_name" content="#{data.site.title}">
+    <meta property="og:description" content="#{description}">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="fb:admins" content="815418171836508">
+    <meta property="fb:app_id" content="258670484329443">
+    <meta property="article:publisher" content="https://www.facebook.com/yamaoka.masaki">
+
+    <link rel="alternate" type="application/rss+xml" href="/feed.xml" title="#{data.site.title}">
+    <link rel="author" href="https://plus.google.com/109349508125790933002/posts">
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
 
     <!-- font-awesome -->
     <%= stylesheet_link_tag 'font-awesome.min' %>
@@ -44,7 +79,7 @@
     <link rel="apple-touch-icon" sizes="120x120" href="/img/favicon/apple-touch-icon-120x120.png">
     <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon/apple-touch-icon-76x76.png">
     <link rel="apple-touch-icon" sizes="152x152" href="/img/favicon/apple-touch-icon-152x152.png">
-    <meta name="apple-mobile-web-app-title" content="yuukiar.co">
+    <meta name="apple-mobile-web-app-title" content="<%= data.site.title %>">
     <link rel="icon" type="image/png" href="/img/favicon/favicon-196x196.png" sizes="196x196">
     <link rel="icon" type="image/png" href="/img/favicon/favicon-160x160.png" sizes="160x160">
     <link rel="icon" type="image/png" href="/img/favicon/favicon-96x96.png" sizes="96x96">
@@ -53,13 +88,10 @@
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="msapplication-TileImage" content="/img/favicon/mstile-144x144.png">
     <meta name="msapplication-config" content="/img/favicon/browserconfig.xml">
-    <meta name="application-name" content="yuukiar.co">
+    <meta name="application-name" content="<%= data.site.title %>">
   </head>
 
-
   <body>
-
-
     <nav class="navbar navbar-fixed-top navbar-inverse" role="navigation">
       <div class="container">
         <div class="navbar-header">
