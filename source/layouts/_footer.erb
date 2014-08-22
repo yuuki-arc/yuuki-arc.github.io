@@ -4,7 +4,12 @@
     <div class="row">
       <div class="col-lg-3 col-md-3">
         <a class="footer-brand" href="index.html"><%= data.site.title %></a>
-        <p>Unser construction...</p>
+      </div>
+      <div class="col-lg-3 col-md-3">
+        <p><%= data.site.description %></p>
+      </div>
+      <div class="col-lg-3 col-md-3">
+        <h3>CONTACT</h3>
         <ul class="list-inline list-unstyled social-networks">
           <li>
             <a href="#">
@@ -76,10 +81,11 @@
       <div class="col-lg-3 col-md-3">
         <h3>CONTACT</h3>
         <address>
-          <i class="fa fa-envelope"></i> arcs7nine[at]gmail.com
+          <i class="fa fa-envelope"></i> <%= data.site.author.email %>
         </address>
       </div>
 
+      <%#
       <div class="col-lg-3 col-md-3">
         <h3>LATEST TWEETS</h3>
         <ul class="latest-tweets">
@@ -102,6 +108,7 @@
           </span>
         </div><!-- /input-group -->
       </div>
+      %>
     </div><!-- /.row -->
 
   </div><!-- /.container -->
@@ -110,7 +117,7 @@
 <div class="footer-after">
   <div class="container">
     <div class="row">
-      <p class="col-md-10">©2014 All rights reserved. Designed by John Doe.</p>
+      <p class="col-md-10">©2014 All rights reserved. Designed by John Doe. Customized by yuuki-arc.</p>
     </div><!-- /.row -->
   </div>
 </div>
