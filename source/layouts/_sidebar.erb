@@ -1,13 +1,50 @@
 <div class="col-md-4 col-sm-4 sidebar">
   <div class="well">
-    <h4>About</h4>
+    <h4>このブログについて</h4>
     <div class="input-group">
-      <%= data.site.author.name %>
+      <p>
+        <%= image_tag "about.jpg", class: "profile-image" %>
+        <%= data.site.author.name %>
+      </p>
+      <p><%= data.site.description %></p>
     </div><!-- /input-group -->
+
+  <ul class="list-inline list-unstyled social-networks">
+    <li>
+      <a href="<%= data.site.twitter.url %>">
+        <div class="icon-social icon-social-twitter normal">
+          <i class="fa fa-twitter"></i>
+        </div>
+        <div class="icon-social hover">
+          <i class="fa fa-twitter"></i>
+        </div>
+      </a>
+    </li>
+    <li>
+      <a href="<%= data.site.facebook.url %>">
+        <div class="icon-social icon-social-facebook normal">
+          <i class="fa fa-facebook"></i>
+        </div>
+        <div class="icon-social hover">
+          <i class="fa fa-facebook"></i>
+        </div>
+      </a>
+    </li>
+    <li>
+      <a href="<%= data.site.github.url %>">
+        <div class="icon-social icon-social-github normal">
+          <i class="fa fa-github"></i>
+        </div>
+        <div class="icon-social hover">
+          <i class="fa fa-github"></i>
+        </div>
+      </a>
+    </li>
+
   </div><!-- /.well -->
 
   <div class="well">
-    <h4>Search</h4>
+    <h4>ブログ内検索</h4>
     <div class="input-group">
       <%#
       <input type="text" class="form-control">
@@ -33,32 +70,17 @@
   </div><!-- /.well -->
   %>
 
-  <ul class="nav nav-tabs" id="widgetTab">
-    <li class="active"><a href="#recent-entries" data-toggle="tab">Recent Entries</a></li>
-    <%# <li><a href="#popular-news" data-toggle="tab">Popular News</a></li> %>
-  </ul>
-  <div class="tab-content">
-    <div class="tab-pane fade in active list-posts" id="recent-entries">
-      <ul>
-        <% blog.articles[0...5].each do |article| %>
-          <li><a href="<%= article.url %>"><i class="fa fa-caret-right"></i> <%= article.date.strftime('%Y-%m-%d') %><br><%= article.title %></a></li>
-        <% end %>
-      </ul>
-    </div>
-    <%#
-    <div class="tab-pane fade list-posts" id="popular-news">
-      <ul>
-        <li><a href="#"><i class="fa fa-caret-right"></i> Praesent convallis a risus eget cursus. Phasellus ultrices laoreet lacus semper cursus. Nam vitae luctus sapien, a hendrerit nunc</a></li>
-        <li><a href="#"><i class="fa fa-caret-right"></i> Praesent convallis a risus eget cursus. Phasellus ultrices laoreet lacus semper cursus. Nam vitae luctus sapien, a hendrerit nunc</a></li>
-        <li><a href="#"><i class="fa fa-caret-right"></i> Praesent convallis a risus eget cursus. Phasellus ultrices laoreet lacus semper cursus. Nam vitae luctus sapien, a hendrerit nunc</a></li>
-      </ul>
-    </div>
-    %>
-  </div><!-- /.tab-content -->
-
+  <div class="well">
+    <h4>最新記事</h4>
+    <ul class="nav nav-stacked nav-pills">
+      <% blog.articles[0...5].each do |article| %>
+        <li><a href="<%= article.url %>"><i class="fa fa-caret-right"></i> <%= article.date.strftime('%Y-%m-%d') %><br><%= article.title %></a></li>
+      <% end %>
+    </ul>
+  </div><!-- /.well -->
 
   <div class="well">
-    <h4>Archives</h4>
+    <h4>月別アーカイブ</h4>
     <% blog.articles.group_by {|a| a.date.year }.each do |year, year_articles | %>
       <li><%= link_to "#{year}年", blog_year_path(year) %> (<%= year_articles.size %>)</li>
       <ul>
@@ -70,10 +92,11 @@
   </div><!-- /.well -->
 
   <div class="well">
-    <h4>Tags</h4>
+    <h4>タグ</h4>
     <div class="tags">
       <% blog.tags.each do |tag, articles| %>
         <%= link_to "#{tag} (#{articles.size})", tag_path(tag) %>
+        <%#= link_to "#{tag}", tag_path(tag) %>
       <% end %>
     </div><!-- /tags -->
   </div><!-- /.well -->

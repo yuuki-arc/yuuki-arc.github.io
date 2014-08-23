@@ -6,11 +6,27 @@
 @import "compass/css3";
 @import url(http://fonts.googleapis.com/css?family=Source+Code+Pro:300);
 
-.navbar-inverse .navbar-brand,
-.footer-brand {
-  font-family: 'Nunito', sans-serif;
+
+/* 全体レイアウト */
+@media (min-width: 768px) {
+  .container {
+    width: 760px;
+  }
 }
 
+@media (min-width: 992px) {
+  .container {
+    width: 982px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    width: 1186px;
+  }
+}
+
+/* 記事中のコードハイライト */
 pre {
   padding: rem-calc(12) rem-calc(10) rem-calc(12) rem-calc(10) ;
   margin-bottom: rem-calc(24);
@@ -25,30 +41,26 @@ pre {
   }
 }
 
-div.list-posts ul{
-  font-size: 16px;
+/* タイトルフォント */
+.navbar-inverse .navbar-brand,
+.footer-brand {
+  font-family: 'Nunito', sans-serif;
 }
 
-div.list-posts ul li a{
-  padding: 5px 15px;
+/* ページヘッダー */
+.page-header {
+  visibility: hidden;
+  margin: 0;
 }
 
+/* 記事中にある画像のレスポンシブ対応 */
 .post img {
   display: block;
   height: auto;
   max-width: 100%;
 }
 
-.tags-article-header a{
-  padding: 0 10px 2px;
-  margin: 0;
-}
-
-.tags a{
-  font-size: 13px;
-  line-height: 20px;
-}
-
+/* フォントサイズをデフォルトテンプレートよりも大きくする */
 body {
   font-size: 16px;
   line-height: 28px;
@@ -68,102 +80,127 @@ h1.post-title, h2.post-title {
   line-height: 36px;
 }
 
-/*
-h1 {
-  font-size: 36px;
+div.list-posts ul {
+  font-size: 16px;
 }
 
-h2 {
-  font-size: 28px;
+div.list-posts ul li a {
+  padding: 5px 15px;
 }
+
+.tags-article-header a {
+  padding: 0 10px 2px;
+  margin: 0;
+}
+
+.tags a {
+  padding: 0 10px 2px;
+  margin: 1px;
+  line-height: 20px;
+/*
+  font-size: 13px;
+  line-height: 20px;
 */
+}
 
 .btn {
   font-size: 16px;
 }
 
-/* ソーシャルボタン */
-.share{
-  margin:25px 0 30px 0;
-  font-size:12px;
-  letter-spacing:1px;
-  line-height:2em;
+/* 記事のソーシャルボタン */
+.share {
+  margin: 25px 0 30px 0;
+  font-size: 12px;
+  letter-spacing: 1px;
+  line-height: 2em;
 }
 
-.share > div{
-  margin:0 2px;
-  padding:2px 10px;
-  display:inline-block;
-  color:white;
-  border-radius:3px;
-  border-bottom:2px solid #0060e6;
-  vertical-align:middle;
+.share > div {
+  margin: 0 2px;
+  padding: 2px 10px;
+  display: inline-block;
+  color: white;
+  border-radius: 3px;
+  border-bottom: 2px solid #0060e6;
+  vertical-align: middle;
 }
 
 @media (max-width: 480px) {
-  .share > div{
-    font-size:18px;
+  .share > div {
+    font-size: 18px;
     width: 50px;
-    margin:0 0px;
-    padding:8px 10px;
-    text-align:center;
+    margin: 0 0px;
+    padding: 8px 10px;
+    text-align: center;
   }
   .share > div > a > span {
     display: none;
   }
 }
 
-.share > div:hover{
-  opacity:0.7;
+.share > div:hover {
+  opacity: 0.7;
 }
 
-.share > div > a{
-  color:white;
+.share > div > a {
+  color: white;
 }
 
-.share .twitter{
-  background:#55acee;
+.share .twitter {
+  background: #55acee;
 }
 
-.share .facebook{
-  background:#3b5998;
-  letter-spacing:0px;
+.share .facebook {
+  background: #3b5998;
+  letter-spacing: 0px;
 }
 
-.share .hatena{
-  background:#008fde;
-  letter-spacing:2px;
+.share .hatena {
+  background: #008fde;
+  letter-spacing: 2px;
 }
 
 .fa-hatena {
   font-weight: bold;
 }
 
-.share .gplus{
-  background:#dd4b39;
-  border-bottom:2px solid darkred;
+.share .gplus {
+  background: #dd4b39;
+  border-bottom: 2px solid darkred;
 }
 
-.share .pocket{
-  background:#ee4056;
-  border-bottom:2px solid darkred;
+.share .pocket {
+  background: #ee4056;
+  border-bottom: 2px solid darkred;
 }
 
-
-@media (min-width: 768px) {
-  .container {
-    width: 760px;
-  }
+/* About */
+.profile-image {
+  margin-right: 10px;
+}
+/* サイドバーのソーシャルアイコン */
+.social-networks div.icon-social.icon-social-github.normal {
+  background: #171515;
 }
 
-@media (min-width: 992px) {
-  .container {
-    width: 982px;
-  }
+.social-networks div.icon-social.hover {
+  color: #000000;
+  background: #fafafa;
 }
 
-@media (min-width: 1200px) {
-  .container {
-    width: 1186px;
-  }
+/* サイドバーのGoogleカスタム検索 */
+div.gsc-control-cse {
+  padding-top: 0;
+  background-color: #fafafa;
+  border-color: #fafafa;
+}
+td.gsc-search-button input.gsc-search-button-v2 {
+	border-color: #ffffff !important;
+	background-color: #1abc9c !important;
+	background-image: none !important;
+}
+
+form.gsc-search-box input[type=image] {
+	margin: 0 2px !important;
+	padding: 12px 18px !important;
 }

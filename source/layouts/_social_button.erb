@@ -1,3 +1,5 @@
+<% permalink = data.site.url + article.url %>
+<% blog_title = "#{article.title + ' - ' unless article.nil?}#{data.site.title}" %>
 <div class="share">
   <div class="twitter"><a href="http://twitter.com/intent/tweet?url=<%= permalink %>&amp;text=<%= blog_title %>" target="_blank"><i class="fa fa-twitter"></i><span> twitter</span></a></div>
   <div class="facebook"><a href="http://www.facebook.com/sharer.php?u=<%= permalink %>&amp;t=<%= blog_title %>" target="_blank"><i class="fa fa-facebook-square"></i><span> facebook</span></a></div>

@@ -1,12 +1,18 @@
 title: yuukiar.co
-description: 夕希／ユウキのブログ。スマホゲーム開発（おもにCocos2d-xやUnity3D）に興味持ってます。
+description: 夕希／ユウキのブログ。スマホゲーム開発（おもにCocos2d-xやUnity3D）あたりを中心に書いていきます。
 keywords: スマホゲーム開発,Web開発,Cocos2d-x,Unity3D,Ruby on Rails
 url: http://yuukiar.co
+
 author:
   name: yuuki-arc
   email: arcs7nine[atmark]gmail.com
 
 twitter:
   account: "@yuuki_arc"
+  url: https://twitter.com/yuuki_arc
 
-disqus_short_name: yuukiarc
+facebook:
+  url: https://www.facebook.com/yamaoka.masaki
+
+github:
+  url: https://github.com/yuuki-arc

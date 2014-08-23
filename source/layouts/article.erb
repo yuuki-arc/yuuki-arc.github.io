@@ -4,15 +4,15 @@
   <% article ||= current_article %>
   <div class="post">
     <h1 class="post-title"><%= link_to article.title, article %></h1>
-    <%= partial "layouts/post_meta", :locals =>{article: article} %>
-    <%= partial "layouts/social_button", :locals =>{permalink: data.site.url + article.url, blog_title: article.title} %>
+    <%= partial "layouts/post_meta", :locals => { article: article } %>
+    <%= partial "layouts/social_button", :locals => { article: article } %>
       <%#
       <div class="img-post">
         <img src="img/post1.png" alt="post 1" class="img-responsive">
       </div>
       %>
     <%= article.body %>
-    <%= partial "layouts/social_button", :locals =>{permalink: data.site.url + article.url, blog_title: article.title} %>
+    <%= partial "layouts/social_button", :locals => { article: article } %>
 
     <div class="well">
       <h3>関連記事</h3>
