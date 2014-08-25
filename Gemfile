@@ -5,6 +5,7 @@ source 'http://rubygems.org'
 gem "middleman", "~>3.3.3"
 gem "middleman-blog"
 gem 'middleman-blog-similar'
+gem "middleman-minify-html"
 gem "middleman-deploy"
 gem "middleman-syntax"
 #gem "middleman-rouge"
