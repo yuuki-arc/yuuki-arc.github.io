@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
+  <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
     <% title = "#{current_article.title + ' - ' unless current_article.nil?}#{data.site.title}" %>
     <%# title = "#{list_title + ' - ' unless list_title == ""}#{data.site.title}" %>
     <% description = yield_content(:description) || data.site.description %>
@@ -26,18 +26,16 @@
     <meta name="twitter:image:src" content="<%=image_url%>" />
     <% end %>
 
-    <meta property="og:title" content="<%=title%>" />
-    <meta property="og:type" content="photo:photo" />
+    <meta property="fb:app_id" content="716736618373642" />
+    <meta property="og:type" content="article" />
     <meta property="og:url" content="<%=url%>" />
+    <meta property="og:title" content="<%=title%>" />
     <% if image_url %>
     <meta property="og:image" content="<%=image_url%>" />
     <% end %>
-
-    <meta property="og:site_name" content="<%= data.site.title %>">
     <meta property="og:description" content="<%= description %>">
+    <meta property="og:site_name" content="<%= data.site.title %>">
     <meta property="og:locale" content="ja_JP">
-    <meta property="fb:admins" content="815418171836508">
-    <meta property="fb:app_id" content="258670484329443">
     <meta property="article:publisher" content="https://www.facebook.com/yamaoka.masaki">
 
     <meta name="pocket-site-verification" content="6d1e982bc9308213ce9782d70a2e2e" />
