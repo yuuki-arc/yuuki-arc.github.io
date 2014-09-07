@@ -54,7 +54,7 @@ $ iesd -i /Applications/Install\ OS\ X\ Mavericks.app -o Mavericks.dmg -t BaseSy
 VirtualBoxを起動して新規にVMを作成します。
 私の場合は以下の様な設定にしました。
 
-![](2014-09-07/2014-09-07-1-virtualbox-settings.png)
+![](2014-09-07/2014_09_07_1-virtualbox-settings.png)
 
 ## 4. Mavericksを仮想環境でインストール
 
@@ -77,7 +77,7 @@ OS X インストーラが起動したら、まずはディスクフォーマッ
 
 これで、Mac OS XのVirtualBoxの中で、Mac OS X Mavericksが使えるようになります。
 
-![](2014-09-07/2014_09_07-1-after-install.png)
+![](2014-09-07/2014_09_07_1-after-install.png)
 
 ただ、実際に起動して使用した感想ですが……レスポンスはあまりよくないです。
 とくにグラフィック回りが顕著で、ワンテンポ、ツーテンポぐらい遅れて反応する感覚です。  
