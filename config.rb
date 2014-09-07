@@ -130,8 +130,6 @@ set(:markdown,
     with_toc_data:       true
   )
 
-
-set :markdown, :fenced_code_blocks => true, :tables => true, :autolink => true, :gh_blockcode => true
 activate :syntax
 
 activate :directory_indexes
