@@ -26,6 +26,7 @@ activate :blog do |blog|
   blog.page_link = "page/{num}"
 end
 
+page "/apps/*", layout: 'layouts/layout_single'
 page "/feed.xml", layout: false
 page "/sitemap.xml", layout: false
 page "/404.html", layout: false, directory_index: false
@@ -85,6 +86,7 @@ set :images_dir, 'img'
 
 after_configuration do
   sprockets.append_path 'blog/images'
+  sprockets.append_path 'apps/images'
 end
 
 # Build-specific configuration
