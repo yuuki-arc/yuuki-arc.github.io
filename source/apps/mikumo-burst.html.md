@@ -1,9 +1,20 @@
 ---
-title: 単純タップバトル「みくもバースト！」 (iOS/Android)
+title: タップ連打系バトルゲーム「みくもバースト！」 (Android)
 nav: apps
 ---
 
 ![みくもバースト！](mikumo-burst/header.png)
+
+* タイトル： みくもバースト！
+* ジャンル： タップ連打系バトルゲーム
+* 価格　　： 無料
+* 公開日　： 2014年12月10日
+* 対応機種： Android 2.3以上 / iPhone,iPad(申請中)
+
+<a href="https://play.google.com/store/apps/details?id=co.yuukiar.mikumo_burst2">
+<img alt="Get it on Google Play"
+src="https://developer.android.com/images/brand/ja_generic_rgb_wo_60.png" />
+</a>
 
 ## ストーリー
 
@@ -23,40 +34,11 @@ nav: apps
 <img src="/img/mikumo-burst/ss2.png" style="display:inline;padding:8px;" />
 <img src="/img/mikumo-burst/ss3.png" style="display:inline;padding:8px;" />
 
-## クレジット
+## アプリ関連情報
 
-各種素材を提供して頂いたサイト様一覧です。  
-ありがとうございます。  
-(順不同)  
+プログラミング生放送（プロ生）主催の[マスコットアプリ文化祭 2014](http://pronama.github.io/mascot-apps-contest/2014/)に応募してます！
 
-* 星乃だーつ　グーテンベルグの娘
-- a
-- b
-* Game-icons.net
-* 魔王魂
-* 音声素材屋マテリュボックス
-* NERAD
-* (c)aquamary images
-* GameDev Market
-* びたちー素材館
-* フリー素材「取り放題.com」
-* はらませにゃんこ
-* Rounded Mgen+
-
-<ul>
-<li><a href="http://darts.kirara.st/m/">星乃だーつ　グーテンベルグの娘</a></li>
-<li><a href="http://game-icons.net/">Game-icons.net</a></li>
-<li><a href="http://maoudamashii.jokersounds.com/">魔王魂</a></li>
-<li><a href="http://material.stksa.net/">音声素材屋マテリュボックス</a></li>
-<li><a href="http://oden.zashiki.com/">NERAD</a></li>
-<li><a href="http://www.aquamary.com/">(c)aquamary images</a></li>
-<li><a href="https://www.gamedevmarket.net/">GameDev Market</a></li>
-<li><a href="http://www.vita-chi.net/sozai1.htm">びたちー素材館</a></li>
-<li><a href="http://toriho-dai.com/">フリー素材「取り放題.com」</a></li>
-<li><a href="http://inatsuka.com/extra/haranyan/">はらませにゃんこ</a></li>
-<li><a href="http://jikasei.me/font/rounded-mgenplus">Rounded Mgen+</a></li>
-</ul>
-
+---
 
 ## キャラクター使用について
 
@@ -66,6 +48,32 @@ nav: apps
 また、これらのキャラクター画像の再使用を禁じます。  
 (c)GMO Internet, Inc.
 
-## その他
+## クレジット
 
-プログラミング生放送（プロ生）主催の[マスコットアプリ文化祭 2014](http://pronama.github.io/mascot-apps-contest/2014/)に応募してます！
+各種素材を提供して頂いたサイト様一覧です。  
+ありがとうございます。  
+(順不同)  
+
+### グラフィック
+* NERAD（by メガネ）： http://oden.zashiki.com/
+* びたちー素材館（by ちぃ）： http://www.vita-chi.net/sozai1.htm
+* グーテンベルグの娘（by 星乃だーつ）： http://darts.kirara.st/m/
+* aquamary images（by (c)aquamary images）： http://www.aquamary.com/
+* Game-icons.net（by game-icons.net）： http://game-icons.net/
+* GameDev Market： https://www.gamedevmarket.net/
+* フリー素材「取り放題.com」： http://toriho-dai.com/
+
+### サウンド・SE・CV
+* 音楽素材/魔王魂（by (c)JokerSounds）： http://maoudamashii.jokersounds.com/
+* 音声素材屋マテリュボックス（by 柳あすみ）： http://material.stksa.net/
+
+### フォント
+* はらませにゃんこ（by 稲塚 春）： http://inatsuka.com/extra/haranyan/
+* Rounded Mgen<sup>+</sup>（by MM）： http://jikasei.me/font/rounded-mgenplus
+
+## ライセンス
+本アプリは下記のライセンスで配布される成果物を含んでいます。
+
+* Game-icons.net ([Creative Commons 3.0 BY license](http://creativecommons.org/licenses/by/3.0/))
+* Rounded Mgen<sup>+</sup> ([Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0))
+* PicoJSON ([2-clause BSD license](/apps/license/picojson/LICENSE))
