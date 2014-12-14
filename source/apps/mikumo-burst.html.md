@@ -1,7 +1,16 @@
 ---
-title: タップ連打系バトルゲーム「みくもバースト！」 (Android)
+title: タップ連打系バトルゲーム「みくもバースト！」
 nav: apps
 ---
+
+<!-- ## 最新情報
+
+* (2014-12-12)： ***
+* (2014-12-10)： ***
+
+---
+
+## アプリ情報 -->
 
 ![みくもバースト！](mikumo-burst/header.png)
 
@@ -34,7 +43,7 @@ src="https://developer.android.com/images/brand/ja_generic_rgb_wo_60.png" />
 <img src="/img/mikumo-burst/ss2.png" style="display:inline;padding:8px;" />
 <img src="/img/mikumo-burst/ss3.png" style="display:inline;padding:8px;" />
 
-## アプリ関連情報
+## 関連情報
 
 プログラミング生放送（プロ生）主催の[マスコットアプリ文化祭 2014](http://pronama.github.io/mascot-apps-contest/2014/)に応募してます！
 
