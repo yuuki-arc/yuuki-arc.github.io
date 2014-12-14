@@ -1,5 +1,7 @@
 <% if content_for?(:list_title) %>
   <% list_title = yield_content(:list_title) %>
+<% elsif !current_article.nil? && !current_article.title.empty? %>
+  <% list_title = current_article.title %>
 <% end %>
 <%= partial "layouts/header", :locals => { list_title: list_title } %>
 
