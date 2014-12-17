@@ -6,7 +6,7 @@
     <div class="row">
 
       <div class="col-lg-12">
-        <h1 class="page-header"><%= list_title %></h1>
+        <h1 class="page-header">Apps</h1>
       </div>
 
     </div>
@@ -30,7 +30,7 @@
           </p>
 
           <%# ↓後でpartialに置き換える %>
-          <p>
+          <p class="post-meta">
             <i class="fa fa-calendar-o first"></i>2014-12-10
             <i class="fa fa-tags"></i>
             <span class="tags tags-article-header">
@@ -56,6 +56,20 @@
             <img src="img/post1.png" alt="post 1" class="img-responsive">
           </div>
           %>
+
+          <% if content_for?(:info) %>
+            <div class="section-colored home" style="background-attachment: fixed; background-position: 0% 36px;">
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-12 col-sm-12" style="color:#ffffff;">
+                    <%= yield_content(:info) %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+
+
           <%= yield %>
           <%#= partial "layouts/social_button", :locals => { article: article } %>
 

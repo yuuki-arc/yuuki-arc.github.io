@@ -204,3 +204,30 @@ form.gsc-search-box input[type=image] {
 	margin: 0 2px !important;
 	padding: 12px 18px !important;
 }
+
+/* お知らせ欄 */
+.section-colored {
+  padding: 0;
+}
+
+/* Appsページ用インライン画像 */
+img.apps-img {
+  display: inline !important;
+  padding: 4px !important;;
+}
+
+/* Youtube埋め込みのレスポンシブ対応 */
+.youtube-iframe-box {
+  position: relative;
+  padding-top: 55%;
+  width: 99%;
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 640px;
+    max-height: 480px;
+  }
+}

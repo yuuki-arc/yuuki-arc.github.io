@@ -132,6 +132,23 @@ set(:markdown,
     with_toc_data:       true
   )
 
+# class MarkdownHelper < Middleman::Extension
+#   def initialize(app, options_hash={}, &block)
+#     super
+#   end
+#
+#   helpers do
+#     def output_markdown(text)
+#       unless @markdown
+#         renderer = Redcarpet::Render::HTML.new
+#         @markdown = Redcarpet::Markdown.new(renderer)
+#       end
+#
+#       @markdown.render(text).html_safe
+#     end
+#   end
+# end
+
 activate :syntax
 
 activate :directory_indexes
