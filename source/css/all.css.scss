@@ -60,6 +60,37 @@ pre {
   max-width: 100%;
 }
 
+/* 記事中にある画像のレスポンシブ対応（floatコンテンツ） */
+.post img.float-right-img {
+  display: inline;
+  float: right;
+  padding: 8px 5px 8px 8px;
+}
+@media (min-width: 0px) {
+  .post img.float-right-img {
+    max-width: 50%;
+  }
+}
+@media (min-width: 768px) {
+  .post img.float-right-img {
+    max-width: 50%;
+  }
+}
+
+@media (min-width: 992px) {
+  .post img.float-right-img {
+    max-width: 75%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .post img.float-right-img {
+    max-width: 100%;
+  }
+}
+
+
+
 /* フォントサイズをデフォルトテンプレートよりも大きくする */
 body {
   font-size: 16px;
@@ -73,7 +104,7 @@ p {
 
 h1, h2 {
   line-height: 48px;
-/*  border-bottom: 1px solid gray;*/
+  border-bottom: 1px solid gray;
 }
 
 h1.post-title, h2.post-title {
