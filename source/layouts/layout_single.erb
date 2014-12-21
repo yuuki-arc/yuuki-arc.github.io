@@ -29,6 +29,8 @@
           <p>
           </p>
 
+          <%if list_title != "アプリ情報" %>
+
           <%# ↓後でpartialに置き換える %>
           <p class="post-meta">
             <i class="fa fa-calendar-o first"></i>2014-12-10
@@ -58,6 +60,8 @@
             <img src="img/post1.png" alt="post 1" class="img-responsive">
           </div>
           %>
+
+          <% end %>
 
           <% if content_for?(:info) %>
             <div class="section-colored home" style="background-attachment: fixed; background-position: 0% 36px;">
