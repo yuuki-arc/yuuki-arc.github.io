@@ -7,16 +7,19 @@ tags: Mac,Yosemite,homebrew
 これまでMavericksでしたが、マシンが不安定になってきたこととハードディスクの容量を圧迫してきたため、
 YosemiteにクリーンインストールしてゼロからMacの環境を構築しました。  
 
-いちおうブログに残しますがあくまで個人メモというような形なので、
-だいぶ個人の環境に依存してるところがあるかもということをあらかじめ書いておきます。
-
 環境構築するにあたって主に使用するツールは下記になります。
+
 * [homesick](https://github.com/technicalpickles/homesick)でdotfiles管理
 * [Brew-file](https://github.com/rcmdnk/homebrew-file)でhomebrew(+brew-cask)の各種アプリをインストール
 * [Mackup](https://github.com/lra/mackup)でdropbox経由でアプリ設定を同期
 
-Brew-fileに関しては、作者の方の紹介エントリがありますのでそちらを参照ください。
+
+Brew-fileに関しては、作者の方の紹介エントリがありますのでそちらを参照ください。  
 http://rcmdnk.github.io/blog/2014/08/26/computer-mac-homebrew/
+
+いちおうブログに残しますがあくまで個人メモというような形なので、
+だいぶ個人の環境に依存してるところがあるかもということをあらかじめ書いておきます。
+
 
 ## 1. セットアップ準備
 
@@ -56,7 +59,7 @@ $ sudo xcodebuild -license
 ## 2. dotfilesをベースに環境構築
 
 ### homesickインストール
-[homesick](https://github.com/technicalpickles/homesick)を使ってdotfilesをローカルにクローンします。
+[homesick](https://github.com/technicalpickles/homesick)を使ってdotfilesをローカルにクローンします。  
 `homesick clone` は省略形で書くとhttpsで取得してしまうため、明示的にSSH接続で取得してます。
 
 ```console
@@ -79,6 +82,7 @@ $ brew file update
 ```
 
 クリーンインストール後にセットアップしていて気付いたのですが、下記の点に関しては今後の改善材料です。
+
 * 依存関係でひっかかるアプリがあるのでその都度個別に `brew install` しないといけない
 * サービスの自動起動設定(※)は個別に行う必要がある
 
@@ -133,3 +137,58 @@ $ brew cask install --caskroom=/Applications google-chrome
 $ brew cask install --caskroom=/Applications firefox-ja
 $ brew cask alfred link
 ```
+
+## 5. OS Xの環境設定
+
+OS Xの環境設定を行います。  
+コマンドで設定できる箇所はコマンドで設定していきます。
+
+```
+# Finder - 隠しファイル表示
+defaults write com.apple.finder AppleShowAllFiles -bool yes
+# Finder - タイトルをフルパス表示
+defaults write com.apple.finder _FXShowPosixPathInTitle -bool yes
+# QuickLook - 閲覧中ファイルの文字列を選択コピー可能に
+defaults write com.apple.finder QLEnableTextSelection -bool yes
+
+killall Finder
+
+# Dock - MissonControlのアニメーションスピードを速く
+defaults write com.apple.dock expose-animation-duration -float 0.15
+# Dock - スペース表示高速化
+defaults write com.apple.dock workspaces-swoosh-animation-off -bool yes
+#  ダッシュボードを無効化
+defaults write com.apple.dashboard mcx-disabled -bool yes
+## アプリ隠しをDock上で半透明で表現
+defaults write com.apple.Dock showhidden -bool yes
+
+killall Dock
+
+# マウスの速度を変える
+defaults write .GlobalPreferences com.apple.trackpad.scaling 5
+
+※システム環境設定では3まで。数値が大きいほどマウスが高速移動。
+※トラックパッドの設定は、mouse を trackpad に。
+
+# ネットワーク接続時の.DS_Store作成を抑制
+defaults write com.apple.desktopservices DSDontWriteNetworkStores true
+
+# 保存ダイアログを常に展開状態にする
+defaults write -g NSNavPanelExpandedStateForSaveMode -bool yes
+```
+
+
+上記以外の箇所は下記エントリのように設定しました。
+
+* [MacBook Proを購入して最初にやること - システム環境設定](/blog/2012/01/08/setup-mac-system/)
+* [MacBook Proを購入して最初にやること - Finder](/blog/2012/01/08/setup-mac-finder/)
+
+## 6. その他の設定
+
+その他、下記のような内容を設定しました。
+
+* アンチウィルスソフト（これは **1. セットアップ準備** の前にインストール）
+* 有料ツールのライセンス情報を入力
+* Microsoft Officeなどの個別にインストールするツール
+
+他にも使っていくうちに設定しないといけないものがでてくるとは思いますが、ひとまずこんな感じで。
