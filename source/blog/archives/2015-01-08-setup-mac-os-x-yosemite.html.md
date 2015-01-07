@@ -15,7 +15,7 @@ YosemiteにクリーンインストールしてゼロからMacの環境を構築
 
 
 Brew-fileに関しては、作者の方の紹介エントリがありますのでそちらを参照ください。  
-http://rcmdnk.github.io/blog/2014/08/26/computer-mac-homebrew/
+[brew-file: Brewfileを扱うbrewallを改名した - rcmdnk’s blog](http://rcmdnk.github.io/blog/2014/08/26/computer-mac-homebrew/)
 
 いちおうブログに残しますがあくまで個人メモというような形なので、
 だいぶ個人の環境に依存してるところがあるかもということをあらかじめ書いておきます。
@@ -69,10 +69,11 @@ $ homesick symlink dotfiles
 ```
 
 ### Brew-fileでアプリの一括インストール
-homebrewパッケージ管理には[Brew-file](https://github.com/rcmdnk/homebrew-file)を使っているので
+homebrewパッケージ管理には[Brew-file](https://github.com/rcmdnk/homebrew-file)を使っているので、
 下記の手順でインストールします。
+また、brew-caskのインストール先は個人的に `/usr/local/Caskroom` にしたいので、あらかじめexportしておきます。  
 ※homebrewとbrew-caskはBrew-fileのインストールと同時に入るため明示的に入れなくてもOK。
-また、brew-caskのインストール先は個人的に `/usr/local/Caskroom` にしたいので、あらかじめexportしておきます。
+
 
 ```console
 $ curl -fsSL https://raw.github.com/rcmdnk/homebrew-file/install/install.sh |sh
@@ -110,7 +111,7 @@ Dropboxで同期しているので、事前にDropboxを起動してローカル
 ※ Mackup管理のファイルがhomesick管理のファイルとバッティングする可能性があることに注意。
 （Mackupでどのファイルがリストアされるか、アプリごとに確認しておく）
 
-Mackupはpipでインストールします。
+Mackupはpipでインストールします。  
 pipはデフォルトで入っているようです？（ここは最初からなのか、いつの間にか入ったのか曖昧）
 
 1. Dropboxのアプリを起動してローカルにファイルを同期する
@@ -166,9 +167,6 @@ killall Dock
 
 # マウスの速度を変える
 defaults write .GlobalPreferences com.apple.trackpad.scaling 5
-
-※システム環境設定では3まで。数値が大きいほどマウスが高速移動。
-※トラックパッドの設定は、mouse を trackpad に。
 
 # ネットワーク接続時の.DS_Store作成を抑制
 defaults write com.apple.desktopservices DSDontWriteNetworkStores true
