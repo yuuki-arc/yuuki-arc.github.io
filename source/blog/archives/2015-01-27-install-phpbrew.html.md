@@ -1,7 +1,7 @@
 ---
 title: PHPBrew で PHP の複数バージョン管理を行う
 date: 2015-01-27 23:50 JST
-tags: php, PHPBrew
+tags: PHP, PHPBrew
 ---
 
 PHPの複数のバージョンを管理できるツールとして、有名どころとしてphpenvやPHPBrewがあります。
