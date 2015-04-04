@@ -1,0 +1,1290 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>yuukiar.co</title>
+  <id>http://yuukiar.co/blog</id>
+  <link href="http://yuukiar.co/"/>
+  <link href="http://yuukiar.co/feed.xml" rel="self"/>
+  <updated>2015-04-04T18:00:00+09:00</updated>
+  <entry>
+    <title>Windows 7でパッケージ管理システム「Chocolatey」を導入する</title>
+    <link rel="alternate" href="http://yuukiar.co/blog/2015/04/04/windows-chocolatey/"/>
+    <id>http://yuukiar.co/blog/2015/04/04/windows-chocolatey/</id>
+    <published>2015-04-04T18:00:00+09:00</published>
+    <updated>2015-04-04T17:59:01+09:00</updated>
+    <author>
+      <name>yuuki-arc</name>
+    </author>
+    <content type="html">&lt;p&gt;パッケージ管理システムとは、コマンド一つでツールやソフトウェアのインストールやアップデート、アンインストールなどが簡単にできるようになるツールのことです。&lt;/p&gt;
+
+&lt;p&gt;MacではMacPortsや最近だとHomebrewが有名ですが、
+まだまだMac環境には及ばないもののWindowsでも最近はChocolateyというものがあります。
+（チョコレーティと呼ぶそう）&lt;br&gt;
+Windowsの特質上、Chocolateyからのアンインストールは不完全なようですが、
+それでも手軽にインストールしたりパッケージ管理できるのはそれだけで十分なメリットといえます。&lt;/p&gt;
+
+&lt;p&gt;ここでは、その「Chocolatey」のインストール方法と使い方について書いていきます。&lt;/p&gt;
+
+&lt;h2 id="参考"&gt;参考&lt;/h2&gt;
+
+&lt;p&gt;Chocolateyは &lt;strong&gt;v0.9.9.x&lt;/strong&gt; から大幅にドキュメントが更新されていて、該当バージョン以降は下記のwikiを参照するのがよいようです。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://github.com/chocolatey/choco/wiki"&gt;Home · chocolatey/choco Wiki&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id="前提条件"&gt;前提条件&lt;/h2&gt;
+
+&lt;p&gt;ここでは &lt;strong&gt;v0.9.9.4（2015年4月4日時点の最新版）&lt;/strong&gt; をベースにします。
+これからインストールする人は気にしなくともよいですが、
+&lt;strong&gt;v0.9.8.24&lt;/strong&gt; からChocolateyのインストール先が変更になっていて、
+現在は &lt;code&gt;C:\ProgramData\chocolatey&lt;/code&gt; にインストールされます。&lt;/p&gt;
+
+&lt;h2 id="1.-chocolateyインストール"&gt;1. Chocolateyインストール&lt;/h2&gt;
+
+&lt;p&gt;インストール方法は、コマンドプロンプトやPowerShellを使う方法などいくつかあります。
+コマンドプロンプトからインストールするのが一番手軽なので、その方法で進めることにします。&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;コマンドプロンプトを右クリックして &lt;strong&gt;「管理者として実行」&lt;/strong&gt; を選択する&lt;/li&gt;
+&lt;li&gt;以下のコマンドを貼り付けて実行&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;@powershell -NoProfile -ExecutionPolicy unrestricted -Command "(iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))) &amp;gt;$null 2&amp;gt;&amp;amp;1" &amp;amp;&amp;amp; SET PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;実行が終わったら下記のコマンドでインストールされているか確認できます。
+正常にインストールできていれば &lt;code&gt;Chocolatey v0.9.9.4&lt;/code&gt; が表示されるはずです。&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;C:\&amp;gt; clist -lo
+Chocolatey v0.9.9.4
+0 packages installed.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;ここでいったんWindowsを再起動しておきます。
+理由は、Chocolateyのインストールによって環境変数が追加されるためです。
+追加された環境変数を確実に読み込ませるために、Windowsを再起動しておいたほうが安全だからです。&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;ChocolateyInstall=C:\Chocolatey
+Path=...:C:Chocolatey\bin:...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;これでChocolateyが使えるようになったので、次からはパッケージを入れていきます。&lt;/p&gt;
+
+&lt;h2 id="2.-chocolateyguiインストール"&gt;2. ChocolateyGUIインストール&lt;/h2&gt;
+
+&lt;p&gt;Chocolateyはコマンドベースですが、GUIツールも用意されています。
+そこでGUIツールをChocolateyを使ってインストールしてみます。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;「管理者として実行」しているコマンドプロンプト&lt;/strong&gt; で実行します。&lt;br&gt;
+※ コマンドプロンプトは「管理者として実行」でないとインストールに失敗します。&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;C:\&amp;gt; cinst -y chocolateygui
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;いろいろメッセージが流れますが、下記のように成功メッセージが流れていればOKです。&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt; :
+PowerShell v4.0.20141001
+ :
+ powershell has been installed successfully.
+
+ChocolateyGUI v0.13.1
+ :
+ chocolateygui has been installed successfully.
+
+Chocolatey installed 2/2 package(s). 0 package(s) failed.
+ See the log for details.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;終わったらスタートメニューにChocolateyGUIが追加されているので起動してみましょう。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="/img/2015-04-04/2015_04_04_17_28.png" /&gt;&lt;/p&gt;
+
+&lt;h2 id="コマンド各種"&gt;コマンド各種&lt;/h2&gt;
+
+&lt;p&gt;下記のコマンドリファレンスを見るのが一番ですが、ひと通り使用方法を書きます。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://github.com/chocolatey/choco/wiki/CommandsReference"&gt;CommandsReference · chocolatey/choco Wiki&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;基本は &lt;code&gt;choco ...&lt;/code&gt; というコマンドで、省略形が &lt;code&gt;c...&lt;/code&gt; になる&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;[pkgname]&lt;/code&gt; は複数指定できる&lt;/li&gt;
+&lt;li&gt;オプション指定は &lt;code&gt;-&lt;/code&gt;、&lt;code&gt;--&lt;/code&gt;、&lt;code&gt;/&lt;/code&gt; のどれでも同じ意味になる&lt;br&gt;
+（リファレンスには、一文字オプションで &lt;code&gt;--&lt;/code&gt; は使うべきでないと記載）&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id="インストール"&gt;インストール&lt;/h3&gt;
+
+&lt;p&gt;パッケージをインストールします。&lt;br&gt;
+&lt;code&gt;-y&lt;/code&gt; をつけるとスクリプト毎の実行確認がでなくなるので楽です。&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;C:\&amp;gt; choco install [pkgname]
+C:\&amp;gt; cinst [pkgname]
+C:\&amp;gt; cinst [pkgname] [pkgname] -y
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id="アップグレード"&gt;アップグレード&lt;/h3&gt;
+
+&lt;p&gt;パッケージをアップグレードします。&lt;br&gt;
+パッケージ名に &lt;code&gt;all&lt;/code&gt; を指定すると、インストールしているパッケージすべてをアップグレードします。&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;C:\&amp;gt; choco upgrade [pkgname]
+C:\&amp;gt; cup [pkgname]
+C:\&amp;gt; cup all
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id="アンインストール"&gt;アンインストール&lt;/h3&gt;
+
+&lt;p&gt;パッケージをアンインストールします。
+ただし、Chocolateyの管理対象から外れるだけでファイル自体は残っているため、
+パッケージ毎に推奨される方法で別途アンインストールが必要になります。&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;C:\&amp;gt; choco uninstall [pkgname]
+C:\&amp;gt; cuninst [pkgname]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id="chocolateyで管理できるパッケージの全一覧"&gt;Chocolateyで管理できるパッケージの全一覧&lt;/h3&gt;
+
+&lt;p&gt;パッケージ管理対象の一覧が表示されます。
+表示されるまで少し時間がかかります。
+&lt;code&gt;search&lt;/code&gt; も &lt;code&gt;list&lt;/code&gt; も同じで違いはないです。&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;c:\&amp;gt; choco search
+c:\&amp;gt; choco list
+c:\&amp;gt; clist
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id="インストール済みパッケージ一覧"&gt;インストール済みパッケージ一覧&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;--localonly&lt;/code&gt;、&lt;code&gt;-lo&lt;/code&gt;、&lt;code&gt;-l&lt;/code&gt; をつけることでインストール済みパッケージの一覧を表示できます。&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;c:\&amp;gt; choco list --localonly
+c:\&amp;gt; clist -lo
+c:\&amp;gt; clist -l
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id="ヘルプ"&gt;ヘルプ&lt;/h3&gt;
+
+&lt;p&gt;コマンド名に &lt;code&gt;-h&lt;/code&gt; をつけるとそのコマンドのヘルプが参照できます。&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;c:\&amp;gt; choco -h
+c:\&amp;gt; choco install -h
+c:\&amp;gt; cinst -h
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id="非推奨となったコマンド"&gt;非推奨となったコマンド&lt;/h3&gt;
+
+&lt;p&gt;下記のコマンドは非推奨になっているので今後使えなくなります。&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;c:\&amp;gt; choco update ...
+c:\&amp;gt; choco version ...
+c:\&amp;gt; cver ...
+&lt;/code&gt;&lt;/pre&gt;
+</content>
+  </entry>
+  <entry>
+    <title>LINE主催の「GAME BOOT CAMP」に参加してゲーム開発してきました！</title>
+    <link rel="alternate" href="http://yuukiar.co/blog/2015/02/05/line-game-boot-camp/"/>
+    <id>http://yuukiar.co/blog/2015/02/05/line-game-boot-camp/</id>
+    <published>2015-02-05T14:13:00+09:00</published>
+    <updated>2015-04-04T14:57:54+09:00</updated>
+    <author>
+      <name>yuuki-arc</name>
+    </author>
+    <content type="html">&lt;p&gt;1月17日(土)〜18日(日)にかけて、株式会社LINE主催のGAME BOOT CAMPに参加してきました！&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://gamebootcamp.net/"&gt;GAME BOOT CAMP - 現役クリエイターをうならせろ！ -&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="GAME BOOT CAMP" src="/img/2015-02-05/DSC06084.jpg" /&gt;&lt;/p&gt;
+
+&lt;h2 id="イベントについて"&gt;イベントについて&lt;/h2&gt;
+
+&lt;p&gt;ゲーム開発5年未満の経験者が対象で、1泊2日のキャンプ方式で最大５名で１つのチームを作り30時間の間でゲームを作るというイベントです。
+参加は申込者から抽選だったのですが、運良く当選したため参加することに。&lt;/p&gt;
+
+&lt;p&gt;会場は渋谷ヒカリエのLINEオフィス27階（！）で、外の景色は眺めがよく会場も広々とした空間でした。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="/img/2015-02-05/DSC06256.jpg" /&gt;&lt;/p&gt;
+
+&lt;p&gt;チームは事前に割り振られていて、私はCocos2d-xで申し込んでいたのでCocos2d-xのチームになりました。
+事前準備としてチームメンバーとチャットで話しあう時間があったので、うちのチームではChatWorkを使ってゲームアイデア案出しをしたり、フレームワークのバージョンやツール選定などをあらかじめ決めておきました。&lt;/p&gt;
+
+&lt;p&gt;当日は10時半から始まって、事前に話し合ったアイデアをベースに具体的に内容を詰めていき、誰がどの部分をやるか担当の分担などをしました。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="/img/2015-02-05/DSC06160.jpg" /&gt;&lt;/p&gt;
+
+&lt;p&gt;参加中にイベント開催側の方とお話することがあってチーム内訳を聞いたのですが、
+全12チーム中、Unity3Dが10チーム、Cocos2d-iPhoneが1チーム、Cocos2d-xがうちの1チームだったそうで。
+こういう系のイベントはやっぱりUnity勢が主流なんですねー。&lt;/p&gt;
+
+&lt;p&gt;1日目のお昼すぎあたりで中間発表があり、各々のチームで発表しました。
+うちのチームは見せられるものはなかったので、どういうゲームにするか企画案について発表しました。
+このとき主催者の方からチーム名決めていいですよ、という話があり、うちのチーム名はゲームアイデアから突発的に「消しピン」に決まりましたｗ&lt;/p&gt;
+
+&lt;p&gt;今回のイベントは参加者の他に、協賛各社からチューターも参加していて審査員やアドバイザーとして関わってくださったのですが、
+途中でそのチューターの方たちのプレゼンがあったりして、そういったところも気分転換に楽しめました。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="/img/2015-02-05/DSC06179.jpg" /&gt;&lt;/p&gt;
+
+&lt;p&gt;また、食べ物に関してもすべて無料での提供があり、
+朝昼夕３食はもちろんのこと、さまざまなドリンクやお菓子など、
+とにかく何でもでてきて自分たちで準備するものは何もなかったですｗ&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="/img/2015-02-05/DSC06167s.jpg" class="apps-img" /&gt;
+&lt;img src="/img/2015-02-05/DSC06229s.jpg" class="apps-img" /&gt;
+&lt;img src="/img/2015-02-05/DSC06235s.jpg" class="apps-img" /&gt;
+&lt;img src="/img/2015-02-05/DSC06237s.jpg" class="apps-img" /&gt;
+&lt;img src="/img/2015-02-05/DSC06257s.jpg" class="apps-img" /&gt;
+&lt;img src="/img/2015-02-05/DSC06265s.jpg" class="apps-img" /&gt;&lt;/p&gt;
+
+&lt;p&gt;さらにさらに、遠いところから来た人には宿泊費・交通費補助、Unity3Dの人は有料アセット補助(最大5万円とか…！)までありと、
+何から何まで至れり尽くせりでどれだけお金かけてるんだろう…と思いつつ、
+参加者にとってはこれ以上ないくらいのおもてなしでした。&lt;/p&gt;
+
+&lt;p&gt;GAME BOOT CAMPのためにグッズまで作っていて、
+全員に配布されるというぐらい開催側の意気込みでした…！（ありがとうございます！）
+&lt;img src="/img/2015-02-05/goods.png" /&gt;&lt;/p&gt;
+
+&lt;p&gt;開発面においても、チューターの方からアドバイスを受けることができたり、
+ゆったりしたスペースの中でチームごとにまとまって一つのテーブルで開発ができたり、
+ホワイトボードやら付箋やら用意されていて自由に使うことができたりと、
+とにかく開発に集中できる環境が全力で用意されているといった感じで最高の環境でした。&lt;/p&gt;
+
+&lt;p&gt;twitterまとめもあるので、こちらも眺めてみると雰囲気とかわかってもらえるかなと思います！
+&lt;a href="http://togetter.com/li/772153"&gt;GAME BOOT CAMP 関連まとめ #gbc_tokyo&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id="開発したゲーム"&gt;開発したゲーム&lt;/h2&gt;
+
+&lt;p&gt;うちのチーム「消しピン」が開発したゲームですが、ベースアイデアとしてはこんな感じです。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;昔懐かしの消しピン(指で消しゴムを弾いて机から落とす遊び)&lt;/li&gt;
+&lt;li&gt;スマブラみたいなイメージやシステムで吹っ飛び率とかほしい&lt;/li&gt;
+&lt;li&gt;ユーザーどうしの対戦型ゲーム&lt;/li&gt;
+&lt;li&gt;基本は画面から落ちたら負け&lt;/li&gt;
+&lt;li&gt;消しゴムを弾く方法はスマホの画面を消しゴムに見立てスワイプ&lt;/li&gt;
+&lt;li&gt;消しゴムの種類によって性能が違う&lt;/li&gt;
+&lt;li&gt;必殺技が使えたりとゲームならではのド派手なもの&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img alt="GAME BOOT CAMP" src="/img/2015-02-05/DSC06185.jpg" /&gt;&lt;/p&gt;
+
+&lt;p&gt;チームは構成は、企画・ディレクション1名、エフェクトまわり1名、プログラマー3名という感じでした。
+ユーザー同士の対戦ゲームということで、Photonを使うといいんじゃないかと事前に話し合っていて、
+私はPhoton Realtimeまわりを主に担当しました。&lt;/p&gt;
+
+&lt;p&gt;ということで、意気込んで開発に入ったのですが…&lt;/p&gt;
+
+&lt;p&gt;1日目泊まり込みで2日目も時間ギリギリまで粘ったものの、
+結果的には中途半端な状態で最終発表を迎えてふがいない結果となってしまいました。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="/img/2015-02-05/DSC06293.jpg" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Photonに関しては、SDKのおかげでだいぶ楽に複数端末での同期処理を実装できましたが、
+Cocos2d-xで2日間で仕上げるにはちょっと時間が足りなかったかなという感じです。
+いちおう、開発途中のままとなって完成には至らなかったのですが、こんな感じのゲーム画面です。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="/img/2015-02-05/game1s.png" class="apps-img" /&gt;
+&lt;img src="/img/2015-02-05/game2s.png" class="apps-img" /&gt;
+&lt;img src="/img/2015-02-05/game3s.png" class="apps-img" /&gt;
+&lt;img src="/img/2015-02-05/game4s.png" class="apps-img" /&gt;&lt;/p&gt;
+
+&lt;p&gt;開発途中のままだと不完全燃焼なので、いちおうストアに公開まではもっていきたいなとは思いますが、
+ユーザー同士の対戦ではなくCPU対戦にして出そうかなぁとぼんやり考えてます。
+ユーザー対戦を現実的にするには、人数集めだったりPhoton側の制限だったりと、
+いくつかハードルがあってストアに公開するのは厳しそうなので。&lt;/p&gt;
+
+&lt;p&gt;そんな感じで、2日間30時間のGAME BOOT CAMPのレポートでした！
+楽しい時間をありがとうございました〜！&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="/img/2015-02-05/DSC06395.jpg" /&gt;&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>PHP4.4.2 をインストールして PHPBrew で管理する</title>
+    <link rel="alternate" href="http://yuukiar.co/blog/2015/01/28/setup-php4.4.2-with-phpbrew/"/>
+    <id>http://yuukiar.co/blog/2015/01/28/setup-php4.4.2-with-phpbrew/</id>
+    <published>2015-01-28T00:20:00+09:00</published>
+    <updated>2015-04-04T14:57:54+09:00</updated>
+    <author>
+      <name>yuuki-arc</name>
+    </author>
+    <content type="html">&lt;p&gt;&lt;a href="/blog/2015/01/27/install-phpbrew/"&gt;前回のエントリ&lt;/a&gt;で PHPBrew をインストールしましたが、
+PHPBrewでインストール及び管理できるのは &lt;code&gt;phpbrew known --old&lt;/code&gt; の一覧の通り、5.2以降になります。&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;$ phpbrew known -old
+5.6: 5.6.4, 5.6.3, 5.6.2, 5.6.1, 5.6.0 ...
+5.5: 5.5.20, 5.5.19, 5.5.18, 5.5.17, 5.5.16, 5.5.15, 5.5.14, 5.5.13 ...
+5.4: 5.4.36, 5.4.35, 5.4.34, 5.4.33, 5.4.32, 5.4.31, 5.4.30, 5.4.29 ...
+5.3: 5.3.29, 5.3.28, 5.3.27, 5.3.26, 5.3.25, 5.3.24, 5.3.23, 5.3.22 ...
+5.2: 5.2.17, 5.2.16, 5.2.15, 5.2.14, 5.2.13, 5.2.12, 5.2.11 ...
+You can run `phpbrew update` to get a newer release list.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;このように通常は5.2以降のバージョンしか管理できませんが、
+PHPの古いバージョンをマニュアルでインストールしてPHPBrewのディレクトリに配置することでPHPBrew上で管理することが可能です。
+ただし、ここで行う方法はバージョンをPHPBrewで切り替えできるようにするだけで、
+VariantsやExtensionのインストールといったPHPBrewの恩恵は受けられません。&lt;/p&gt;
+
+&lt;p&gt;以上を踏まえた上で、今回は PHP4.4.2 のバージョンをPHPBrewで管理できるようにインストールしていきます。&lt;/p&gt;
+
+&lt;h2 id="1.-パッケージダウンロード＆展開"&gt;1. パッケージダウンロード＆展開&lt;/h2&gt;
+
+&lt;p&gt;まずはPHP4.4.2のパッケージをダウンロードします。
+古いバージョンのPHPパッケージは下記の場所に置かれています。&lt;br&gt;
+&lt;a href="http://museum.php.net/"&gt;http://museum.php.net/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;次のようにコマンドを入力して、PHPBrewの適切なディレクトリに配置しつつパッケージを展開します。&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;$ cd ~/.phpbrew/distfiles/
+$ wget http://museum.php.net/php4/php-4.4.2.tar.bz2
+$ tar -C ~/.phpbrew/php -xjf php-4.4.2.tar.bz2
+$ cd ~/.phpbrew/php/php-4.4.2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id="2.-インストール"&gt;2. インストール&lt;/h2&gt;
+
+&lt;p&gt;ターミナルで下記のように入力していきます。
+&lt;code&gt;./configure&lt;/code&gt; のオプションは任意のオプションを入れてください。&lt;br&gt;
+※ &lt;code&gt;--prefix&lt;/code&gt;の&lt;code&gt;[ユーザー名]&lt;/code&gt;の箇所は環境に合わせて置き換えてください。&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;$ LD_FLAGS="-L/usr/local/lib" EXTRA_LIBS="-lresolv" ./configure \
+--prefix=/Users/[ユーザー名]/.phpbrew/php/php-4.4.2 \
+--with-mysql \
+--with-gd \
+--with-ttf \
+--enable-zend-multibyte \
+--enable-mbstring \
+--enable-mbregex \
+--with-jpeg \
+--with-png \
+--with-freetype \
+--with-zlib \
+--enable-inline-optimization \
+--disable-debug \
+--enable-trans-sid \
+--disable-cgi
+
+$ make
+$ make install
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id="3.-pearのインストール（php4.4.2の場合）"&gt;3. PEARのインストール（PHP4.4.2の場合）&lt;/h2&gt;
+
+&lt;p&gt;通常は2.までの手順でインストールは完了ですが、PHP4.4.2の場合はバグによりPEARのインストールに失敗します。
+&lt;code&gt;make install&lt;/code&gt;のときに下記のメッセージが出力されているのが確認できると思います。&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;:
+Installing PEAR environment:      /Users/hoge/.phpbrew/php/php-4.4.2/lib/php/
+[PEAR] Archive_Tar: bad md5sum for file /Users/hoge/.phpbrew/php/php-4.4.2/lib/php/Archive/Tar.php
+[PEAR] Console_Getopt: bad md5sum for file /Users/hoge/.phpbrew/php/php-4.4.2/lib/php/Console/Getopt.php
+[PEAR] HTML_Template_IT: bad md5sum for file /Users/hoge/.phpbrew/php/php-4.4.2/lib/php/HTML/Template/IT.php
+[PEAR] Net_UserAgent_Detect- installed: 2.0.1
+warning: pear/PEAR requires package "pear/Archive_Tar" (recommended version 1.3.1)
+warning: pear/PEAR requires package "pear/Console_Getopt" (recommended version 1.2)
+:
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;bad md5sum&lt;/code&gt;と言われており、該当箇所にファイルが存在していないので、
+別のところからファイルを持ってくることで解決します。
+ここでは、 &lt;code&gt;~/.phpbrew/php/php-4.4.2/pear/&lt;/code&gt;からファイルをコピーすることにします。&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;$ cd ~/.phpbrew/php/php-4.4.2/
+$ cp -r pear/Archive lib/php/
+$ cp -r pear/Console lib/php/
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;コピー後、pearのコマンドで正常に動作するか確認します。&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;$ pear list
+Installed packages, channel pear.php.net:
+=========================================
+Package              Version State
+Net_UserAgent_Detect 2.0.1   stable
+PEAR                 1.4.6   stable
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id="php4.4.2への切り替え＆戻し方"&gt;PHP4.4.2への切り替え＆戻し方&lt;/h2&gt;
+
+&lt;p&gt;PHP4.4.2がインストールされていることを確認します。&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;$ phpbrew list
+* (system)
+php-4.4.2
+php-5.6.4
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;PHP4.4.2に切り替えます。  &lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;$ phpbrew switch 4.4.2
+$ php -v
+PHP 4.4.2 (cli) (built: Jan 28 2015 05:55:15)
+Copyright (c) 1997-2006 The PHP Group
+Zend Engine v1.3.0, Copyright (c) 1998-2004 Zend Technologies
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;phpbrew switch&lt;/code&gt;はターミナルを閉じて開きなおしても設定が残ります。
+一時的に切り替えたいだけであれば&lt;code&gt;phpbrew use&lt;/code&gt;で切り替えるといいです。&lt;/p&gt;
+
+&lt;p&gt;デフォルトの&lt;code&gt;(system)&lt;/code&gt;の環境に戻したい場合は次のように入力します。&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;$ phpbrew switch-off  # switchで切り替えた場合
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;$ phpbrew off  # useで切り替えた場合
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;このデフォルトの環境に戻す方法は実は重要で、
+PHP4で&lt;code&gt;switch&lt;/code&gt;や&lt;code&gt;list&lt;/code&gt;オプションを実行しようとしてもエラーで使えません。
+そのため、他のバージョンに切り替えるときは、いったんデフォルトに戻してから切り替える必要があります。&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>PHPBrew で PHP の複数バージョン管理を行う</title>
+    <link rel="alternate" href="http://yuukiar.co/blog/2015/01/27/install-phpbrew/"/>
+    <id>http://yuukiar.co/blog/2015/01/27/install-phpbrew/</id>
+    <published>2015-01-27T23:50:00+09:00</published>
+    <updated>2015-04-04T14:57:54+09:00</updated>
+    <author>
+      <name>yuuki-arc</name>
+    </author>
+    <content type="html">&lt;p&gt;PHPの複数のバージョンを管理できるツールとして、有名どころとしてphpenvやPHPBrewがあります。
+どちらもとても優れたツールですが、PHPBrewのほうが個人的に使い勝手がいいと思っています。
+また、phpenvは注意しないとrbenvと干渉してしまうため（phpenvのほうが干渉する）、
+ここではPHPBrewについて書いていきます。&lt;/p&gt;
+
+&lt;h2 id="1.-インストール手順"&gt;1. インストール手順&lt;/h2&gt;
+
+&lt;p&gt;インストールは簡単で下記のように入力していきます。&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;$ curl -L -O https://github.com/phpbrew/phpbrew/raw/master/phpbrew
+$ chmod +x phpbrew
+$ sudo mv phpbrew /usr/bin/phpbrew
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;インストール後、初期設定を行います。&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;$ phpbrew init
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;.bashrcか.zshrcに以下のコマンドを記載して、シェル起動時にPHPBrewの設定が読み込まれるようにします。
+※bashもzshも同じ記載内容&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;source ~/.phpbrew/bashrc
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;!--
+これで最低限の設定は完了ですが、Homebrewを使っている場合は下記のコマンドを入力しておくと、
+ライブラリによって `php install` 時にはHomebrewで入れたディレクトリを考慮してくれるようです。
+
+```
+$ phpbrew lookup-prefix homebrew
+```
+--&gt;
+
+&lt;p&gt;これでPHPの複数バージョン管理ができるようになりました。
+使い方はphpbrewのヘルプをみるとだいたい分かるかと思います。&lt;/p&gt;
+
+&lt;h2 id="phpbrew-コマンド一覧（例）"&gt;phpbrew コマンド一覧（例）&lt;/h2&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;phpbrew list
+phpbrew known --update
+phpbrew known --old
+phpbrew install 5.4.0 +default
+phpbrew install --test 5.4.0
+phpbrew use 5.6.4
+phpbrew switch 5.6.4
+phpbrew off
+phpbrew switch-off
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id="phpbrew-コマンドの詳細ヘルプ"&gt;phpbrew コマンドの詳細ヘルプ&lt;/h2&gt;
+
+&lt;p&gt;例えば &lt;code&gt;phpbrew known&lt;/code&gt; のコマンドを調べたいときは次のようにします。&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;$ phpbrew help known
+NAME
+known - List known PHP versions
+
+SYNOPSIS
+/usr/bin/phpbrew known [options]
+
+
+OPTIONS
+-m, --more
+Show more older versions
+
+-o, --old
+List old phps (less than 5.3)
+
+-u, --update
+Update release list
+
+
+phpbrew 1.18.4      powered by https://github.com/c9s/CLIFramework
+&lt;/code&gt;&lt;/pre&gt;
+</content>
+  </entry>
+  <entry>
+    <title>homesick+Brew-file+MackupでMac環境構築（OS X Yosemite編）</title>
+    <link rel="alternate" href="http://yuukiar.co/blog/2015/01/08/setup-mac-os-x-yosemite/"/>
+    <id>http://yuukiar.co/blog/2015/01/08/setup-mac-os-x-yosemite/</id>
+    <published>2015-01-08T02:00:00+09:00</published>
+    <updated>2015-04-04T14:57:54+09:00</updated>
+    <author>
+      <name>yuuki-arc</name>
+    </author>
+    <content type="html">&lt;p&gt;これまでMavericksでしたが、マシンが不安定になってきたこととハードディスクの容量を圧迫してきたため、
+YosemiteにクリーンインストールしてゼロからMacの環境を構築しました。  &lt;/p&gt;
+
+&lt;p&gt;環境構築するにあたって主に使用するツールは下記になります。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/technicalpickles/homesick"&gt;homesick&lt;/a&gt;でdotfiles管理&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/rcmdnk/homebrew-file"&gt;Brew-file&lt;/a&gt;でhomebrew(+brew-cask)の各種アプリをインストール&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/lra/mackup"&gt;Mackup&lt;/a&gt;でdropbox経由でアプリ設定を同期&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Brew-fileに関しては、作者の方の紹介エントリがありますのでそちらを参照ください。&lt;br&gt;
+&lt;a href="http://rcmdnk.github.io/blog/2014/08/26/computer-mac-homebrew/"&gt;brew-file: Brewfileを扱うbrewallを改名した - rcmdnk’s blog&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;いちおうブログに残しますがあくまで個人メモというような形なので、
+だいぶ個人の環境に依存してるところがあるかもということをあらかじめ書いておきます。&lt;/p&gt;
+
+&lt;h2 id="1.-セットアップ準備"&gt;1. セットアップ準備&lt;/h2&gt;
+
+&lt;h3 id="ssh公開鍵"&gt;SSH公開鍵&lt;/h3&gt;
+
+&lt;p&gt;githubからセットアップ情報を取得するのでSSH接続するため鍵の作成を行います。&lt;br&gt;
+参考: &lt;a href="https://help.github.com/articles/generating-ssh-keys/"&gt;https://help.github.com/articles/generating-ssh-keys/&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4 id="作成"&gt;作成&lt;/h4&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;$ ssh-keygen -t rsa -C hoge@hoge.com -f ~/.ssh/github_rsa
+�※�passphraseは空でいいので何も入力しないでそのままEnterを押す
+
+$ cat ~/.ssh/github_rsa.pub &amp;gt;&amp;gt; ~/.ssh/authorized_keys
+$ chmod 700 ~/.ssh &amp;amp;&amp;amp; chmod 600 ~/.ssh/authorized_keys
+$ echo "IdentityFile ~/.ssh/github_rsa" &amp;gt;&amp;gt; ~/.ssh/config
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id="ssh公開鍵をgithubに登録"&gt;SSH公開鍵をgithubに登録&lt;/h4&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;$ pbcopy &amp;lt; ~/.ssh/github_rsa.pub
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;githubの&lt;a href="https://github.com/settings/ssh"&gt;SSH keys&lt;/a&gt;ページで &lt;strong&gt;Add SSH Key&lt;/strong&gt; ボタンで登録&lt;/p&gt;
+
+&lt;h3 id="xcode関連のインストール"&gt;Xcode関連のインストール&lt;/h3&gt;
+
+&lt;p&gt;この後のdotfiles環境構築するにあたって、
+Xcode及びCommand Line Toolsが入っていることが前提となるため事前にインストールします。&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;$ xcode-select --install
+$ sudo xcodebuild -license
+※ `license agreements` が表示されるので `agree` を入力してEnterを押す
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id="2.-dotfilesをベースに環境構築"&gt;2. dotfilesをベースに環境構築&lt;/h2&gt;
+
+&lt;h3 id="homesickインストール"&gt;homesickインストール&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href="https://github.com/technicalpickles/homesick"&gt;homesick&lt;/a&gt;を使ってdotfilesをローカルにクローンします。&lt;br&gt;
+&lt;code&gt;homesick clone&lt;/code&gt; は省略形で書くとhttpsで取得してしまうため、明示的にSSH接続で取得してます。&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;$ sudo gem install homesick
+$ homesick clone git@github.com:yuuki-arc/dotfiles.git
+$ homesick symlink dotfiles
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id="brew-fileでアプリの一括インストール"&gt;Brew-fileでアプリの一括インストール&lt;/h3&gt;
+
+&lt;p&gt;homebrewパッケージ管理には&lt;a href="https://github.com/rcmdnk/homebrew-file"&gt;Brew-file&lt;/a&gt;を使っているので、
+下記の手順でインストールします。
+また、brew-caskのインストール先は個人的に &lt;code&gt;/usr/local/Caskroom&lt;/code&gt; にしたいので、あらかじめexportしておきます。&lt;br&gt;
+※homebrewとbrew-caskはBrew-fileのインストールと同時に入るため明示的に入れなくてもOK。&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;$ curl -fsSL https://raw.github.com/rcmdnk/homebrew-file/install/install.sh |sh
+$ brew file set_repo -r yuuki-arc/Brewfile
+$ export HOMEBREW_CASK_OPTS="--appdir=/Applications --caskroom=/usr/local/Caskroom"
+$ brew file update
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;クリーンインストール後にセットアップしていて気付いたのですが、下記の点に関しては今後の改善材料です。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;依存関係でひっかかるアプリがあるのでその都度個別に &lt;code&gt;brew install&lt;/code&gt; しないといけない&lt;/li&gt;
+&lt;li&gt;サービスの自動起動設定(※)は個別に行う必要がある&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id="※-サービスの自動起動設定"&gt;※ サービスの自動起動設定&lt;/h4&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;ln -sfv /usr/local/opt/mysql55/*.plist ~/Library/LaunchAgents
+ln -sfv /usr/local/opt/jenkins/*.plist ~/Library/LaunchAgents
+ln -sfv /usr/local/opt/memcached/*.plist ~/Library/LaunchAgents
+ln -sfv /usr/local/opt/mongodb/*.plist ~/Library/LaunchAgents
+ln -sfv /usr/local/opt/redis/*.plist ~/Library/LaunchAgents
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id="シェルをzshに切り替え"&gt;シェルをzshに切り替え&lt;/h3&gt;
+
+&lt;p&gt;これまでの手順で必要なものは揃ってるので下記のコマンドを入力すればOK。&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;$ sudo sh -c "echo '/usr/local/bin/zsh' &amp;gt;&amp;gt; /etc/shells"
+$ cat /etc/shells
+$ chsh -s /usr/local/bin/zsh
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id="3.-mackupでアプリ毎の設定をリストア"&gt;3. Mackupでアプリ毎の設定をリストア&lt;/h2&gt;
+
+&lt;p&gt;アプリ毎に設定している内容を&lt;a href="https://github.com/lra/mackup"&gt;Mackup&lt;/a&gt;を使ってリストアします。
+Dropboxで同期しているので、事前にDropboxを起動してローカルに同期しておきます。&lt;br&gt;
+※ Mackup管理のファイルがhomesick管理のファイルとバッティングする可能性があることに注意。
+（Mackupでどのファイルがリストアされるか、アプリごとに確認しておく）&lt;/p&gt;
+
+&lt;p&gt;Mackupはpipでインストールします。&lt;br&gt;
+pipはデフォルトで入っているようです？（ここは最初からなのか、いつの間にか入ったのか曖昧）&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Dropboxのアプリを起動してローカルにファイルを同期する&lt;/li&gt;
+&lt;li&gt;Mackupでリストアする&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;$ pip install mackup
+$ mackup restore
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;私の場合は、iTerm2の設定もMackupで管理していて、この手順によってiTerm2の設定もリストアされたので、
+以降の手順についてはiTerm2を起動して作業します。（単に使いやすさの話で、ターミナルで引き続き作業でも問題無い）&lt;/p&gt;
+
+&lt;h2 id="4.-周辺ツールのインストール"&gt;4. 周辺ツールのインストール&lt;/h2&gt;
+
+&lt;p&gt;git cloneで入れるところ、Brew-fileではうまくいかなかったものをここで入れます。
+※Brew-fileでうまくいかなかったのは私の記述の問題かも？&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;$ git clone https://github.com/amatsuda/gem-src.git ~/.rbenv/plugins/gem-src
+$ git clone https://github.com/laprasdrum/phpenv.git ~/.phpenv
+$ brew install vim --with-python --with-ruby --with-perl
+$ brew cask install --caskroom=/Applications google-chrome
+$ brew cask install --caskroom=/Applications firefox-ja
+$ brew cask alfred link
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id="5.-os-xの環境設定"&gt;5. OS Xの環境設定&lt;/h2&gt;
+
+&lt;p&gt;OS Xの環境設定を行います。&lt;br&gt;
+コマンドで設定できる箇所はコマンドで設定していきます。&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;# Finder - 隠しファイル表示
+defaults write com.apple.finder AppleShowAllFiles -bool yes
+# Finder - タイトルをフルパス表示
+defaults write com.apple.finder _FXShowPosixPathInTitle -bool yes
+# QuickLook - 閲覧中ファイルの文字列を選択コピー可能に
+defaults write com.apple.finder QLEnableTextSelection -bool yes
+
+killall Finder
+
+# Dock - MissonControlのアニメーションスピードを速く
+defaults write com.apple.dock expose-animation-duration -float 0.15
+# Dock - スペース表示高速化
+defaults write com.apple.dock workspaces-swoosh-animation-off -bool yes
+#  ダッシュボードを無効化
+defaults write com.apple.dashboard mcx-disabled -bool yes
+## アプリ隠しをDock上で半透明で表現
+defaults write com.apple.Dock showhidden -bool yes
+
+killall Dock
+
+# マウスの速度を変える
+defaults write .GlobalPreferences com.apple.trackpad.scaling 5
+
+# ネットワーク接続時の.DS_Store作成を抑制
+defaults write com.apple.desktopservices DSDontWriteNetworkStores true
+
+# 保存ダイアログを常に展開状態にする
+defaults write -g NSNavPanelExpandedStateForSaveMode -bool yes
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;上記以外の箇所は下記エントリのように設定しました。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="/blog/2012/01/08/setup-mac-system/"&gt;MacBook Proを購入して最初にやること - システム環境設定&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/blog/2012/01/08/setup-mac-finder/"&gt;MacBook Proを購入して最初にやること - Finder&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id="6.-その他の設定"&gt;6. その他の設定&lt;/h2&gt;
+
+&lt;p&gt;その他、下記のような内容を設定しました。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;アンチウィルスソフト（これは &lt;strong&gt;1. セットアップ準備&lt;/strong&gt; の前にインストール）&lt;/li&gt;
+&lt;li&gt;有料ツールのライセンス情報を入力&lt;/li&gt;
+&lt;li&gt;Microsoft Officeなどの個別にインストールするツール&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;他にも使っていくうちに設定しないといけないものがでてくるとは思いますが、ひとまずこんな感じで。&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>「みくもバースト！」アプリ制作のこと</title>
+    <link rel="alternate" href="http://yuukiar.co/blog/2014/12/19/apps-release-mikumo-burst/"/>
+    <id>http://yuukiar.co/blog/2014/12/19/apps-release-mikumo-burst/</id>
+    <published>2014-12-19T08:30:00+09:00</published>
+    <updated>2015-04-04T14:57:54+09:00</updated>
+    <author>
+      <name>yuuki-arc</name>
+    </author>
+    <content type="html">&lt;p&gt;ゲームアプリ「みくもバースト！」をリリースしました！&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;a href="/apps/mikumo-burst/"&gt;タップ連打系バトルゲーム「みくもバースト！」&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="みくもバースト！" src="/img/2014-12-19/header.png" /&gt;&lt;/p&gt;
+
+&lt;p&gt;19日現在、ストアにあがってるのはAndroid版のみですが、
+iOS版も申請中なので近々iOSでもプレイできるようになると思います。&lt;/p&gt;
+
+&lt;p&gt;ここでは、アプリをリリースするまでに至るいろいろを思いつくまま書きました。
+ただ、まだ完成ではなくて今後も段階リリースしていくのでこれらの制作秘話は現在進行形です、
+というところだけ付け足しておきますよ〜。&lt;/p&gt;
+
+&lt;p&gt;このブログの記事にしてはだいぶテキストも長いので、
+適当に流し読みしながら気になったところだけピックアップして読んでもらっても構わないです！&lt;/p&gt;
+
+&lt;h2 id="見出し"&gt;見出し&lt;/h2&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href="#「みくもバースト！」について"&gt;「みくもバースト！」について&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#アイデア"&gt;アイデア&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#キャラクター"&gt;キャラクター&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#キャラクター強化要素"&gt;キャラクター強化要素&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#1バトル10秒"&gt;1バトル10秒&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#攻撃してこないモンスター"&gt;攻撃してこないモンスター&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#ボスとのバトルモード"&gt;ボスとのバトルモード&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#ゲーム仕様とゲームバランス"&gt;ゲーム仕様とゲームバランス&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#タイトル"&gt;タイトル&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#開発について"&gt;開発について&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#ゲームアプリ開発"&gt;ゲームアプリ開発&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#開発期間"&gt;開発期間&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#素材選び"&gt;素材選び&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#使用言語"&gt;使用言語&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#開発ツール"&gt;開発ツール&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#AppC"&gt;AppC cloud&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#導入した技術・仕組み"&gt;導入した技術・仕組み&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#githubに公開"&gt;githubに公開&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id="「みくもバースト！」について"&gt;「みくもバースト！」について&lt;/h2&gt;
+
+&lt;h3 id="アイデア"&gt;アイデア&lt;/h3&gt;
+
+&lt;p&gt;短時間で簡単に遊べるゲームを作りたいなと思って、このゲームを作りました。
+イメージはこのはちゃんがツイートしてたのがまさにそうでしたｗ&lt;/p&gt;
+
+&lt;blockquote class="twitter-tweet" lang="ja" data-conversation="none"&gt;&lt;p&gt;&lt;a href="https://twitter.com/yuuki_arc"&gt;@yuuki_arc&lt;/a&gt; &lt;a href="https://twitter.com/MikumoAnzu"&gt;@MikumoAnzu&lt;/a&gt; 高橋名人にやってもらいたい。&lt;/p&gt;&amp;mdash; 美雲このは (@MikumoConoHa) &lt;a href="https://twitter.com/MikumoConoHa/status/544336718929739776"&gt;2014, 12月 15&lt;/a&gt;&lt;/blockquote&gt;
+
+&lt;script async src="//platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;
+
+&lt;p&gt;高橋名人の16連射というものがあり、そこから膨らませて、
+スマホのゲームで連打系のゲーム作ってみたらおもしろいかなーというのがもともとの発想です。&lt;/p&gt;
+
+&lt;h3 id="キャラクター"&gt;キャラクター&lt;/h3&gt;
+
+&lt;p&gt;当初、フリー素材のキャラクターを使ってアプリを作っていました。
+そんな中、ふとしたきっかけで&lt;a href="pronama.github.io/mascot-apps-contest/2014/"&gt;マスコットアプリ文化祭&lt;/a&gt;なるものを知って、
+提出期限までには完成できそうかなーという感触があったので応募してみることにしました。
+（実際は、最初にも書いたように現在進行形で開発してるので無理やり完成に持っていった、というところです…）&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="/img/2014-12-19/anco2.png" class="float-right-img"&gt;
+キャラクター選択についてはとくに迷うことなく、
+それなりに知っていて馴染みのあった「&lt;a href="https://twitter.com/MikumoConoHa"&gt;美雲このは&lt;/a&gt;」と「&lt;a href="https://twitter.com/MikumoAnzu"&gt;美雲あんず&lt;/a&gt;」にしました。
+キャラクターの性格付けは悩みどころだったので助かりましたねー。
+さらに、そこから想像してゲームの世界観やストーリーも比較的容易に膨らませて展開していけたのもよかったです。&lt;/p&gt;
+
+&lt;p&gt;また、もともと1人キャラのゲームだったところを、このは＆あんずのダブルヒロインに切り替えたので、
+ユーザーとしてはキャラ選択の楽しみが増えたことと、ゲーム的にも幅が広がったかなと思います。&lt;/p&gt;
+
+&lt;h3 id="キャラクター強化要素"&gt;キャラクター強化要素&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src="/img/2014-12-19/scene_select.png" class="float-right-img"&gt;
+キャラクター強化要素というか育成要素についても、ランクアップするだけですが組み込んでます。
+純粋にゲームがおもしろければそういう要素がなくてもスコアアタックだけでいいと思いますが、
+このアプリに関してはゲーム性はないようなものなので、
+別の部分でおもしろくなるような仕組みを考えないと何回もプレイしてもらえないなと。
+ちょうど、このは＆あんずという個性的なキャラクターを使うことにしたのもあって、
+キャラクターが強くなることでより愛着が湧いて複数回プレイしてくれるかなという気持ちもありました。&lt;/p&gt;
+
+&lt;h3 id="1バトル10秒"&gt;1バトル10秒&lt;/h3&gt;
+
+&lt;p&gt;最初は1分ぐらいのゲーム時間にしてたんですが、やってみたら1分は長すぎるなと感じたので、
+思い切って10秒にしてます。
+たぶん、どこの誰かもわからない作者のゲームで1分もプレイしないかなと思ったのと、
+1回やったとしても2回、3回とやらないだろうなと思ったので1回のゲーム時間はそのぐらいに縮めました。
+まぁ単純にタップするだけのゲームだから、というのもあります。&lt;/p&gt;
+
+&lt;h3 id="攻撃してこないモンスター"&gt;攻撃してこないモンスター&lt;/h3&gt;
+
+&lt;p&gt;ぜんぜん攻撃してこないのは、攻撃されることによるプレイヤーへのストレスだったり
+ゲームバランスの複雑性を回避したかったからです。
+そのため、敵はぜんぜん攻撃してくることはなく、このはとあんずが一方的に攻撃する内容になってますが…ｗ&lt;br&gt;
+まぁ、ゲームの雰囲気として、明るいライトなバトルゲームという位置づけになってると思ってるので、
+これでもいいかなーと思ってます。&lt;/p&gt;
+
+&lt;h3 id="ボスとのバトルモード"&gt;ボスとのバトルモード&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src="/img/2014-12-19/scene_battle_boss.png" class="float-right-img"&gt;
+ボスとのバトルは初っ端からできますが、このボスはどうやっても倒せないです。
+（今のところどこにもそういう説明は書いてないので、ランク上げれば倒せると思ってたらすみません…）&lt;/p&gt;
+
+&lt;p&gt;ボスバトルの位置づけとして、今時点の話で書くとエンドレスモードというかスコアアタックのために用意しています。
+通常バトルだと10秒かからずに倒せてしまうので、フルタイムで戦ったときのスコアがでないんですよね。
+なので、フルタイムでのスコアアタックモードがほしくて用意しました。&lt;/p&gt;
+
+&lt;p&gt;そもそもの話をすると、ストーリーの一部としてボスバトルは組み込もうと思ってたので、
+スコアアタックとかも考えてなかったんですけど、そこは提出期限の兼ね合いというか…。
+必要なモードが開発できてない中で、どういうところでユーザーに楽しんでもらえるゲームアプリとして成立させるか、
+という落とし所を考えた結果でてきたモードでした。
+ストーリーモードを今後導入するので、そのときにどういう扱いにするかは考え中です。&lt;/p&gt;
+
+&lt;h2 id="ゲーム仕様とゲームバランス"&gt;ゲーム仕様とゲームバランス&lt;/h2&gt;
+
+&lt;p&gt;ゲームの仕様は何回も変更を入れていて、
+バーストモードの仕様であったりバトルリザルトに表示する要素であったり、
+作っては変えてという感じで試行錯誤してました。
+最初にきちんとゲーム設計してればもっと効率よく進められたのかも。&lt;/p&gt;
+
+&lt;p&gt;ゲームバランスは今も試行錯誤してますが、
+方針としてはライトユーザー向けの短時間で遊べるゲームにしてます。
+ストーリーモードやキャラクター強化は最初つける予定はなかったのですが、
+せっかくダウンロードして遊んでもらうので、
+それなりに継続要素はあったほうがいいだろうなと思ってつける方針に変更してます。&lt;/p&gt;
+
+&lt;h3 id="タイトル"&gt;タイトル&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src="/img/2014-12-19/title_logo.png" class="float-right-img"&gt;
+最初はまったく別のタイトルにしてましたが、
+このは＆あんず仕様にしたのでなるべく簡単でスッと入りやすい単語にしました。
+「みくも」の部分は「このは＆あんず」にするか「あんこ」にするかどうしようか色々考えましたが、
+&lt;a href="http://みくも.com"&gt;みくも.com&lt;/a&gt; があるし「みくも」でも一般的に通じるかなーと思って決めてます。
+「バースト」の部分は「連打」を連想させるような簡単で短い（最長5発音程度）の英単語をと思いましたが、
+これだ！というのがひねり出せなかったので、感覚的に違和感がないような、連打を連想できそうな英単語にしました。
+感嘆符は連打してる勢いをタイトルに出すためで「バースト」よりは「バースト！」かなという感じです。&lt;/p&gt;
+
+&lt;h2 id="開発について"&gt;開発について&lt;/h2&gt;
+
+&lt;h3 id="ゲームアプリ開発"&gt;ゲームアプリ開発&lt;/h3&gt;
+
+&lt;p&gt;きちんと一般公開にまでこぎつけたアプリとしては今回のアプリが初めてです。
+だいぶ前にCocos2d-iPhoneだったり、最近だとUnity3Dでコード組んでみたりはしてるんですが、
+明確なゴールというかこういうゲームアプリがつくりたい！というのがないまま作ってるので、
+だいたい途中で放置したままになってます。
+なので、今回リリースできてひとまずホッとしてます…。&lt;/p&gt;
+
+&lt;h3 id="開発期間"&gt;開発期間&lt;/h3&gt;
+
+&lt;p&gt;個人制作でトータル4ヶ月ぐらい。
+最初の1ヶ月は結果的にCocos2d-xに慣れる期間という感じだったので、
+今の仕様のベースを作り始めてからどのくらいか考えると3ヶ月ぐらいです。
+平日ちまちまやりつつ、土日の休日でがっつり時間使って作ってました。
+コワーキングスペースにはとてもお世話になりました。&lt;/p&gt;
+
+&lt;h3 id="素材選び"&gt;素材選び&lt;/h3&gt;
+
+&lt;p&gt;地味に時間がかかったのが各種素材選びでした。
+プログラミングしかできるものがないので、
+背景やキャラクター画像、音楽、効果音などの素材はいろいろ見て回ってお借りしました。
+1回見ただけだと、ゲームの雰囲気に合ってるかいまいちぴんとこない事が多く、
+何回も何日も同じ素材サイトを見たり聴いたりしては悩んでたと思います。
+さらに、このは＆あんずのキャラクターに切り替えたことでゲーム全体の雰囲気もだいぶ変わったので、
+そのときも再度、素材を選びなおしました。
+こういう部分は個人制作だとしかたないのかなと思いつつ、
+ディレクター、デザイナーがいたら楽なんだろうなと思ってます。&lt;/p&gt;
+
+&lt;h3 id="使用言語"&gt;使用言語&lt;/h3&gt;
+
+&lt;p&gt;Macのマシンで、Cocos2d-x 3.2で開発してます。
+作り始めたときはまだ3.2が出たばかりで2.x系の情報が多かったんですが、
+近いうちに3.x系が主流になるのは明らかだったので最新版で作り始めました。
+参考にした2.x系のコードが3.x系になると動かなくなるといったこともありましたが、
+そのあたりのバージョンによる差異は最初の1ヶ月間で吸収できたように思います。&lt;/p&gt;
+
+&lt;h3 id="開発ツール"&gt;開発ツール&lt;/h3&gt;
+
+&lt;p&gt;以下のツールを使って開発してます。&lt;/p&gt;
+
+&lt;h4 id="cocosbuilder"&gt;CocosBuilder&lt;/h4&gt;
+
+&lt;p&gt;画面(Scene)ごとのベースレイアウトで使ってます。
+多機能でアニメーションをつけられたり色々できるようですが、
+そういうことは一切ふれてなく、単純にレイアウトのみで使いました。
+設定で解像度対応も自動的にしてくれるし、GUIで画像パーツを配置できる優れたツールです。
+最近だとCocos Studioがでてきていますが、
+開発し始めた頃はバグだらけでとても使える状態じゃなかったためCocosBuilderを選択しています。
+今のCocos Studioが正式使用に耐えられる完成度かはわかりませんが、また次回新しいゲームアプリを作るときに試してみようと思います。&lt;/p&gt;
+
+&lt;h4 id="texturepacker"&gt;TexturePacker&lt;/h4&gt;
+
+&lt;p&gt;下記の記事にあるように無料ライセンスを手に入れてフル活用してました。&lt;br&gt;
+&lt;a href="/blog/2014/09/07/request-free-license-texture-packer-physics-editor/"&gt;TexturePackerとPhysicsEditorの無料ライセンスを取得する方法&lt;/a&gt;&lt;br&gt;
+少し設定しておけばあとは毎回、自動的に解像度のHD/SD用出力をしてくれるし、
+作りこんでいくとテクスチャアトラスの使用有無が作業効率に大きく影響してくるので、
+非常に役に立つツールでした。&lt;/p&gt;
+
+&lt;h4 id="glyph-designer"&gt;Glyph Designer&lt;/h4&gt;
+
+&lt;p&gt;これは下記のように半額で購入したものを使ってます。&lt;br&gt;
+&lt;a href="/blog/2014/08/26/discount-50-percent-particle-designer-and-glyph-designer/"&gt;Particle Designer／Glyph Designerがセール中！8月31日まで50％OFF！&lt;/a&gt;&lt;br&gt;
+今回のゲーム内の文字はすべて、このGlyph Designerで画像化した文字フォントを使っています。
+個人的にゲームアプリ開発では必須です。&lt;/p&gt;
+
+&lt;h4 id="particle-designer"&gt;Particle Designer&lt;/h4&gt;
+
+&lt;p&gt;これもGlyph Designer同様、半額で購入したものです。
+いまいち使いきれませんでしたが、いちおうタイトル画面で使ってます。
+動作が重くなるのでバトル画面で使うのを躊躇して使いませんでしたが、パラメータや何かの設定次第なのかも。&lt;/p&gt;
+
+&lt;h3 id="appc-cloud"&gt;AppC cloud&lt;/h3&gt;
+
+&lt;p&gt;下記サイトのMBaaSです。&lt;br&gt;
+&lt;a href="https://app-c.net/"&gt;https://app-c.net/&lt;/a&gt;&lt;br&gt;
+ランキング機能と広告機能で利用させていただきました。
+サイトに登録してAppC cloud SDKを組み込むことで、
+容易にAndroid及びiOSで共通の機能を実装できる優れたサービスです。
+Cocos2d-x 3.x系のSDKもあります。
+今回は利用機会がありませんでしたが、アプリ内課金などの仕組みも簡単に実装できるようです。&lt;/p&gt;
+
+&lt;h3 id="導入した技術・仕組み"&gt;導入した技術・仕組み&lt;/h3&gt;
+
+&lt;p&gt;他、思いつくものを箇条書きで。（すみません、書くのに力尽きました）&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;テクスチャアトラス&lt;/li&gt;
+&lt;li&gt;フォント画像化&lt;/li&gt;
+&lt;li&gt;解像度対応（iPhone6plus対応）&lt;/li&gt;
+&lt;li&gt;スクリプトでapk,ipa生成〜DeployGate自動配信&lt;/li&gt;
+&lt;li&gt;共通ライブラリをスタティックライブラリ化&lt;/li&gt;
+&lt;li&gt;ネイティブ連携でツイート＆レビュー機能&lt;/li&gt;
+&lt;li&gt;Google Analytics&lt;/li&gt;
+&lt;li&gt;PicoJson（データをシリアライズ化して保持）&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id="githubに公開"&gt;githubに公開&lt;/h3&gt;
+
+&lt;p&gt;コードはgithubに公開しています。
+公開できないパラメータなどもありますので、
+そのままでは動きませんが、まぁなにか参考にしていただければ。
+&lt;a href="https://github.com/yuuki-arc/mikumo-burst"&gt;https://github.com/yuuki-arc/mikumo-burst&lt;/a&gt;&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>TexturePackerとPhysicsEditorの無料ライセンスを取得する方法</title>
+    <link rel="alternate" href="http://yuukiar.co/blog/2014/09/07/request-free-license-texture-packer-physics-editor/"/>
+    <id>http://yuukiar.co/blog/2014/09/07/request-free-license-texture-packer-physics-editor/</id>
+    <published>2014-09-07T15:20:00+09:00</published>
+    <updated>2015-04-04T14:57:54+09:00</updated>
+    <author>
+      <name>yuuki-arc</name>
+    </author>
+    <content type="html">&lt;p&gt;Cocos2d-xやUnity3Dのゲーム開発支援ツールとして有名なTexturePackerとPhysicsEditorがあります。&lt;br&gt;
+TexturePackerは複数の画像ファイルを一つの画像にまとめてテクスチャアトラスを生成してくれるツールで、
+PhsycisEditorは物理エンジン用のシェイプを作成できるツールです。&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="TexturePacker" src="/img/2014-09-07/2014_09_07_2-texture-packer.png" /&gt;&lt;/p&gt;
+
+&lt;p&gt;これらのツールは本来有料でライセンスを購入しないとフルに活用することができませんが、
+ある条件を満たすことで無料で1年間のライセンスを取得して使うことができます。&lt;/p&gt;
+
+&lt;p&gt;詳細は以下のページをご覧ください。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://www.codeandweb.com/request-free-license"&gt;Request a free license - CodeAndWeb&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;このページに条件が書いてあり、その条件を抜粋します。&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Bloggers and framework developers can get a free 1-year-license for my tools.&lt;/p&gt;
+
+&lt;p&gt;My requirements to you are:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;You write your own blog about game/software/web development or about applications&lt;/li&gt;
+&lt;li&gt;Your blog has at least 5 recent relevant entries which are
+
+&lt;ul&gt;
+&lt;li&gt;about a page long and&lt;/li&gt;
+&lt;li&gt;not older than 6 months&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Facebook, Twitter, Tumblr or Weibo are not blogs - unless you have 100.000 friends ;-)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I would be happy if you do a small blog post about my tools in return - but this is not a requirement.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;要約すると以下の意味合いのようです。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;ブログを書いていて、ゲーム／ソフトウェア／Web開発、アプリケーションに関するブログであること&lt;/li&gt;
+&lt;li&gt;1ページの分量でかつ6ヶ月以上経っていない、直近5つの記事を書いていること&lt;/li&gt;
+&lt;li&gt;Facebook, Twitter, Tumblr, Weiboは10万人の友人がいなければブログではない&lt;/li&gt;
+&lt;li&gt;TexturePacker, PhysicsEditorに関する記事を書いてくれると幸せになるかも（これは必須ではない）&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;1つめ2つめの内容だけでもライセンスもらえるようですが、4つめの内容からするとツールに関する記事を書くとなお良さそうです。&lt;br&gt;
+（3つめのFacebookうんぬんは、逆にとらえると10万人いればブログとして認めるよ、ってことかな？）&lt;/p&gt;
+
+&lt;p&gt;ということで、私もリクエストしてみました。
+どうなるかなー。&lt;/p&gt;
+
+&lt;h2 id="2014-09-08-追記"&gt;2014-09-08 追記&lt;/h2&gt;
+
+&lt;p&gt;本日の17:35に &lt;strong&gt;Your free license request for TexturePacker and PhysicsEditor&lt;/strong&gt; というタイトルでフリーライセンスのメールが送られてきてました
+！
+リクエストページからリクエストを出してから1〜2日ぐらいで返信があるようですね。&lt;br&gt;
+これで1年間、制限なくツールを使えるようになりましたのでアプリ開発で使い倒していきたいと思います！&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>VirtualBoxで仮想Mac OS X(Mavericks)環境を構築する</title>
+    <link rel="alternate" href="http://yuukiar.co/blog/2014/09/07/mac-os-x-mavericks-in-virtualbox/"/>
+    <id>http://yuukiar.co/blog/2014/09/07/mac-os-x-mavericks-in-virtualbox/</id>
+    <published>2014-09-07T12:35:00+09:00</published>
+    <updated>2015-04-04T14:57:54+09:00</updated>
+    <author>
+      <name>yuuki-arc</name>
+    </author>
+    <content type="html">&lt;p&gt;Mac OS Xで動作するVirtualBoxで、さらにMac OS Xの仮想環境を構築しようという内容です。&lt;br&gt;
+試したのは2〜3ヶ月前ですが今でも問題なく作れるはず。&lt;/p&gt;
+
+&lt;p&gt;仮想環境を構築するためにはiESDというツールを使います。
+作者の方のページに環境構築方法も書いてましたのでそのまま参考にしました。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://ntk.me/2012/09/07/os-x-on-os-x/"&gt;OS X on OS X - 夏樹の時間&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id="1.-os-x-mavericksのインストーラをダウンロード"&gt;1. OS X Mavericksのインストーラをダウンロード&lt;/h2&gt;
+
+&lt;p&gt;App StoreからMavericksをダウンロードします。&lt;br&gt;
+インストール中に作られるファイルを使うので、すでにMavericksの人も同じようにダウンロードしてください。&lt;/p&gt;
+
+&lt;p&gt;ダウンロードするとアプリケーションフォルダに &lt;strong&gt;OS X Mavericks インストール.app&lt;/strong&gt; が作られます。
+このとき、同時にインストーラが立ち上がりますがキャンセルしてください。&lt;/p&gt;
+
+&lt;h2 id="2.-virtualbox用のos-x-mavericksイメージを作成"&gt;2. VirtualBox用のOS X Mavericksイメージを作成&lt;/h2&gt;
+
+&lt;p&gt;下記のコマンドを実行します。&lt;br&gt;
+カレントディレクトリに Mavericks.dmg が作られます。&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;$ gem install iesd
+$ iesd -i /Applications/Install\ OS\ X\ Mavericks.app -o Mavericks.dmg -t BaseSystem
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id="マシンによっては必要な手順"&gt;マシンによっては必要な手順&lt;/h3&gt;
+
+&lt;h4 id="intel-haswell-cpu-(macs-after-2013)-の場合"&gt;&lt;em&gt;Intel Haswell CPU (Macs after 2013)&lt;/em&gt; の場合&lt;/h4&gt;
+
+&lt;p&gt;下記のコマンドが必要になります。
+私のMacは対象だったのでこのコマンドを実行しました。&lt;br&gt;
+※ &amp;ldquo;Mac OS X Mavericks&amp;rdquo; の箇所は、環境によって異なるかもしれませんが &lt;em&gt;&amp;lt;vmname&amp;gt;&lt;/em&gt; が入ります。&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;$ VBoxManage modifyvm "Mac OS X Mavericks" --cpuidset 00000001 000306a9 00020800 80000201 178bfbff
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id="mac-pro-early-2009-または-ecc-memory搭載-のmacの場合"&gt;&lt;em&gt;Mac Pro Early 2009&lt;/em&gt; または &lt;em&gt;ECC memory搭載&lt;/em&gt; のMacの場合&lt;/h4&gt;
+
+&lt;p&gt;iesd実行時に &lt;code&gt;--uninstall-extension&lt;/code&gt; のオプションも合わせて指定する必要があるようです。&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;$ iesd -i /Applications/Install\ OS\ X\ Mavericks.app -o Mavericks.dmg -t BaseSystem --uninstall-extension AppleTyMCEDriver.kext
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id="3.-virtualboxで新規vmを作成"&gt;3. VirtualBoxで新規VMを作成&lt;/h2&gt;
+
+&lt;p&gt;VirtualBoxを起動して新規にVMを作成します。
+私の場合は以下の様な設定にしました。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="/img/2014-09-07/2014_09_07_1-virtualbox-settings.png" /&gt;&lt;/p&gt;
+
+&lt;h2 id="4.-mavericksを仮想環境でインストール"&gt;4. Mavericksを仮想環境でインストール&lt;/h2&gt;
+
+&lt;p&gt;作成したVMを起動して、Mavericks.dmgをセットします。&lt;br&gt;
+OS X インストーラが起動したら、まずはディスクフォーマットを行います。
+ディスクフォーマットは以下の手順で行います。&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;画面上部のメニューバーから[ユーティリティ]を選択する&lt;/li&gt;
+&lt;li&gt;[ディスクユーテリィティ&amp;hellip;]を選択する&lt;/li&gt;
+&lt;li&gt;ダイアログが表示された後、左のリストからディスクを選択する&lt;/li&gt;
+&lt;li&gt;[消去]タブを選択する&lt;/li&gt;
+&lt;li&gt;フォーマットを[Mac OS 拡張 (ジャーナリング)]にして[消去]ボタンを押す&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;これでディスクがフォーマットされます。&lt;br&gt;
+フォーマットが完了したらディスクユーティリティを終了して、インストーラの続きを行います。&lt;/p&gt;
+
+&lt;p&gt;その後は、指示の通りインストールを行っていきます。&lt;br&gt;
+一度再起動するタイミングがありますが、そのときにDVD仮想ドライブからディスクを取り出してください。&lt;br&gt;
+そのまま起動すればインストール完了です。&lt;/p&gt;
+
+&lt;p&gt;これで、Mac OS XのVirtualBoxの中で、Mac OS X Mavericksが使えるようになります。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="/img/2014-09-07/2014_09_07_1-after-install.png" /&gt;&lt;/p&gt;
+
+&lt;p&gt;ただ、実際に起動して使用した感想ですが……レスポンスはあまりよくないです。
+とくにグラフィック回りが顕著で、ワンテンポ、ツーテンポぐらい遅れて反応する感覚です。&lt;br&gt;
+メモリを増やしたりCPUのコア数を増やしたりしてみましたが、改善は見られなかったので何らかの用途で使うにも忍耐がいるかもしれません。&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Particle Designer／Glyph Designerがセール中！8月31日まで50％OFF！</title>
+    <link rel="alternate" href="http://yuukiar.co/blog/2014/08/26/discount-50-percent-particle-designer-and-glyph-designer/"/>
+    <id>http://yuukiar.co/blog/2014/08/26/discount-50-percent-particle-designer-and-glyph-designer/</id>
+    <published>2014-08-26T01:48:00+09:00</published>
+    <updated>2015-04-04T14:57:54+09:00</updated>
+    <author>
+      <name>yuuki-arc</name>
+    </author>
+    <content type="html">&lt;p&gt;Cocos2d-xやUnity3Dのゲーム開発支援ツールとしてよく使われているParticle DesignerとGlyph Designerが期間限定で50％OFFのセールをやってます！&lt;br&gt;
+&lt;a href="https://71squared.com/ja/"&gt;Bitmap Fonts &amp;amp; Particle Effects Game Development Tools - 71Squared&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;夏季期間のセールということで、8月22日〜31日まで50％OFFのようです。
+それぞれ次のような価格で安く買えます。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Glyph Desginer: 3,600円 → 1,800円&lt;/li&gt;
+&lt;li&gt;Particle Designer: 6,355円 → 3,178円&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;50％OFFで買う方法は、トップページに &lt;strong&gt;DISCOUNT CODES&lt;/strong&gt; が表示されているのでそれを入力します。&lt;br&gt;
+入力場所は、商品購入画面にある &lt;strong&gt;Do you have a coupon?&lt;/strong&gt; のリンクをクリックしてポップアップするダイアログにあります。&lt;br&gt;
+サイト見ればすぐにわかると思います！&lt;/p&gt;
+
+&lt;p&gt;Particle Designerは画面上のエフェクトを手軽に作れるツールで、Glyph Desginerはフォントをビットマップフォント化してくれるツールです。
+これらのツールがあるとゲーム開発の幅も広がると思いますので、ぜひこの機会に買っておきましょう！&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Middleman + Github Pages によるブログ構築</title>
+    <link rel="alternate" href="http://yuukiar.co/blog/2014/08/24/architect-middleman-github-pages-html/"/>
+    <id>http://yuukiar.co/blog/2014/08/24/architect-middleman-github-pages-html/</id>
+    <published>2014-08-24T02:59:00+09:00</published>
+    <updated>2015-04-04T14:57:54+09:00</updated>
+    <author>
+      <name>yuuki-arc</name>
+    </author>
+    <content type="html">&lt;h2 id="middleman-+-github-pages-の構成"&gt;Middleman + GitHub Pages の構成&lt;/h2&gt;
+
+&lt;p&gt;Middlemanでサイトを構築するにあたって、大まかな構成は次のようにしました。  &lt;/p&gt;
+
+&lt;h3 id="ディレクトリ構成"&gt;ディレクトリ構成&lt;/h3&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;yuuki-arc.github.io
+├── Gemfile
+├── Gemfile.lock
+├── README.md
+├── config.rb
+├── config.ru
+├── data
+│   └── site.yml
+├── source
+│   ├── 404.html.erb
+│   ├── CNAME
+│   ├── feed.xml.builder
+│   ├── index.html.erb
+│   ├── info.html.erb
+│   ├── robots.txt.erb
+│   ├── sitemap.xml.builder
+│   ├── blog
+│   │   ├── calendar.html.erb
+│   │   ├── tag.html.erb
+│   │   ├── archives
+│   │   │   ├── yyyy-mm-dd-title.html.md
+│   │   │   └── ...
+│   │   └── images
+│   │       ├── yyyy-mm-dd
+│   │       │   ├── ***.png
+│   │       └── ...
+│   ├── css
+│   │   ├── ***.css.scss
+│   │   └── ...
+│   ├── img
+│   │   └── ***.jpg
+│   ├── js
+│   │   ├── ***.js
+│   │   └── ...
+│   └── layouts
+│       ├── _footer.erb
+│       ├── _google_search.erb
+│       ├── _header.erb
+│       ├── _pagination.erb
+│       ├── _post_meta.erb
+│       ├── _sidebar.erb
+│       ├── _social_button.erb
+│       ├── article.erb
+│       ├── article_list.erb
+│       └── layout.erb
+├── tmp
+│   └── restart.txt
+├── build
+│   └── ***
+└── vendor
+    └── ***
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id="レイアウト構成"&gt;レイアウト構成&lt;/h3&gt;
+
+&lt;p&gt;各レイアウトとパーシャルの関係図です。&lt;/p&gt;
+
+&lt;h4 id="記事一覧ページ"&gt;記事一覧ページ&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src="/img/2014-08-24/article_list.png" /&gt;&lt;/p&gt;
+
+&lt;h4 id="記事詳細ページ"&gt;記事詳細ページ&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src="/img/2014-08-24/article.png" /&gt;&lt;/p&gt;
+
+&lt;h3 id="ブログテーマ"&gt;ブログテーマ&lt;/h3&gt;
+
+&lt;p&gt;ブログデザインは下記のBootstrapテーマをベースにしてカスタマイズしてます。&lt;br&gt;
+&lt;a href="https://wrapbootstrap.com/theme/banzhow-responsive-business-theme-WB03P4065"&gt;Banzhow | {wrap}bootstrap&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id="構築の際に導入したもの"&gt;構築の際に導入したもの&lt;/h2&gt;
+
+&lt;p&gt;構築するにあたって調べたものや実装したものは、粒度は様々ですがだいたい下記の内容になります。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;GiHub Pages
+
+&lt;ul&gt;
+&lt;li&gt;ドメイン設定 (CNAMEファイル)&lt;/li&gt;
+&lt;li&gt;ブランチを使った運用方法&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Middlemanにおける実装
+
+&lt;ul&gt;
+&lt;li&gt;デプロイ (middleman-deploy)&lt;/li&gt;
+&lt;li&gt;livereload (middleman-livereload)&lt;/li&gt;
+&lt;li&gt;各種minify&lt;/li&gt;
+&lt;li&gt;ディレクトリインデックス&lt;/li&gt;
+&lt;li&gt;syntax highlight (redcarpet)&lt;/li&gt;
+&lt;li&gt;Google Analytics&lt;/li&gt;
+&lt;li&gt;Pt engine&lt;/li&gt;
+&lt;li&gt;pow経由で表示&lt;/li&gt;
+&lt;li&gt;関連記事機能 (middleman-similar)&lt;/li&gt;
+&lt;li&gt;メタタグ&lt;/li&gt;
+&lt;li&gt;サイトマップ (sitemap.xml.builder)&lt;/li&gt;
+&lt;li&gt;フィード (feed.xml.builder)&lt;/li&gt;
+&lt;li&gt;404ページ&lt;/li&gt;
+&lt;li&gt;ローカルデータ (data/****.xml)&lt;/li&gt;
+&lt;li&gt;paginationの実装&lt;/li&gt;
+&lt;li&gt;月別アーカイブの実装&lt;/li&gt;
+&lt;li&gt;タグ機能&lt;/li&gt;
+&lt;li&gt;Googleカスタム検索を導入&lt;/li&gt;
+&lt;li&gt;Frontmatter&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;具体的な実装内容については次回以降の記事で書いていきます。
+あるいは、&lt;a href="https://github.com/yuuki-arc/yuuki-arc.github.io/tree/develop"&gt;githubのリポジトリ&lt;/a&gt;を見てもらえれば分かるかと思います。&lt;/p&gt;
+
+&lt;h2 id="導入を検討したが導入しなかったもの"&gt;導入を検討したが導入しなかったもの&lt;/h2&gt;
+
+&lt;h3 id="コメント機能"&gt;コメント機能&lt;/h3&gt;
+
+&lt;p&gt;Disqusとfacebookコメントを検討して、実際にDisqusは一度入れましたが最終的には外しました。
+一番の理由はこのブログでは必要ないというところですが、Disqusに関しては一度入れたコメントは物理的に削除できないというところが個人的に気になりました。
+（削除ボタンはあるが、Disqusのサイトで見ると削除フラグがたってるだけでコメントは閲覧できる）&lt;/p&gt;
+
+&lt;p&gt;facebookコメントは、ページが重くなるので入れませんでした。
+いいねボタンはデファクトスタンダードなのでしかたないとして、facebookの機能は総じて重いのであまり入れたくないというのが理由です。&lt;/p&gt;
+
+&lt;p&gt;ほかにコメント機能ないか探してみましたが、Middlemanに合うものではこれといったものは見つからず。
+そこまで必要性も感じてないので、なくていいかなというところで落ち着いてます。&lt;/p&gt;
+
+&lt;h2 id="今後導入予定"&gt;今後導入予定&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Travis CI&lt;/li&gt;
+&lt;li&gt;erb -&amp;gt; slim&lt;/li&gt;
+&lt;li&gt;記事投稿をしやすくする機能&lt;/li&gt;
+&lt;li&gt;気になっている箇所の微調整（Googleカスタム検索のデザインとか諸々）&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;どれも比較すぐに導入できると思いますが、Middlemanのほうはいったんこれで一段落で。
+また別の機会に導入していこうと思います。&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Middleman + GitHub Pages にブログを移行しました</title>
+    <link rel="alternate" href="http://yuukiar.co/blog/2014/08/22/migration-blog-middleman-github-pages-html/"/>
+    <id>http://yuukiar.co/blog/2014/08/22/migration-blog-middleman-github-pages-html/</id>
+    <published>2014-08-22T23:43:00+09:00</published>
+    <updated>2015-04-04T14:57:54+09:00</updated>
+    <author>
+      <name>yuuki-arc</name>
+    </author>
+    <content type="html">&lt;p&gt;以前から書いていたブログから技術系の記事を抜き出してMiddleman + GitHub Pagesに移行しました。
+まぁ、だいぶ更新も滞っていましたが……&lt;/p&gt;
+
+&lt;p&gt;これを機会に心機一転、また書いていこうと思います！&lt;/p&gt;
+</content>
+  </entry>
+</feed>
