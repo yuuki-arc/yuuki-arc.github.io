@@ -95,88 +95,14 @@ def get_import_assets(path, split_str)
   array
 end
 
-# after_configuration do
-#   sprockets.append_path 'blog/images'
-# end
-
-# ready do
-#   # sprockets.import_asset 'blog/images' { |logical_path| Pathname.new(img) + }
-#   # sprockets.import_asset 'apps/images'
-
-#   # sprockets.import_asset('lightbox2/img/close.png') { |logical_path| Pathname.new('hello_world') + logical_path }
-
-#   # sprockets.append_path 'blog/images'
-#   # sprockets.import_asset 'blog/images'
-#   images_dir = "source/blog/images"
-#   dir_names = %w(img)
-#   dir_names.each do |dir_name|
-#     Dir.glob(File.join("#{root}", images_dir, '*')) do |path|
-#       # sprockets.append_path path
-#       p path
-#       get_import_assets(path, images_dir).each do |image|
-#         p "blog/images/" << image
-#         p File.join(dir_name, '/', image)
-#         sprockets.import_asset("blog/images/" << image) { File.join(dir_name, '/', image) }
-#         # sprockets.import_asset("blog/images/") { File.join(dir_name, '/') }
-#       end
-#     end
-#   end
-# end
-
 after_configuration do
-  images_dir = "source/blog/images" #.bowerrcでインストール先変更してる人は適宜読み換えて下さい
-
-  p "append_path: " << File.join(root, images_dir)
-  sprockets.append_path File.join(root, images_dir)
-
-  # bower_components内のfontsディレクトリにあるファイルを捜査
-  first_path = File.join("#{root}", images_dir, "*")
-  p first_path
-  Dir.glob(first_path) do |file|
-    asset_path = Pathname.new(file).relative_path_from(Pathname.new(File.join(root, images_dir)))
-
-    get_import_assets(first_path, images_dir).each do |image|
-      # import_assetの引数はsprockets.append_pathしたpathに対する相対パスなので注意
-      image_path = File.join("blog/images", image)
-      p "import_path A: " << image
-      p "import_path B: img/#{image}"
-      sprockets.import_asset(image) {"img/#{image}"}
-
-      # sprockets.import_asset image_path do |path|
-      #   org_path = Pathname.new(path)
-      #   # そのままだと"ratchet/fonts/*"にファイルが出力されてしまい、
-      #   # cssとの相対パスがずれるので出力先pathを"fonts/*"に変更
-      #   p "img/#{path}"
-      #   "img/#{path}"
-      # end
-    end
-  end
-
-  images_dir = "source/apps/images" #.bowerrcでインストール先変更してる人は適宜読み換えて下さい
-
-  p "append_path: " << File.join(root, images_dir)
-  sprockets.append_path File.join(root, images_dir)
-
-  # bower_components内のfontsディレクトリにあるファイルを捜査
-  first_path = File.join("#{root}", images_dir, "*")
-  p first_path
-  Dir.glob(first_path) do |file|
-    asset_path = Pathname.new(file).relative_path_from(Pathname.new(File.join(root, images_dir)))
-
-    get_import_assets(first_path, images_dir).each do |image|
-      # import_assetの引数はsprockets.append_pathしたpathに対する相対パスなので注意
-      image_path = File.join("apps/images", image)
-      p "import_path A: " << image
-      p "import_path B: img/#{image}"
-      sprockets.import_asset(image) {"img/#{image}"}
-
-      # sprockets.import_asset image_path do |path|
-      #   org_path = Pathname.new(path)
-      #   # そのままだと"ratchet/fonts/*"にファイルが出力されてしまい、
-      #   # cssとの相対パスがずれるので出力先pathを"fonts/*"に変更
-      #   p "img/#{path}"
-      #   "img/#{path}"
-      # end
+  source_dir = "source"
+  %w(blog/images apps/images).each do |import_dir|
+    sprockets.append_path import_dir
+    Dir.glob(File.join(source_dir, import_dir, '*')) do |search_path|
+      get_import_assets(search_path, File.join(source_dir, import_dir)).each do |image_name|
+        sprockets.import_asset(image_name) { File.join("img", image_name) }
+      end
     end
   end
 end
