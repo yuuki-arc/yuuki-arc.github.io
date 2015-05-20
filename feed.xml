@@ -10,7 +10,7 @@
     <link rel="alternate" href="http://yuukiar.co/blog/2015/04/04/windows-chocolatey/"/>
     <id>http://yuukiar.co/blog/2015/04/04/windows-chocolatey/</id>
     <published>2015-04-04T18:00:00+09:00</published>
-    <updated>2015-04-04T21:23:11+09:00</updated>
+    <updated>2015-05-17T04:01:40+09:00</updated>
     <author>
       <name>yuuki-arc</name>
     </author>
@@ -501,7 +501,7 @@ phpbrew 1.18.4      powered by https://github.com/c9s/CLIFramework
     <link rel="alternate" href="http://yuukiar.co/blog/2015/01/08/setup-mac-os-x-yosemite/"/>
     <id>http://yuukiar.co/blog/2015/01/08/setup-mac-os-x-yosemite/</id>
     <published>2015-01-08T02:00:00+09:00</published>
-    <updated>2015-04-04T21:23:11+09:00</updated>
+    <updated>2015-05-03T13:11:32+09:00</updated>
     <author>
       <name>yuuki-arc</name>
     </author>
@@ -531,7 +531,7 @@ YosemiteにクリーンインストールしてゼロからMacの環境を構築
 
 &lt;h4 id="作成"&gt;作成&lt;/h4&gt;
 &lt;pre class="highlight plaintext"&gt;&lt;code&gt;$ ssh-keygen -t rsa -C hoge@hoge.com -f ~/.ssh/github_rsa
-�※�passphraseは空でいいので何も入力しないでそのままEnterを押す
+※passphraseは空でいいので何も入力しないでそのままEnterを押す
 
 $ cat ~/.ssh/github_rsa.pub &amp;gt;&amp;gt; ~/.ssh/authorized_keys
 $ chmod 700 ~/.ssh &amp;amp;&amp;amp; chmod 600 ~/.ssh/authorized_keys
