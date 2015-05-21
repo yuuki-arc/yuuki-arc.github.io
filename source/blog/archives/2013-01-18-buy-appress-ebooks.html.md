@@ -1,7 +1,7 @@
 ---
 title: Apress.comで電子書籍を$10で購入する方法
 date: 2013-01-18 01:04 JST
-tags: Apress, 電子書籍
+tags: eBooks
 ---
 
 [Apress.com](http://www.apress.com/) という技術系書籍(英語)の販売サイトがあります。  

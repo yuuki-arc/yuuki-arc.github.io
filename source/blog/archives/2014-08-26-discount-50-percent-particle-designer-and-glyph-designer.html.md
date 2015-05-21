@@ -1,7 +1,7 @@
 ---
 title: Particle Designer／Glyph Designerがセール中！8月31日まで50％OFF！
 date: 2014-08-26 01:48 JST
-tags: 開発支援ツール,Cocos2d-x,Unity3D
+tags: Particle Designer,Glyph Designer,Cocos2d-x,Unity3D
 ---
 
 Cocos2d-xやUnity3Dのゲーム開発支援ツールとしてよく使われているParticle DesignerとGlyph Designerが期間限定で50％OFFのセールをやってます！  

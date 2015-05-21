@@ -1,7 +1,7 @@
 ---
 title: homesick+Brew-file+MackupでMac環境構築（OS X Yosemite編）
 date: 2015-01-08 02:00 JST
-tags: Mac,Yosemite,homebrew
+tags: Mac,Yosemite,homebrew,Mackup,Brew-file,homesick,dotfiles,zsh
 ---
 
 これまでMavericksでしたが、マシンが不安定になってきたこととハードディスクの容量を圧迫してきたため、

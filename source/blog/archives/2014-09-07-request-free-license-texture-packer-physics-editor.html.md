@@ -1,7 +1,7 @@
 ---
 title: TexturePackerとPhysicsEditorの無料ライセンスを取得する方法
 date: 2014-09-07 15:20 JST
-tags: 開発支援ツール,Cocos2d-x,Unity3D
+tags: TexturePacker,PhysicsEditor,Cocos2d-x,Unity3D
 ---
 
 Cocos2d-xやUnity3Dのゲーム開発支援ツールとして有名なTexturePackerとPhysicsEditorがあります。  
