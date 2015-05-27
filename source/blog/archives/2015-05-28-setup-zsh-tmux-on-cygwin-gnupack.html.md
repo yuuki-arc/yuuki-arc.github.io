@@ -286,4 +286,4 @@ https://github.com/yuuki-arc/mintty-color-schemes-Japanesque/blob/master/.mintty
 まだtmuxまわりの外観など調整したいところはまだまだありますが、
 現在こんな感じのターミナルになってます！
 
-[![](2015-05-28/2015-05-28-windows-mintty.jpg)](/img/2015-05-28/2015-05-28-windows-mintty.jpg)
+[![](2015-05-28/2015-05-28-windows-mintty.jpg)](http://yuukiar.co/img/2015-05-28/2015-05-28-windows-mintty.jpg)
