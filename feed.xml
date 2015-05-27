@@ -4,7 +4,298 @@
   <id>http://yuukiar.co/blog</id>
   <link href="http://yuukiar.co/"/>
   <link href="http://yuukiar.co/feed.xml" rel="self"/>
-  <updated>2015-04-04T18:00:00+09:00</updated>
+  <updated>2015-05-28T08:00:00+09:00</updated>
+  <entry>
+    <title>gnupack(Cygwin) + oh-my-zsh + tmuxの環境を構築する</title>
+    <link rel="alternate" href="http://yuukiar.co/blog/2015/05/28/setup-zsh-tmux-on-cygwin-gnupack/"/>
+    <id>http://yuukiar.co/blog/2015/05/28/setup-zsh-tmux-on-cygwin-gnupack/</id>
+    <published>2015-05-28T08:00:00+09:00</published>
+    <updated>2015-05-28T08:00:53+09:00</updated>
+    <author>
+      <name>yuuki-arc</name>
+    </author>
+    <content type="html">&lt;p&gt;Windowsでターミナル環境を構築する手順です。
+Windowsのターミナルツールはいろいろあって、どれにしようか悩むところではありますが、
+個人的にMacの環境（oh-my-zsh,tmuxあたり）をなるべくそのまま使いたかったので、それに一番合うものを探しました。&lt;/p&gt;
+
+&lt;p&gt;とはいうものの、3月末あたりからいろいろ試してみて2ヶ月ほど経った今でも「これがベスト！」と思えるものがないのが実情なのですが、
+妥協点には至りましたので、このあたりで記事を書いておこうと思います。&lt;/p&gt;
+
+&lt;p&gt;最初に、本題とは少しずれますが、使ってみた主なツールと採用できなかった理由を次の項に書きます。&lt;/p&gt;
+
+&lt;h2 id="windowsターミナル環境について"&gt;Windowsターミナル環境について&lt;/h2&gt;
+
+&lt;h3 id="conemu"&gt;ConEmu&lt;/h3&gt;
+
+&lt;p&gt;純粋にターミナル環境のツールとしては一番使いやすいと思いました。&lt;br&gt;
+zshの環境もスムーズに構築できました。…が、tmuxが起動しませんでした。&lt;br&gt;
+また、ConEmu内でコマンドプロンプトを起動して、Chocolateyを使うとインストールできてるようで実際にはインストールできてない、
+という点も、最初気付かずに地味にハマっていました。（これはツールのせいというより自分が悪いんですが）&lt;br&gt;
+今はChocolatey使うときは純粋にコマンドプロンプトを立ち上げて使うようにしています。
+いずれにしろ、tmuxは使いたかったので採用できませんでした。&lt;/p&gt;
+
+&lt;h3 id="mobaxterm"&gt;MobaXterm&lt;/h3&gt;
+
+&lt;p&gt;周辺ツールが充実してて、最近までこれでいこうかなと思っていたツールです。
+zsh + tmux環境も問題なく作れました。&lt;br&gt;
+ですが、BusyBoxベースというのが思いのほかネックで、RubyまわりやmakeなどをするたびにBusyBox標準のコマンドではエラーになることがあり、
+その都度調査しながら使ってました。
+BusyBoxコマンドに起因するエラーは、apt-cygでi686-pc-cygwinまわりのパッケージを入れてそちらのlinuxコマンドを指定して解決したり、
+ほかにもあったと思いますが、けっこうBusyBoxまわりは自分の環境としては不十分な部分が多かったです。&lt;br&gt;
+さくっとインストールして本来の作業に入りたいのに、いちいちエラーで作業が止まって調査して…みたいなのがいい加減面倒くさくなってきたので採用しませんでした。　　&lt;/p&gt;
+
+&lt;h3 id="babun"&gt;babun&lt;/h3&gt;
+
+&lt;p&gt;ちゃんと試したわけではありませんが、oh-my-zshの環境がデフォルトで揃っていたので入れて試してみるつもりでした。
+ただ、デフォルトできっちりと揃いすぎていて、すでにoh-my-zshを入れていてdotfilesで管理している自分の構成には合わなかったので使いませんでした。&lt;br&gt;
+どういうハマりどころがあるか未知数ですが、まっさらな環境でoh-my-zshを使ってみたい人にはいいかも。&lt;/p&gt;
+
+&lt;h3 id="cygwin（純正-/-gnupack）"&gt;Cygwin（純正 / gnupack）&lt;/h3&gt;
+
+&lt;p&gt;一番最初に入れたのは純正のCygwinだったのですが、最終的にgnupackのほうに戻ってきました。
+最初に入れた時はapt-cygのハッシュアルゴリズム問題（参考：&lt;a href="http://seesaawiki.jp/w/kou1okada/d/apt-cyg#20150330-hash-algorithm-changed"&gt;2015-03-30: ハッシュアルゴリズムの変更 | apt-cyg - PIB&lt;/a&gt;）に見事に引っかかって、
+公式は全然音沙汰ないしどのfork使えばいいかいまいちわからないし…というような感じでCygwin面倒くさい！と思って敬遠したのですが、
+最近試したらぜんぜん面倒くさいことはなかったので、最初の時はタイミングが悪かったですね。&lt;br&gt;
+ちなみにapt-cygのforkに関しては、上でリンクをはったkou1okada氏のサイトで詳しく説明されていて状況がよくわかりました。
+ほかにもCygwinまわりのパッチを公開してたり、今現在もアクティブに情報を発信されていて、とても助かってます。&lt;/p&gt;
+
+&lt;p&gt;というような感じで、いろいろ試したあとに改めて使ってみて、結局のところCygwinが一番ハマりどころが少なく、
+問題に出くわしても解決しやすかったので、これを使うことにしました。
+純正のCygwinでも環境構築はできますが、gnupackのほうが手間が少なくなるのでそちらを入れてます。
+純正からgnupackに変えて戸惑ったのは設定の部分ぐらいです。
+gnupackはstartup_config.iniというファイルがあってそこに設定を記述するということに気付かず、しばらく試行錯誤してました。&lt;br&gt;
+ベストな環境とは思わないのですが、まぁ妥協できる環境かなというところで落ち着いてます。
+まぁ…最近いろいろ調べてみて、Windowsでベストなターミナル環境は相当難しいと思っていて、
+逆の考え方で、ここまで実現できるのであれば十分だろうという結論に至ってます。&lt;/p&gt;
+
+&lt;h2 id="1.-ターミナル環境：gnupack(cygwin)のセットアップ"&gt;1. ターミナル環境：gnupack(Cygwin)のセットアップ&lt;/h2&gt;
+
+&lt;h3 id="パッケージダウンロード"&gt;パッケージダウンロード&lt;/h3&gt;
+
+&lt;p&gt;ということで前置きが長くなりましたが、実際にインストールに入っていきます。&lt;br&gt;
+下記のサイトからgnupackをダウンロードします。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://osdn.jp/projects/gnupack/"&gt;gnupack プロジェクト日本語トップページ - OSDN&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;今の最新版は13.02のようです。&lt;br&gt;
+basicとdevelがありますが、gccやRuby、gitが標準で入っているdevelのほうをダウンロードします。
+（gnupack_devel-13.02-2015.05.24.exe というファイルです。）&lt;/p&gt;
+
+&lt;p&gt;ダウンロードしたらファイルを解凍します。
+解凍先はどこでも任意で構いませんが、ここでは &lt;code&gt;C:\&lt;/code&gt; を指定することにします。&lt;/p&gt;
+
+&lt;h3 id="configファイル編集"&gt;configファイル編集&lt;/h3&gt;
+
+&lt;p&gt;gnupackのホームディレクトリはデフォルトだとパッケージ内のディレクトリになりますが、
+ここではWindowsと同じところをホームにしたいので以下の手順のように変更していきます。
+以下、解凍したディレクトリを &lt;code&gt;%INST_DIR%&lt;/code&gt;、Windowsのホームディレクトリを &lt;code&gt;%HOME%&lt;/code&gt; として説明していきます。&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;%INST_DIR%\startup_config.ini&lt;/code&gt; をテキストエディタで開く。&lt;/li&gt;
+&lt;li&gt;開いたファイルに記述されている下記の2行を &lt;code&gt;%HOME%&lt;/code&gt; に変更する。&lt;br&gt;
+&lt;code&gt;
+    HOME      = %HOME%
+    :
+    Init_Current_Dir     = %HOME%
+&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;%INST_DIR%\home\&lt;/code&gt; ディレクトリにあるすべてのファイルを &lt;code&gt;%HOME%\&lt;/code&gt; ディレクトリの中にコピーする。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;もし、3.の手順を行った時に、すでに存在するファイルに対して上書きしようとしていたら、
+そのあたりは各自の判断で選択してください。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;%INST_DIR%\startup_cygwin.exe&lt;/code&gt; のショートカットを作成して、デスクトップなりタスクバーなりに置きます。&lt;/p&gt;
+
+&lt;p&gt;ショートカットリンクをダブルクリックするとgnupackのCygwinが起動すると思います。&lt;/p&gt;
+
+&lt;h2 id="2.-シェル環境：zsh(oh-my-zsh)のセットアップ"&gt;2. シェル環境：zsh(oh-my-zsh)のセットアップ&lt;/h2&gt;
+
+&lt;h3 id="zshインストール"&gt;zshインストール&lt;/h3&gt;
+
+&lt;p&gt;まず、apt-cygからzshとこの後に使うパッケージをインストールします。
+インストール後、zshのバージョンも確認します。&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;$ apt-cyg install zsh curl
+$ zsh --version
+zsh 5.0.7 (i686-pc-cygwin)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;次にzshを起動しますが、&lt;code&gt;.zshrc&lt;/code&gt;ファイルがない状態で起動すると、
+いろいろ聞かれて面倒なのと起動後のプロンプトが非常に見にくいので、
+最低限の設定だけしておいてzshを起動します。&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;$ echo 'PROMPT="%F{cyan}[%n@%m %d]%f "' &amp;gt;&amp;gt; ~/.zshrc
+$ zsh
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id="oh-my-zshインストール"&gt;oh-my-zshインストール&lt;/h3&gt;
+
+&lt;p&gt;これでzshが起動したので、oh-my-zshのインストールを行います。
+インストールは、oh-my-zshの公式にしたがうだけでOKです。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://github.com/robbyrussell/oh-my-zsh#basic-installation"&gt;robbyrussell/oh-my-zsh #Basic Installation - GitHub&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;上記に書いてあるように、次のコマンドを実行します。&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;$ curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;これで終わりですが、gnupack(Cygwin)の場合、インストールの最後に下記のエラーが出ます。&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;sh: 行 37: chsh: コマンドが見つかりません
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;gnupack(Cygwin)に&lt;code&gt;chsh&lt;/code&gt;コマンドがないためですが、
+oh-my-zshのインストールスクリプトを見るとこの後に実行している処理はないので（echoとかsourceだけ）、
+少なくとも現時点ではエラーでも問題なさそうです。&lt;/p&gt;
+
+&lt;h3 id="zshを読み込み直した時のエラー対応"&gt;zshを読み込み直した時のエラー対応&lt;/h3&gt;
+
+&lt;p&gt;ここでzshを読み込みなおしてみます。&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;$ source ~/.zshrc
+compdef: unknown command or service: git
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;私の場合、読み込み直したら&lt;code&gt;compdef: 〜&lt;/code&gt;というエラーがでましたが、
+これは下記issueを参考に、次のコマンドを打って解決しました。&lt;br&gt;
+&lt;a href="https://github.com/robbyrussell/oh-my-zsh/issues/630#issuecomment-40465577"&gt;compdef: unknown command or service: git · Issue #630 · robbyrussell/oh-my-zsh - GitHub&lt;/a&gt;&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;$ compaudit | xargs -I % chmod g-w "%"
+$ compaudit | xargs -I % chown [username] "%"
+  ※ [username] の部分は各自のユーザー名に置き換えること。
+
+$ rm ~/.zcompdump*
+$ compinit
+$ source ~/.zshrc
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id="ログインシェルの設定"&gt;ログインシェルの設定&lt;/h3&gt;
+
+&lt;p&gt;最後にログインシェルをzshに切り替えます。&lt;br&gt;
+gnupackの場合は &lt;code&gt;%INST_DIR%\startup_config.ini&lt;/code&gt; に設定が書かれていて、
+&lt;code&gt;SHELL&lt;/code&gt;, &lt;code&gt;Cmdline_Image&lt;/code&gt;の２箇所の書き換えと、
+&lt;code&gt;zsh.exe&lt;/code&gt;の１箇所を新しく行追加します。&lt;br&gt;
+※いちおうこれで動いてるんですが、このあたりはドキュメントが見つからなかったので適切でない部分があるかも。&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt; [Process Variable]
+    :
+    SHELL     = /usr/bin/zsh
+    :
+ [startup_cygwin.exe]
+    Cmdline_Image        = "%term.exe%" "%zsh.exe%" --login
+    :
+ [Local Variable]
+    :
+    zsh.exe         = %CYGWIN_DIR%\bin\zsh.exe
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id="3.-ターミナルマルチプレクサ：tmuxのセットアップ"&gt;3. ターミナルマルチプレクサ：tmuxのセットアップ&lt;/h2&gt;
+
+&lt;p&gt;まず、ビルドに必要なパッケージをapt-cygでインストールします。
+基本は、下記tmuxの公式ページの流れ通りです。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://sourceforge.net/p/tmux/tmux-code/ci/master/tree/README#l21"&gt;README - tmux download | sourceForge.net&lt;/a&gt;&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;$ apt-cyg install tmux
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;これでtmuxが実行できるようになりました。&lt;/p&gt;
+
+&lt;h3 id="socketエラーの対応"&gt;socketエラーの対応&lt;/h3&gt;
+
+&lt;p&gt;実行はできるようになったのですが、
+これでtmuxを起動しようとすると下記のsocketエラーになります。&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;$ tmux
+can't create socket: Permission denied
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;エラーの理由は &lt;code&gt;/tmp&lt;/code&gt; ディレクトリに作られるディレクトリの権限絡みのようですが、
+実のところよくわかってません。
+純正のCygwinのときには問題なく起動してたんですが…。&lt;/p&gt;
+
+&lt;p&gt;ただ、下記のようにオプションで、
+本来生成されるはずのdefaultファイルまできちんと指定すると回避できるようなので、
+そのaliasを.zshrcに記述して対応することにします。&lt;br&gt;
+※根本的な解決方法をご存知のかたがいたら教えて欲しいです。&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;$ echo 'alias tmux="tmux -S /tmp/tmux-$UID"' &amp;gt;&amp;gt; ~/.zshrc
+$ source ~/.zshrc
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;すでにtmuxにaliasを設定している人は&lt;code&gt;-S ...&lt;/code&gt;のオプションを付け加えればOKです。
+また、場所は必ずしも &lt;code&gt;/tmp/...&lt;/code&gt; でなくてもよくて、&lt;code&gt;$HOME/.tmux/socket&lt;/code&gt; とかでも大丈夫です。
+また、何も設定変えてないはずなのに急にtmuxが起動しなくなったな…という人は &lt;code&gt;-S&lt;/code&gt; で指定しているファイルをいったん削除してみてください。
+ここの例では &lt;code&gt;$ rm /tmp/tmux-$UID&lt;/code&gt; という感じです。&lt;/p&gt;
+
+&lt;h3 id="マウスを使う設定"&gt;マウスを使う設定&lt;/h3&gt;
+
+&lt;p&gt;マウスを使うにはtmuxの設定とmintty（Cygwinのターミナルツール）の設定が必要になるので、
+それも設定します。&lt;/p&gt;
+
+&lt;p&gt;まず、tmuxのほうは、&lt;code&gt;.tmux.conf&lt;/code&gt; というファイルに下記のような行を追加します。
+設定内容の意味に関してはここでは書かないので他のサイトを参考にしてください。&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;set-window-option -g mode-mouse on
+set-option -g mouse-utf8 on
+set-option -g mouse-resize-pane on
+set-option -g mouse-select-pane on
+set-option -g mouse-select-window on
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;次にmintty側の設定は以下のようにします。&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;アプリケーションの左上端のアイコンをクリックして Options&amp;hellip; を選択する&lt;/li&gt;
+&lt;li&gt;Mouseの項目
+
+&lt;ul&gt;
+&lt;li&gt;Right click action: Paste または Extend&lt;/li&gt;
+&lt;li&gt;Application mouse mode: Application&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Windowの項目
+
+&lt;ul&gt;
+&lt;li&gt;Scrollbar: None&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;こうすることで、ペインごとにマウスのホイールスクロールなどが使えるようになります。
+これでtmuxのセットアップは完了です。&lt;/p&gt;
+
+&lt;h2 id="フォントやカラースキームなど"&gt;フォントやカラースキームなど&lt;/h2&gt;
+
+&lt;h3 id="フォント"&gt;フォント&lt;/h3&gt;
+
+&lt;p&gt;WindowsではConsolasやRicty、Miguフォントのあたりが有名のようで、
+Powerlineのパッチを適用する記事もよく見かけますが、
+それらを1つにした &lt;strong&gt;Cica&lt;/strong&gt; というフォントを公開されている方がいて、私はそれを使わせてもらっています。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://sv.btnb.jp/cica-font"&gt;プログラミングに適した合成日本語等幅フォント Cica を公開します | さばなべ&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;フォントイメージは、上記サイトでWebフォントとして記事に適用されているので、
+記事をご覧いただければどういうイメージになるかわかります。
+Powerlineのパッチも適用済みなので、zipファイルをダウンロードして
+解凍したフォントファイルをコピーするだけです。&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;上記サイトからCica.zipのファイルをダウンロードして解凍する&lt;/li&gt;
+&lt;li&gt;コントロールパネル → デスクトップのカスタマイズ → フォント の順にクリックする&lt;/li&gt;
+&lt;li&gt;フォントフォルダが表示されるので、先ほど解凍したCicaフォルダの *.ttfをフォントフォルダにコピー＆ペーストする&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;このフォントですが、一応Powerlineが適用されているものの完全ではないようで、
+「・」で表示されてしまう文字もあったりするので、私は別の文字に置き換えて使ってます。&lt;/p&gt;
+
+&lt;h3 id="カラースキーム"&gt;カラースキーム&lt;/h3&gt;
+
+&lt;p&gt;minttyのカラースキームは、MacのiTerm2で使ってるJapanesqueというテーマを真似て設定しています。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://this.aereal.org/entry/2013/01/02/222304"&gt;iTerm 2 で使えるカラースキーム、Japanesque を作った  - this A moment&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Macだと上記のような外観になるのですが、とても気に入って使っているのでminttyもそれに合わせました。
+気になる人がいましたら、githubにあげたので.minttyrcにコピペして使ってみてください。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://github.com/yuuki-arc/mintty-color-schemes-Japanesque/blob/master/.minttyrc"&gt;https://github.com/yuuki-arc/mintty-color-schemes-Japanesque/blob/master/.minttyrc&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id="最後に"&gt;最後に&lt;/h2&gt;
+
+&lt;p&gt;まだtmuxまわりの外観など調整したいところはまだまだありますが、
+現在こんな感じのターミナルになってます！&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="2015-05-28/2015-05-28-windows-mintty.jpg"&gt;&lt;img src="/img/2015-05-28/2015-05-28-windows-mintty.jpg" /&gt;&lt;/a&gt;&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <title>Windows 7でパッケージ管理システム「Chocolatey」を導入する</title>
     <link rel="alternate" href="http://yuukiar.co/blog/2015/04/04/windows-chocolatey/"/>
@@ -1270,21 +1561,6 @@ OS X インストーラが起動したら、まずはディスクフォーマッ
 
 &lt;p&gt;どれも比較すぐに導入できると思いますが、Middlemanのほうはいったんこれで一段落で。
 また別の機会に導入していこうと思います。&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <title>Middleman + GitHub Pages にブログを移行しました</title>
-    <link rel="alternate" href="http://yuukiar.co/blog/2014/08/22/migration-blog-middleman-github-pages-html/"/>
-    <id>http://yuukiar.co/blog/2014/08/22/migration-blog-middleman-github-pages-html/</id>
-    <published>2014-08-22T23:43:00+09:00</published>
-    <updated>2015-04-04T21:23:11+09:00</updated>
-    <author>
-      <name>yuuki-arc</name>
-    </author>
-    <content type="html">&lt;p&gt;以前から書いていたブログから技術系の記事を抜き出してMiddleman + GitHub Pagesに移行しました。
-まぁ、だいぶ更新も滞っていましたが……&lt;/p&gt;
-
-&lt;p&gt;これを機会に心機一転、また書いていこうと思います！&lt;/p&gt;
 </content>
   </entry>
 </feed>
