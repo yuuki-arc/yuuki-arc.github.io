@@ -10,7 +10,7 @@
     <link rel="alternate" href="http://yuukiar.co/blog/2015/05/28/setup-zsh-tmux-on-cygwin-gnupack/"/>
     <id>http://yuukiar.co/blog/2015/05/28/setup-zsh-tmux-on-cygwin-gnupack/</id>
     <published>2015-05-28T08:00:00+09:00</published>
-    <updated>2015-05-28T08:00:53+09:00</updated>
+    <updated>2015-05-28T08:04:10+09:00</updated>
     <author>
       <name>yuuki-arc</name>
     </author>
@@ -293,7 +293,7 @@ Powerlineのパッチも適用済みなので、zipファイルをダウンロ�
 &lt;p&gt;まだtmuxまわりの外観など調整したいところはまだまだありますが、
 現在こんな感じのターミナルになってます！&lt;/p&gt;
 
-&lt;p&gt;&lt;a href="2015-05-28/2015-05-28-windows-mintty.jpg"&gt;&lt;img src="/img/2015-05-28/2015-05-28-windows-mintty.jpg" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="img/2015-05-28/2015-05-28-windows-mintty.jpg"&gt;&lt;img src="/img/2015-05-28/2015-05-28-windows-mintty.jpg" /&gt;&lt;/a&gt;&lt;/p&gt;
 </content>
   </entry>
   <entry>
