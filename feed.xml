@@ -4,7 +4,131 @@
   <id>http://yuukiar.co/blog</id>
   <link href="http://yuukiar.co/"/>
   <link href="http://yuukiar.co/feed.xml" rel="self"/>
-  <updated>2015-05-28T08:00:00+09:00</updated>
+  <updated>2015-05-30T13:20:00+09:00</updated>
+  <entry>
+    <title>「Global Game Jam 2015」に参加しました／DEAD EYE LANDの体験コーナーあります</title>
+    <link rel="alternate" href="http://yuukiar.co/blog/2015/05/30/global-game-jam-2015/"/>
+    <id>http://yuukiar.co/blog/2015/05/30/global-game-jam-2015/</id>
+    <published>2015-05-30T13:20:00+09:00</published>
+    <updated>2015-05-30T13:21:17+09:00</updated>
+    <author>
+      <name>yuuki-arc</name>
+    </author>
+    <content type="html">&lt;p&gt;1月23日(金)〜25日(日)にかけて、&lt;a href="http://globalgamejam.org/"&gt;Global Game Jam 2015&lt;/a&gt; (GGJ2015) に参加してきました。
+世界中でゲーム開発を行うイベントで、チームを組んで１つのテーマについて企画から考えてゲームを作るイベントです。&lt;/p&gt;
+
+&lt;p&gt;ということで、書きかけのまま公開せずに4ヶ月経ってしまったんですが、
+GGJで視線入力ハードウェアのTobii EyeXを使ったアイトラッキングゲーム &amp;ldquo;&lt;strong&gt;DEAD EYE LAND&lt;/strong&gt;&amp;rdquo; を作りまして、
+それがGGJ以降も好評のようなのでその紹介も含めて書きます。&lt;/p&gt;
+
+&lt;h2 id="tobii-eyex体験コーナー"&gt;Tobii EyeX体験コーナー&lt;/h2&gt;
+
+&lt;p&gt;4月17日からマウスコンピューターのダイレクトショップ「G-Tune:Garage 秋葉原店／名古屋店」の2箇所で体験できるようになってます。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://www.g-tune.jp/content/tobii_eyex/"&gt;アイトラッキングシステム Tobii EyeX（トビーアイエックス）体験コーナー&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;常設コーナーのため営業時間内であればいつでも体験できますので、近場に寄った際には遊んでみてください。&lt;/p&gt;
+
+&lt;h2 id="future-games-in-engadget-例大祭"&gt;Future Games in Engadget 例大祭&lt;/h2&gt;
+
+&lt;p&gt;本日になりますが、エンガジェットのイベント、&lt;a href="http://japanese.engadget.com/event/engadget-reitaisai-2015"&gt;Engadget 例大祭&lt;/a&gt;にて体験コーナーが設けられてます。
+17:30〜19:00の時間でインタラクティブゾーンの場所になります。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://japanese.engadget.com/2015/05/28/dead-eye-land/?ncid=rss_truncated&amp;amp;utm_source=dlvr.it&amp;amp;utm_medium=twitter"&gt;例大祭にライダーなりきり体験『ナレルンダー！』。視線でゾンビを撃つDead Eye Landも遊べます - Engadget Japanese&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;体験できるだけでなく、参加者でスコアを競って最高スコアの人は景品がもらえるらしいです（詳細はあまり知らないです）。
+また、&lt;a href="http://gamekun.com/"&gt;スーパーピコピコクラブ（スーピコ）&lt;/a&gt;がゲーム実況を担当するそうです！&lt;/p&gt;
+
+&lt;p&gt;例大祭が満員御礼とのことで当日チケットはなくなってしまったようなのですが、
+来られる方がいましたらぜひ足を運んでみてください。&lt;/p&gt;
+
+&lt;h2 id="ggjイベント"&gt;GGJイベント&lt;/h2&gt;
+
+&lt;p&gt;ここからは、1月に行ったGGJのイベント模様です。&lt;/p&gt;
+
+&lt;h3 id="開発場所"&gt;開発場所&lt;/h3&gt;
+
+&lt;p&gt;私は今回が初参加で、会場はバンダイナムコ未来研究所を選びました。&lt;br&gt;
+&lt;a href="http://ggj2015-bns.peatix.com/"&gt;Global Game Jam 2015 バンダイナムコ未来研究所会場 | Peatix&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;開発場所は、バンダイナムコ未来研究所の社員食堂で行って、とても広く快適に作業ができました。
+イベントの後半にネットワークトラブルがあってけっこうごたごたしたのですが、全体的にはとても満足の行く会場だったと思います。&lt;/p&gt;
+
+&lt;p&gt;また、ここのバンダイナムコ会場では泊まりは禁止されていて23時には閉まってしまうので、
+みんな夜帰って次の日の朝会場にきて作業、みたいな感じでやりました。&lt;/p&gt;
+
+&lt;h3 id="テーマ"&gt;テーマ&lt;/h3&gt;
+
+&lt;p&gt;テーマはイベント当日に発表されるためそれまではわからないのですが、今回は&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;「WHAT DO WE DO NOW ?」（私たちは今何をする？）&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;ということでした。&lt;br&gt;
+この一文から各チームでアイデアを膨らませて作っていきます。&lt;/p&gt;
+
+&lt;h3 id="アイデア"&gt;アイデア&lt;/h3&gt;
+
+&lt;p&gt;私たちのチームはいろいろ話し合った結果、Tobii EyeXを使ったアイトラッキングゲームでいこう、ということになりました。&lt;/p&gt;
+
+&lt;p&gt;ゲームアイデアは&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;もぐらたたきみたいにぼこぼこ倒せるのがいいね&lt;/li&gt;
+&lt;li&gt;ゾンビのガンシューティングみたいなのはどうだろう&lt;/li&gt;
+&lt;li&gt;ただのゾンビゲームだと驚きがないから視線入力ならではの仕掛けを作りたいね&lt;/li&gt;
+&lt;li&gt;etc&amp;hellip;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;というところから、一見普通の「ゾンビを倒すガンシューティングゲーム」だけど、進めていくと・・・
+みたいな感じです。&lt;/p&gt;
+
+&lt;h3 id="開発"&gt;開発&lt;/h3&gt;
+
+&lt;p&gt;会場には70人ぐらい集まって全12チーム、内訳はUnity3Dが10チーム、Unreal Engine 4が2チームということでした。&lt;/p&gt;
+
+&lt;p&gt;私たちのチームはみんなUnity経験者だったので、Unity3Dで作ることになりました。&lt;br&gt;
+Unity 3Dの最新バージョン4.6.1f1、Assets Serverを使っての開発で、
+1人がディレクター、4人がエンジニアという構成になりました。&lt;/p&gt;
+
+&lt;p&gt;また、Tobii EyeXは最初は使う予定はなかったのですが、
+Tobii EyeXの会社（トビー・テクノロジー）の方もきていて、実際に体験デモをやって試してみたり、
+技術的なところを確認したりして決めました。
+実際のSDKの使い方や実装については、チームの方が夜の間にいろいろ調べてくれていて、
+次の日のお昼ごろにはコアな部分はだいぶできていたという…とても助かりました。&lt;/p&gt;
+
+&lt;p&gt;私はUnityはあまり深い部分まではわからないので、メインの部分はほかの3名にやってもらって、
+私が作ったのは、iTweenをつかってプレイヤーのパス経路を作成するところと
+カメラが自然に追尾するようにコードを組む部分でした。&lt;/p&gt;
+
+&lt;h3 id="発表＆イベント終了"&gt;発表＆イベント終了&lt;/h3&gt;
+
+&lt;p&gt;そんな流れで、きちんとゲームとして成立するところまで完成です。&lt;br&gt;
+今回作ったゲームはその特質上、本当の内容は最後の発表まで隠しておいて、
+プレゼンのときに誰かにやってもらおう！ということで、会場の司会者の方にプレゼン時にプレイしていただきました。&lt;br&gt;
+結果としてはだいぶ会場が盛り上がったので、とてもいい発表になったなと思います。&lt;/p&gt;
+
+&lt;p&gt;イベント終了後にトビーの方とお話していて、どういう反応になるかドキドキしましたが、幸いトビーの方にも好評でした！&lt;/p&gt;
+
+&lt;div id="fb-root"&gt;&lt;/div&gt; &lt;script&gt;(function(d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.src = "//connect.facebook.net/ja_JP/all.js#xfbml=1"; fjs.parentNode.insertBefore(js, fjs); }(document, 'script', 'facebook-jssdk'));&lt;/script&gt;
+&lt;div class="fb-post" data-href="https://www.facebook.com/tobii.jp/posts/752928928125351:0" data-width="466"&gt;&lt;div class="fb-xfbml-parse-ignore"&gt;&lt;a href="https://www.facebook.com/tobii.jp/posts/752928928125351:0"&gt;投稿&lt;/a&gt; by &lt;a href="https://www.facebook.com/tobii.jp"&gt;トビー・テクノロジー　Tobii Technology&lt;/a&gt;.&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;それで、なんとTobii EyeXの無料クーポン券をいただいてしまいました！
+無料クーポンで購入して今は無事に家に届いてます。
+&lt;a href="2015-05-30/Tobii_EyeX.jpg"&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id="作ったゲーム"&gt;作ったゲーム&lt;/h3&gt;
+
+&lt;p&gt;作ったゲームは &amp;ldquo;&lt;strong&gt;DEAD EYE LAND&lt;/strong&gt;&amp;rdquo; というアイトラッキングを使ったゾンビガンシューティングゲームです。
+ただし、ただのゾンビゲームではなく、後半に差し掛かると視線入力ならではの仕掛けが出てきます。
+その仕掛けは実際にプレイして楽しんでください！&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="2015-05-30/press_dead_eye_land_02.jpg"&gt;&lt;/a&gt;
+&lt;a href="2015-05-30/press_dead_eye_land_03.jpg"&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;こちらに私たちのチーム（チーム名：BASTARD）のゲームページがあるので、詳しくはそちらを！&lt;br&gt;
+&lt;a href="http://globalgamejam.org/2015/games/dead-eye-land"&gt;DEAD EYE LAND | Global Game Jam&amp;reg;&lt;/a&gt;&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <title>gnupack(Cygwin) + oh-my-zsh + tmuxの環境を構築する</title>
     <link rel="alternate" href="http://yuukiar.co/blog/2015/05/28/setup-zsh-tmux-on-cygwin-gnupack/"/>
@@ -1411,156 +1535,6 @@ OS X インストーラが起動したら、まずはディスクフォーマッ
 
 &lt;p&gt;Particle Designerは画面上のエフェクトを手軽に作れるツールで、Glyph Desginerはフォントをビットマップフォント化してくれるツールです。
 これらのツールがあるとゲーム開発の幅も広がると思いますので、ぜひこの機会に買っておきましょう！&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <title>Middleman + Github Pages によるブログ構築</title>
-    <link rel="alternate" href="http://yuukiar.co/blog/2014/08/24/architect-middleman-github-pages-html/"/>
-    <id>http://yuukiar.co/blog/2014/08/24/architect-middleman-github-pages-html/</id>
-    <published>2014-08-24T02:59:00+09:00</published>
-    <updated>2015-04-04T21:23:11+09:00</updated>
-    <author>
-      <name>yuuki-arc</name>
-    </author>
-    <content type="html">&lt;h2 id="middleman-+-github-pages-の構成"&gt;Middleman + GitHub Pages の構成&lt;/h2&gt;
-
-&lt;p&gt;Middlemanでサイトを構築するにあたって、大まかな構成は次のようにしました。  &lt;/p&gt;
-
-&lt;h3 id="ディレクトリ構成"&gt;ディレクトリ構成&lt;/h3&gt;
-&lt;pre class="highlight plaintext"&gt;&lt;code&gt;yuuki-arc.github.io
-├── Gemfile
-├── Gemfile.lock
-├── README.md
-├── config.rb
-├── config.ru
-├── data
-│   └── site.yml
-├── source
-│   ├── 404.html.erb
-│   ├── CNAME
-│   ├── feed.xml.builder
-│   ├── index.html.erb
-│   ├── info.html.erb
-│   ├── robots.txt.erb
-│   ├── sitemap.xml.builder
-│   ├── blog
-│   │   ├── calendar.html.erb
-│   │   ├── tag.html.erb
-│   │   ├── archives
-│   │   │   ├── yyyy-mm-dd-title.html.md
-│   │   │   └── ...
-│   │   └── images
-│   │       ├── yyyy-mm-dd
-│   │       │   ├── ***.png
-│   │       └── ...
-│   ├── css
-│   │   ├── ***.css.scss
-│   │   └── ...
-│   ├── img
-│   │   └── ***.jpg
-│   ├── js
-│   │   ├── ***.js
-│   │   └── ...
-│   └── layouts
-│       ├── _footer.erb
-│       ├── _google_search.erb
-│       ├── _header.erb
-│       ├── _pagination.erb
-│       ├── _post_meta.erb
-│       ├── _sidebar.erb
-│       ├── _social_button.erb
-│       ├── article.erb
-│       ├── article_list.erb
-│       └── layout.erb
-├── tmp
-│   └── restart.txt
-├── build
-│   └── ***
-└── vendor
-    └── ***
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id="レイアウト構成"&gt;レイアウト構成&lt;/h3&gt;
-
-&lt;p&gt;各レイアウトとパーシャルの関係図です。&lt;/p&gt;
-
-&lt;h4 id="記事一覧ページ"&gt;記事一覧ページ&lt;/h4&gt;
-
-&lt;p&gt;&lt;img src="/img/2014-08-24/article_list.png" /&gt;&lt;/p&gt;
-
-&lt;h4 id="記事詳細ページ"&gt;記事詳細ページ&lt;/h4&gt;
-
-&lt;p&gt;&lt;img src="/img/2014-08-24/article.png" /&gt;&lt;/p&gt;
-
-&lt;h3 id="ブログテーマ"&gt;ブログテーマ&lt;/h3&gt;
-
-&lt;p&gt;ブログデザインは下記のBootstrapテーマをベースにしてカスタマイズしてます。&lt;br&gt;
-&lt;a href="https://wrapbootstrap.com/theme/banzhow-responsive-business-theme-WB03P4065"&gt;Banzhow | {wrap}bootstrap&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id="構築の際に導入したもの"&gt;構築の際に導入したもの&lt;/h2&gt;
-
-&lt;p&gt;構築するにあたって調べたものや実装したものは、粒度は様々ですがだいたい下記の内容になります。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;GiHub Pages
-
-&lt;ul&gt;
-&lt;li&gt;ドメイン設定 (CNAMEファイル)&lt;/li&gt;
-&lt;li&gt;ブランチを使った運用方法&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;Middlemanにおける実装
-
-&lt;ul&gt;
-&lt;li&gt;デプロイ (middleman-deploy)&lt;/li&gt;
-&lt;li&gt;livereload (middleman-livereload)&lt;/li&gt;
-&lt;li&gt;各種minify&lt;/li&gt;
-&lt;li&gt;ディレクトリインデックス&lt;/li&gt;
-&lt;li&gt;syntax highlight (redcarpet)&lt;/li&gt;
-&lt;li&gt;Google Analytics&lt;/li&gt;
-&lt;li&gt;Pt engine&lt;/li&gt;
-&lt;li&gt;pow経由で表示&lt;/li&gt;
-&lt;li&gt;関連記事機能 (middleman-similar)&lt;/li&gt;
-&lt;li&gt;メタタグ&lt;/li&gt;
-&lt;li&gt;サイトマップ (sitemap.xml.builder)&lt;/li&gt;
-&lt;li&gt;フィード (feed.xml.builder)&lt;/li&gt;
-&lt;li&gt;404ページ&lt;/li&gt;
-&lt;li&gt;ローカルデータ (data/****.xml)&lt;/li&gt;
-&lt;li&gt;paginationの実装&lt;/li&gt;
-&lt;li&gt;月別アーカイブの実装&lt;/li&gt;
-&lt;li&gt;タグ機能&lt;/li&gt;
-&lt;li&gt;Googleカスタム検索を導入&lt;/li&gt;
-&lt;li&gt;Frontmatter&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;具体的な実装内容については次回以降の記事で書いていきます。
-あるいは、&lt;a href="https://github.com/yuuki-arc/yuuki-arc.github.io/tree/develop"&gt;githubのリポジトリ&lt;/a&gt;を見てもらえれば分かるかと思います。&lt;/p&gt;
-
-&lt;h2 id="導入を検討したが導入しなかったもの"&gt;導入を検討したが導入しなかったもの&lt;/h2&gt;
-
-&lt;h3 id="コメント機能"&gt;コメント機能&lt;/h3&gt;
-
-&lt;p&gt;Disqusとfacebookコメントを検討して、実際にDisqusは一度入れましたが最終的には外しました。
-一番の理由はこのブログでは必要ないというところですが、Disqusに関しては一度入れたコメントは物理的に削除できないというところが個人的に気になりました。
-（削除ボタンはあるが、Disqusのサイトで見ると削除フラグがたってるだけでコメントは閲覧できる）&lt;/p&gt;
-
-&lt;p&gt;facebookコメントは、ページが重くなるので入れませんでした。
-いいねボタンはデファクトスタンダードなのでしかたないとして、facebookの機能は総じて重いのであまり入れたくないというのが理由です。&lt;/p&gt;
-
-&lt;p&gt;ほかにコメント機能ないか探してみましたが、Middlemanに合うものではこれといったものは見つからず。
-そこまで必要性も感じてないので、なくていいかなというところで落ち着いてます。&lt;/p&gt;
-
-&lt;h2 id="今後導入予定"&gt;今後導入予定&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Travis CI&lt;/li&gt;
-&lt;li&gt;erb -&amp;gt; slim&lt;/li&gt;
-&lt;li&gt;記事投稿をしやすくする機能&lt;/li&gt;
-&lt;li&gt;気になっている箇所の微調整（Googleカスタム検索のデザインとか諸々）&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;どれも比較すぐに導入できると思いますが、Middlemanのほうはいったんこれで一段落で。
-また別の機会に導入していこうと思います。&lt;/p&gt;
 </content>
   </entry>
 </feed>
