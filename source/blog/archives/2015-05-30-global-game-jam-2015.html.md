@@ -4,6 +4,8 @@ date: 2015-05-30 13:20 JST
 tags: Unity3D
 ---
 
+![DEAD EYE LAND](2015-05-30/dead_eye_land_ggj2015_.png)
+
 1月23日(金)〜25日(日)にかけて、[Global Game Jam 2015](http://globalgamejam.org/) (GGJ2015) に参加してきました。
 世界中でゲーム開発を行うイベントで、チームを組んで１つのテーマについて企画から考えてゲームを作るイベントです。
 
@@ -32,7 +34,7 @@ GGJで視線入力ハードウェアのTobii EyeXを使ったアイトラッキ�
 例大祭が満員御礼とのことで当日チケットはなくなってしまったようなのですが、
 来られる方がいましたらぜひ足を運んでみてください。
 
-## GGJイベント
+## Global Game Jam 2015
 
 ここからは、1月に行ったGGJのイベント模様です。
 
@@ -101,9 +103,11 @@ Tobii EyeXの会社（トビー・テクノロジー）の方もきていて、�
 <div id="fb-root"></div> <script>(function(d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.src = "//connect.facebook.net/ja_JP/all.js#xfbml=1"; fjs.parentNode.insertBefore(js, fjs); }(document, 'script', 'facebook-jssdk'));</script>
 <div class="fb-post" data-href="https://www.facebook.com/tobii.jp/posts/752928928125351:0" data-width="466"><div class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/tobii.jp/posts/752928928125351:0">投稿</a> by <a href="https://www.facebook.com/tobii.jp">トビー・テクノロジー　Tobii Technology</a>.</div></div>
 
+
 それで、なんとTobii EyeXの無料クーポン券をいただいてしまいました！
 無料クーポンで購入して今は無事に家に届いてます。
-[](2015-05-30/Tobii_EyeX.jpg)
+
+![](2015-05-30/Tobii_EyeX.jpg)
 
 ### 作ったゲーム
 
@@ -111,8 +115,9 @@ Tobii EyeXの会社（トビー・テクノロジー）の方もきていて、�
 ただし、ただのゾンビゲームではなく、後半に差し掛かると視線入力ならではの仕掛けが出てきます。
 その仕掛けは実際にプレイして楽しんでください！
 
-[](2015-05-30/press_dead_eye_land_02.jpg)
-[](2015-05-30/press_dead_eye_land_03.jpg)
+![](2015-05-30/press_dead_eye_land_02.jpg)
+
+![](2015-05-30/press_dead_eye_land_03.jpg)
 
 こちらに私たちのチーム（チーム名：BASTARD）のゲームページがあるので、詳しくはそちらを！  
 [DEAD EYE LAND | Global Game Jam&reg;](http://globalgamejam.org/2015/games/dead-eye-land)
