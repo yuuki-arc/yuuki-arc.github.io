@@ -10,11 +10,13 @@
     <link rel="alternate" href="http://yuukiar.co/blog/2015/05/30/global-game-jam-2015/"/>
     <id>http://yuukiar.co/blog/2015/05/30/global-game-jam-2015/</id>
     <published>2015-05-30T13:20:00+09:00</published>
-    <updated>2015-05-30T13:21:17+09:00</updated>
+    <updated>2015-05-30T13:31:18+09:00</updated>
     <author>
       <name>yuuki-arc</name>
     </author>
-    <content type="html">&lt;p&gt;1月23日(金)〜25日(日)にかけて、&lt;a href="http://globalgamejam.org/"&gt;Global Game Jam 2015&lt;/a&gt; (GGJ2015) に参加してきました。
+    <content type="html">&lt;p&gt;&lt;img alt="DEAD EYE LAND" src="/img/2015-05-30/dead_eye_land_ggj2015_.png" /&gt;&lt;/p&gt;
+
+&lt;p&gt;1月23日(金)〜25日(日)にかけて、&lt;a href="http://globalgamejam.org/"&gt;Global Game Jam 2015&lt;/a&gt; (GGJ2015) に参加してきました。
 世界中でゲーム開発を行うイベントで、チームを組んで１つのテーマについて企画から考えてゲームを作るイベントです。&lt;/p&gt;
 
 &lt;p&gt;ということで、書きかけのまま公開せずに4ヶ月経ってしまったんですが、
@@ -42,7 +44,7 @@ GGJで視線入力ハードウェアのTobii EyeXを使ったアイトラッキ�
 &lt;p&gt;例大祭が満員御礼とのことで当日チケットはなくなってしまったようなのですが、
 来られる方がいましたらぜひ足を運んでみてください。&lt;/p&gt;
 
-&lt;h2 id="ggjイベント"&gt;GGJイベント&lt;/h2&gt;
+&lt;h2 id="global-game-jam-2015"&gt;Global Game Jam 2015&lt;/h2&gt;
 
 &lt;p&gt;ここからは、1月に行ったGGJのイベント模様です。&lt;/p&gt;
 
@@ -113,8 +115,9 @@ Tobii EyeXの会社（トビー・テクノロジー）の方もきていて、�
 &lt;div class="fb-post" data-href="https://www.facebook.com/tobii.jp/posts/752928928125351:0" data-width="466"&gt;&lt;div class="fb-xfbml-parse-ignore"&gt;&lt;a href="https://www.facebook.com/tobii.jp/posts/752928928125351:0"&gt;投稿&lt;/a&gt; by &lt;a href="https://www.facebook.com/tobii.jp"&gt;トビー・テクノロジー　Tobii Technology&lt;/a&gt;.&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;それで、なんとTobii EyeXの無料クーポン券をいただいてしまいました！
-無料クーポンで購入して今は無事に家に届いてます。
-&lt;a href="2015-05-30/Tobii_EyeX.jpg"&gt;&lt;/a&gt;&lt;/p&gt;
+無料クーポンで購入して今は無事に家に届いてます。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="/img/2015-05-30/Tobii_EyeX.jpg" /&gt;&lt;/p&gt;
 
 &lt;h3 id="作ったゲーム"&gt;作ったゲーム&lt;/h3&gt;
 
@@ -122,8 +125,9 @@ Tobii EyeXの会社（トビー・テクノロジー）の方もきていて、�
 ただし、ただのゾンビゲームではなく、後半に差し掛かると視線入力ならではの仕掛けが出てきます。
 その仕掛けは実際にプレイして楽しんでください！&lt;/p&gt;
 
-&lt;p&gt;&lt;a href="2015-05-30/press_dead_eye_land_02.jpg"&gt;&lt;/a&gt;
-&lt;a href="2015-05-30/press_dead_eye_land_03.jpg"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="/img/2015-05-30/press_dead_eye_land_02.jpg" /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="/img/2015-05-30/press_dead_eye_land_03.jpg" /&gt;&lt;/p&gt;
 
 &lt;p&gt;こちらに私たちのチーム（チーム名：BASTARD）のゲームページがあるので、詳しくはそちらを！&lt;br&gt;
 &lt;a href="http://globalgamejam.org/2015/games/dead-eye-land"&gt;DEAD EYE LAND | Global Game Jam&amp;reg;&lt;/a&gt;&lt;/p&gt;
