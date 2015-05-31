@@ -55,6 +55,8 @@ GGJで視線入力ハードウェアのTobii EyeXを使ったアイトラッキ�
 
 **「WHAT DO WE DO NOW ?」（私たちは今何をする？）**
 
+[Global Game Jam 2015 - Theme Announcement - YouTube](https://www.youtube.com/watch?v=N1W5VxdNyNk)
+
 ということでした。  
 この一文から各チームでアイデアを膨らませて作っていきます。
 
