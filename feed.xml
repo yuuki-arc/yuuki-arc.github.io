@@ -10,7 +10,7 @@
     <link rel="alternate" href="http://yuukiar.co/blog/2015/05/30/global-game-jam-2015/"/>
     <id>http://yuukiar.co/blog/2015/05/30/global-game-jam-2015/</id>
     <published>2015-05-30T13:20:00+09:00</published>
-    <updated>2015-05-30T13:31:18+09:00</updated>
+    <updated>2015-05-31T22:19:04+09:00</updated>
     <author>
       <name>yuuki-arc</name>
     </author>
@@ -138,7 +138,7 @@ Tobii EyeXの会社（トビー・テクノロジー）の方もきていて、�
     <link rel="alternate" href="http://yuukiar.co/blog/2015/05/28/setup-zsh-tmux-on-cygwin-gnupack/"/>
     <id>http://yuukiar.co/blog/2015/05/28/setup-zsh-tmux-on-cygwin-gnupack/</id>
     <published>2015-05-28T08:00:00+09:00</published>
-    <updated>2015-05-28T08:05:42+09:00</updated>
+    <updated>2015-05-31T22:15:24+09:00</updated>
     <author>
       <name>yuuki-arc</name>
     </author>
@@ -149,9 +149,45 @@ Windowsのターミナルツールはいろいろあって、どれにしよう�
 &lt;p&gt;とはいうものの、3月末あたりからいろいろ試してみて2ヶ月ほど経った今でも「これがベスト！」と思えるものがないのが実情なのですが、
 妥協点には至りましたので、このあたりで記事を書いておこうと思います。&lt;/p&gt;
 
-&lt;p&gt;最初に、本題とは少しずれますが、使ってみた主なツールと採用できなかった理由を次の項に書きます。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#Windowsターミナル環境について"&gt;Windowsターミナル環境について&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#ConEmu"&gt;ConEmu&lt;/a&gt; / &lt;a href="#MobaXterm"&gt;MobaXterm&lt;/a&gt; / &lt;a href="#Babun"&gt;Babun&lt;/a&gt; / &lt;a href="#Cygwin（純正 / gnupack）"&gt;Cygwin（純正 / gnupack）&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;1. &lt;a href="#ターミナル環境：gnupack(Cygwin)のセットアップ"&gt;ターミナル環境：gnupack(Cygwin)のセットアップ&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#パッケージダウンロード"&gt;パッケージダウンロード&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#configファイル編集"&gt;configファイル編集&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;2. &lt;a href="#シェル環境：zsh(oh-my-zsh)のセットアップ"&gt;シェル環境：zsh(oh-my-zsh)のセットアップ&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#zshインストール"&gt;zshインストール&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#oh-my-zshインストール"&gt;oh-my-zshインストール&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#zshを読み込み直した時のエラー対応"&gt;zshを読み込み直した時のエラー対応&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#ログインシェルの設定"&gt;ログインシェルの設定&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;3. &lt;a href="#ターミナルマルチプレクサ：tmuxのセットアップ"&gt;ターミナルマルチプレクサ：tmuxのセットアップ&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#tmuxインストール"&gt;tmuxインストール&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#socketエラーの対応"&gt;socketエラーの対応&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#マウスを使う設定"&gt;マウスを使う設定&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;4. &lt;a href="#フォント・カラースキーム"&gt;フォント・カラースキーム&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#フォント（Cica）"&gt;フォント（Cica）&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#カラースキーム（Japanesque）"&gt;カラースキーム（Japanesque）&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#最後に"&gt;最後に&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;h2 id="windowsターミナル環境について"&gt;Windowsターミナル環境について&lt;/h2&gt;
+
+&lt;p&gt;最初に、本題とは少しずれますが、使ってみた主なツールと採用できなかった理由を次の項に書きます。&lt;/p&gt;
 
 &lt;h3 id="conemu"&gt;ConEmu&lt;/h3&gt;
 
@@ -172,7 +208,7 @@ BusyBoxコマンドに起因するエラーは、apt-cygでi686-pc-cygwinまわ�
 ほかにもあったと思いますが、けっこうBusyBoxまわりは自分の環境としては不十分な部分が多かったです。&lt;br&gt;
 さくっとインストールして本来の作業に入りたいのに、いちいちエラーで作業が止まって調査して…みたいなのがいい加減面倒くさくなってきたので採用しませんでした。　　&lt;/p&gt;
 
-&lt;h3 id="babun"&gt;babun&lt;/h3&gt;
+&lt;h3 id="babun"&gt;Babun&lt;/h3&gt;
 
 &lt;p&gt;ちゃんと試したわけではありませんが、oh-my-zshの環境がデフォルトで揃っていたので入れて試してみるつもりでした。
 ただ、デフォルトできっちりと揃いすぎていて、すでにoh-my-zshを入れていてdotfilesで管理している自分の構成には合わなかったので使いませんでした。&lt;br&gt;
@@ -219,17 +255,16 @@ basicとdevelがありますが、gccやRuby、gitが標準で入っているdev
 以下、解凍したディレクトリを &lt;code&gt;%INST_DIR%&lt;/code&gt;、Windowsのホームディレクトリを &lt;code&gt;%HOME%&lt;/code&gt; として説明していきます。&lt;/p&gt;
 
 &lt;ol&gt;
+&lt;li&gt;&lt;code&gt;%INST_DIR%\home\&lt;/code&gt; ディレクトリにあるすべてのファイルを &lt;code&gt;%HOME%\&lt;/code&gt; ディレクトリの中にコピーする。(※)&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;%INST_DIR%\startup_config.ini&lt;/code&gt; をテキストエディタで開く。&lt;/li&gt;
-&lt;li&gt;開いたファイルに記述されている下記の2行を &lt;code&gt;%HOME%&lt;/code&gt; に変更する。&lt;br&gt;
-&lt;code&gt;
-    HOME      = %HOME%
+&lt;li&gt;開いたファイルに記述されている下記の2行を &lt;code&gt;%HOME%&lt;/code&gt; に変更する。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;    HOME      = %HOME%
     :
     Init_Current_Dir     = %HOME%
-&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;%INST_DIR%\home\&lt;/code&gt; ディレクトリにあるすべてのファイルを &lt;code&gt;%HOME%\&lt;/code&gt; ディレクトリの中にコピーする。&lt;/li&gt;
-&lt;/ol&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;もし、3.の手順を行った時に、すでに存在するファイルに対して上書きしようとしていたら、
+&lt;p&gt;※もし、1.の手順を行った時に、すでに存在するファイルに対して上書きしようとしていたら、
 そのあたりは各自の判断で選択してください。&lt;/p&gt;
 
 &lt;p&gt;&lt;code&gt;%INST_DIR%\startup_cygwin.exe&lt;/code&gt; のショートカットを作成して、デスクトップなりタスクバーなりに置きます。&lt;/p&gt;
@@ -313,10 +348,9 @@ gnupackの場合は &lt;code&gt;%INST_DIR%\startup_config.ini&lt;/code&gt; に�
 
 &lt;h2 id="3.-ターミナルマルチプレクサ：tmuxのセットアップ"&gt;3. ターミナルマルチプレクサ：tmuxのセットアップ&lt;/h2&gt;
 
-&lt;p&gt;まず、ビルドに必要なパッケージをapt-cygでインストールします。
-基本は、下記tmuxの公式ページの流れ通りです。&lt;/p&gt;
+&lt;h3 id="tmuxインストール"&gt;tmuxインストール&lt;/h3&gt;
 
-&lt;p&gt;&lt;a href="http://sourceforge.net/p/tmux/tmux-code/ci/master/tree/README#l21"&gt;README - tmux download | sourceForge.net&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;tmuxのインストールはapt-cygでインストールするだけで、依存関係にあるパッケージも同時にインストールされます。&lt;/p&gt;
 &lt;pre class="highlight plaintext"&gt;&lt;code&gt;$ apt-cyg install tmux
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -325,7 +359,7 @@ gnupackの場合は &lt;code&gt;%INST_DIR%\startup_config.ini&lt;/code&gt; に�
 &lt;h3 id="socketエラーの対応"&gt;socketエラーの対応&lt;/h3&gt;
 
 &lt;p&gt;実行はできるようになったのですが、
-これでtmuxを起動しようとすると下記のsocketエラーになります。&lt;/p&gt;
+tmuxを起動しようとすると下記のsocketエラーになります。&lt;/p&gt;
 &lt;pre class="highlight plaintext"&gt;&lt;code&gt;$ tmux
 can't create socket: Permission denied
 &lt;/code&gt;&lt;/pre&gt;
@@ -334,8 +368,7 @@ can't create socket: Permission denied
 実のところよくわかってません。
 純正のCygwinのときには問題なく起動してたんですが…。&lt;/p&gt;
 
-&lt;p&gt;ただ、下記のようにオプションで、
-本来生成されるはずのdefaultファイルまできちんと指定すると回避できるようなので、
+&lt;p&gt;ただ、下記のようにオプションを指定すると回避できるようなので、
 そのaliasを.zshrcに記述して対応することにします。&lt;br&gt;
 ※根本的な解決方法をご存知のかたがいたら教えて欲しいです。&lt;/p&gt;
 &lt;pre class="highlight plaintext"&gt;&lt;code&gt;$ echo 'alias tmux="tmux -S /tmp/tmux-$UID"' &amp;gt;&amp;gt; ~/.zshrc
@@ -381,9 +414,9 @@ set-option -g mouse-select-window on
 &lt;p&gt;こうすることで、ペインごとにマウスのホイールスクロールなどが使えるようになります。
 これでtmuxのセットアップは完了です。&lt;/p&gt;
 
-&lt;h2 id="フォントやカラースキームなど"&gt;フォントやカラースキームなど&lt;/h2&gt;
+&lt;h2 id="4.-フォント・カラースキーム"&gt;4. フォント・カラースキーム&lt;/h2&gt;
 
-&lt;h3 id="フォント"&gt;フォント&lt;/h3&gt;
+&lt;h3 id="フォント（cica）"&gt;フォント（Cica）&lt;/h3&gt;
 
 &lt;p&gt;WindowsではConsolasやRicty、Miguフォントのあたりが有名のようで、
 Powerlineのパッチを適用する記事もよく見かけますが、
@@ -405,7 +438,7 @@ Powerlineのパッチも適用済みなので、zipファイルをダウンロ�
 &lt;p&gt;このフォントですが、一応Powerlineが適用されているものの完全ではないようで、
 「・」で表示されてしまう文字もあったりするので、私は別の文字に置き換えて使ってます。&lt;/p&gt;
 
-&lt;h3 id="カラースキーム"&gt;カラースキーム&lt;/h3&gt;
+&lt;h3 id="カラースキーム（japanesque）"&gt;カラースキーム（Japanesque）&lt;/h3&gt;
 
 &lt;p&gt;minttyのカラースキームは、MacのiTerm2で使ってるJapanesqueというテーマを真似て設定しています。&lt;/p&gt;
 
@@ -414,7 +447,7 @@ Powerlineのパッチも適用済みなので、zipファイルをダウンロ�
 &lt;p&gt;Macだと上記のような外観になるのですが、とても気に入って使っているのでminttyもそれに合わせました。
 気になる人がいましたら、githubにあげたので.minttyrcにコピペして使ってみてください。&lt;/p&gt;
 
-&lt;p&gt;&lt;a href="https://github.com/yuuki-arc/mintty-color-schemes-Japanesque/blob/master/.minttyrc"&gt;https://github.com/yuuki-arc/mintty-color-schemes-Japanesque/blob/master/.minttyrc&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/yuuki-arc/mintty-color-schemes-Japanesque"&gt;yuuki-arc/mintty-color-schemes-Japanesque - GitHub&lt;/a&gt;&lt;/p&gt;
 
 &lt;h2 id="最後に"&gt;最後に&lt;/h2&gt;
 
@@ -592,7 +625,7 @@ c:\&amp;gt; cver ...
     <link rel="alternate" href="http://yuukiar.co/blog/2015/02/05/line-game-boot-camp/"/>
     <id>http://yuukiar.co/blog/2015/02/05/line-game-boot-camp/</id>
     <published>2015-02-05T14:13:00+09:00</published>
-    <updated>2015-05-22T00:16:28+09:00</updated>
+    <updated>2015-05-31T22:18:51+09:00</updated>
     <author>
       <name>yuuki-arc</name>
     </author>
@@ -1110,7 +1143,7 @@ defaults write -g NSNavPanelExpandedStateForSaveMode -bool yes
     <link rel="alternate" href="http://yuukiar.co/blog/2014/12/19/apps-release-mikumo-burst/"/>
     <id>http://yuukiar.co/blog/2014/12/19/apps-release-mikumo-burst/</id>
     <published>2014-12-19T08:30:00+09:00</published>
-    <updated>2015-05-22T00:16:59+09:00</updated>
+    <updated>2015-05-31T22:18:34+09:00</updated>
     <author>
       <name>yuuki-arc</name>
     </author>
