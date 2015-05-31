@@ -1,7 +1,7 @@
 ---
 title: LINE主催の「GAME BOOT CAMP」に参加してゲーム開発してきました！
 date: 2015-02-05 14:13 JST
-tags: Apps,Cocos2d-x
+tags: Apps,Games,Cocos2d-x
 ---
 
 1月17日(土)〜18日(日)にかけて、株式会社LINE主催のGAME BOOT CAMPに参加してきました！

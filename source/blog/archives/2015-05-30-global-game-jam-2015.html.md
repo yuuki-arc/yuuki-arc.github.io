@@ -1,7 +1,7 @@
 ---
 title: 「Global Game Jam 2015」に参加しました／DEAD EYE LANDの体験コーナーあります
 date: 2015-05-30 13:20 JST
-tags: Unity3D
+tags: Games,Unity3D
 ---
 
 ![DEAD EYE LAND](2015-05-30/dead_eye_land_ggj2015_.png)

@@ -1,7 +1,7 @@
 ---
 title: UMD Passportを使って手頃な価格でPSPゲームをダウンロードする
 date: 2013-01-06 03:32 JST
-tags: PSP(Vita), UMD Passport
+tags: PSP(Vita), UMD Passport, Games
 ---
 
 購入対象のゲームをUMDで購入してる人が対象です。

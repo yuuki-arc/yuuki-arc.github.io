@@ -1,7 +1,7 @@
 ---
 title: 「みくもバースト！」アプリ制作のこと
 date: 2014-12-19 08:30 JST
-tags: Apps,Cocos2d-x
+tags: Apps,Games,Cocos2d-x
 ---
 
 
