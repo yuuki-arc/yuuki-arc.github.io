@@ -140,7 +140,7 @@ Tobii EyeXの会社（トビー・テクノロジー）の方もきていて、�
     <link rel="alternate" href="http://yuukiar.co/blog/2015/05/28/setup-zsh-tmux-on-cygwin-gnupack/"/>
     <id>http://yuukiar.co/blog/2015/05/28/setup-zsh-tmux-on-cygwin-gnupack/</id>
     <published>2015-05-28T08:00:00+09:00</published>
-    <updated>2015-05-31T22:15:24+09:00</updated>
+    <updated>2015-06-03T08:50:25+09:00</updated>
     <author>
       <name>yuuki-arc</name>
     </author>
@@ -334,8 +334,7 @@ $ source ~/.zshrc
 &lt;p&gt;最後にログインシェルをzshに切り替えます。&lt;br&gt;
 gnupackの場合は &lt;code&gt;%INST_DIR%\startup_config.ini&lt;/code&gt; に設定が書かれていて、
 &lt;code&gt;SHELL&lt;/code&gt;, &lt;code&gt;Cmdline_Image&lt;/code&gt;の２箇所の書き換えと、
-&lt;code&gt;zsh.exe&lt;/code&gt;の１箇所を新しく行追加します。&lt;br&gt;
-※いちおうこれで動いてるんですが、このあたりはドキュメントが見つからなかったので適切でない部分があるかも。&lt;/p&gt;
+&lt;code&gt;zsh.exe&lt;/code&gt;の１箇所を新しく行追加します。  &lt;/p&gt;
 &lt;pre class="highlight plaintext"&gt;&lt;code&gt; [Process Variable]
     :
     SHELL     = /usr/bin/zsh
@@ -360,27 +359,49 @@ gnupackの場合は &lt;code&gt;%INST_DIR%\startup_config.ini&lt;/code&gt; に�
 
 &lt;h3 id="socketエラーの対応"&gt;socketエラーの対応&lt;/h3&gt;
 
+&lt;p&gt;（2015-06-03 ：対応方法がわかったので記事を更新）&lt;/p&gt;
+
 &lt;p&gt;実行はできるようになったのですが、
-tmuxを起動しようとすると下記のsocketエラーになります。&lt;/p&gt;
+tmuxを起動しようとすると下記のsocketエラーになる方がいると思います。&lt;/p&gt;
 &lt;pre class="highlight plaintext"&gt;&lt;code&gt;$ tmux
 can't create socket: Permission denied
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;エラーの理由は &lt;code&gt;/tmp&lt;/code&gt; ディレクトリに作られるディレクトリの権限絡みのようですが、
-実のところよくわかってません。
-純正のCygwinのときには問題なく起動してたんですが…。&lt;/p&gt;
+&lt;p&gt;これは以下のようにして&lt;/p&gt;
 
-&lt;p&gt;ただ、下記のようにオプションを指定すると回避できるようなので、
-そのaliasを.zshrcに記述して対応することにします。&lt;br&gt;
-※根本的な解決方法をご存知のかたがいたら教えて欲しいです。&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;&lt;code&gt;$ echo 'alias tmux="tmux -S /tmp/tmux-$UID"' &amp;gt;&amp;gt; ~/.zshrc
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;TMUX_TMPDIR&lt;/code&gt; の環境変数を.zshrcに追加する&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;TMUX_TMPDIR&lt;/code&gt; で設定したディレクトリを生成しておく&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;TMUX_TMPDIR&lt;/code&gt; で設定するディレクトリは&lt;code&gt;/tmp&lt;/code&gt; 配下以外の場所にする&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;をすることで解決しました。&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;$ echo 'export TMUX_TMPDIR=/var/run/tmux' &amp;gt;&amp;gt; ~/.zshrc
+$ mkdir /var/run/tmux
 $ source ~/.zshrc
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;すでにtmuxにaliasを設定している人は&lt;code&gt;-S ...&lt;/code&gt;のオプションを付け加えればOKです。
-また、場所は必ずしも &lt;code&gt;/tmp/...&lt;/code&gt; でなくてもよくて、&lt;code&gt;$HOME/.tmux/socket&lt;/code&gt; とかでも大丈夫です。
-また、何も設定変えてないはずなのに急にtmuxが起動しなくなったな…という人は &lt;code&gt;-S&lt;/code&gt; で指定しているファイルをいったん削除してみてください。
-ここの例では &lt;code&gt;$ rm /tmp/tmux-$UID&lt;/code&gt; という感じです。&lt;/p&gt;
+&lt;p&gt;こうしておくことでノーオプションでtmuxが起動できるようになります。&lt;/p&gt;
+
+&lt;p&gt;以下、動作確認のためのコマンドです。&lt;br&gt;
+試しにtmuxを複数回ネスト起動して、生成されるディレクトリ・ファイルの情報を表示しました。&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;$ tmux
+$ tmux -L default-nest1
+$ tmux -L default-nest2
+
+$ ls -l /var/run/tmux
+drwxrwx---+ 1 hogeuser None 0 6月   2 09:37 tmux-197609
+
+$ tree -pug /var/run/tmux/
+/var/run/tmux/
+└── [drwxrwx--- hogeuser None    ]  tmux-197609
+    ├── [srwxrwx--- hogeuser None    ]  default
+    ├── [srwxrwx--- hogeuser None    ]  default-nest1
+    └── [srwxrwx--- hogeuser None    ]  default-nest2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;197609の箇所は &lt;code&gt;$UID&lt;/code&gt; の値が設定されていて、マシンによって変わります。
+動作確認もできたので、これでtmuxのセットアップは完了です。&lt;/p&gt;
 
 &lt;h3 id="マウスを使う設定"&gt;マウスを使う設定&lt;/h3&gt;
 
