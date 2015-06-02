@@ -184,7 +184,6 @@ $ source ~/.zshrc
 gnupackの場合は `%INST_DIR%\startup_config.ini` に設定が書かれていて、
 `SHELL`, `Cmdline_Image`の２箇所の書き換えと、
 `zsh.exe`の１箇所を新しく行追加します。  
-※いちおうこれで動いてるんですが、このあたりはドキュメントが見つからなかったので適切でない部分があるかも。
 
 ```
  [Process Variable]
@@ -213,31 +212,54 @@ $ apt-cyg install tmux
 
 ### socketエラーの対応
 
+（2015-06-03 ：対応方法がわかったので記事を更新）
+
 実行はできるようになったのですが、
-tmuxを起動しようとすると下記のsocketエラーになります。
+tmuxを起動しようとすると下記のsocketエラーになる方がいると思います。
 
 ```
 $ tmux
 can't create socket: Permission denied
 ```
 
-エラーの理由は `/tmp` ディレクトリに作られるディレクトリの権限絡みのようですが、
-実のところよくわかってません。
-純正のCygwinのときには問題なく起動してたんですが…。
+これは以下のようにして
 
-ただ、下記のようにオプションを指定すると回避できるようなので、
-そのaliasを.zshrcに記述して対応することにします。  
-※根本的な解決方法をご存知のかたがいたら教えて欲しいです。
+* `TMUX_TMPDIR` の環境変数を.zshrcに追加する
+* `TMUX_TMPDIR` で設定したディレクトリを生成しておく
+* `TMUX_TMPDIR` で設定するディレクトリは`/tmp` 配下以外の場所にする
+
+をすることで解決しました。
 
 ```
-$ echo 'alias tmux="tmux -S /tmp/tmux-$UID"' >> ~/.zshrc
+$ echo 'export TMUX_TMPDIR=/var/run/tmux' >> ~/.zshrc
+$ mkdir /var/run/tmux
 $ source ~/.zshrc
 ```
 
-すでにtmuxにaliasを設定している人は`-S ...`のオプションを付け加えればOKです。
-また、場所は必ずしも `/tmp/...` でなくてもよくて、`$HOME/.tmux/socket` とかでも大丈夫です。
-また、何も設定変えてないはずなのに急にtmuxが起動しなくなったな…という人は `-S` で指定しているファイルをいったん削除してみてください。
-ここの例では `$ rm /tmp/tmux-$UID` という感じです。
+こうしておくことでノーオプションでtmuxが起動できるようになります。
+
+以下、動作確認のためのコマンドです。  
+試しにtmuxを複数回ネスト起動して、生成されるディレクトリ・ファイルの情報を表示しました。
+
+```
+$ tmux
+$ tmux -L default-nest1
+$ tmux -L default-nest2
+
+$ ls -l /var/run/tmux
+drwxrwx---+ 1 hogeuser None 0 6月   2 09:37 tmux-197609
+
+$ tree -pug /var/run/tmux/
+/var/run/tmux/
+└── [drwxrwx--- hogeuser None    ]  tmux-197609
+    ├── [srwxrwx--- hogeuser None    ]  default
+    ├── [srwxrwx--- hogeuser None    ]  default-nest1
+    └── [srwxrwx--- hogeuser None    ]  default-nest2
+```
+
+197609の箇所は `$UID` の値が設定されていて、マシンによって変わります。
+動作確認もできたので、これでtmuxのセットアップは完了です。
+
 
 ### マウスを使う設定
 
