@@ -4,7 +4,418 @@
   <id>http://yuukiar.co/blog</id>
   <link href="http://yuukiar.co/"/>
   <link href="http://yuukiar.co/feed.xml" rel="self"/>
-  <updated>2015-05-30T13:20:00+09:00</updated>
+  <updated>2015-06-15T03:00:00+09:00</updated>
+  <entry>
+    <title>Mac OS X Yosemiteでwaifu2xをインストールして使えるようにする</title>
+    <link rel="alternate" href="http://yuukiar.co/blog/2015/06/15/setup-waifu2x-on-mac/"/>
+    <id>http://yuukiar.co/blog/2015/06/15/setup-waifu2x-on-mac/</id>
+    <published>2015-06-15T03:00:00+09:00</published>
+    <updated>2015-06-15T02:58:20+09:00</updated>
+    <author>
+      <name>yuuki-arc</name>
+    </author>
+    <content type="html">&lt;p&gt;最近スマホゲームの素材探しをしていてその過程でwaifu2xというツールを知ったのですが、
+素材加工のクオリティアップにかなり使えそうなのでセットアップ方法を残しておきます。&lt;/p&gt;
+
+&lt;p&gt;細かい説明はいろんなところで紹介されているのでここで説明しませんが、
+簡単にいうと、waifu2xとは二次元画像を綺麗に拡大できるツールです。&lt;/p&gt;
+
+&lt;p&gt;自分の環境がMac OS X Yosemiteなので、Macでのセットアップ方法を探していたのですが、
+見当たらなかったので、自分でセットアップした手順について書いていきます。
+waifu2xは最近のトレンドのようで派生版があちこちにあるのですが、
+いくつかMacで動いたのでそれらのセットアップ手順を紹介します。&lt;/p&gt;
+
+&lt;h3 id="見出し"&gt;見出し&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#この記事のwaifu2xについて"&gt;この記事のwaifu2xについて&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#この記事で扱うwaifu2x"&gt;この記事で扱うwaifu2x&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#この記事では扱わないが気になるwaifu2x"&gt;この記事では扱わないが気になるwaifu2x&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#1.-ライブラリのインストール"&gt;1. ライブラリのインストール&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#2.-waifu2x(cui版)のセットアップ"&gt;2. waifu2x(CUI版)のセットアップ&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#waifu2x-converter-glsl-(ueshita)"&gt;waifu2x-converter-glsl (ueshita)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#waifu2x-converter-cpp-(wl-amigo)"&gt;waifu2x-converter-cpp (WL-Amigo)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#3.-waifu2x(gui版)のセットアップ"&gt;3. waifu2x(GUI版)のセットアップ&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#waifu2x-converter-qt-(khws4v1)"&gt;waifu2x-converter-qt (khws4v1)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id="この記事のwaifu2xについて"&gt;この記事のwaifu2xについて&lt;/h2&gt;
+
+&lt;h3 id="この記事で扱うwaifu2x"&gt;この記事で扱うwaifu2x&lt;/h3&gt;
+
+&lt;p&gt;コマンドラインで使える派生版を２つと、それをフロントエンドで使えるGUIを１つ紹介します。&lt;br&gt;
+結論から書くと、今のところはコマンドラインで &lt;strong&gt;waifu2x-converter-glsl&lt;/strong&gt; を使っていて、フロントエンドに &lt;strong&gt;waifu2x-converter-qt&lt;/strong&gt; を使ってます。
+フロントエンド側からは &lt;strong&gt;waifu2x-converter-glsl&lt;/strong&gt; へのパスを設定してそれを使うようにします。&lt;/p&gt;
+
+&lt;p&gt;ただ、コマンドラインのほうは少々使いづらいです。
+本来、パスを通せばどのディレクトリからでも実行できるようになってほしいのですが、
+作業ディレクトリに依存している箇所があるため、実行するときはwaifu2x-converter-glslのディレクトリから実行しないとエラーになります。
+このあたりはきちんと解決してから記事にしたかったのですが&amp;hellip;あまり時間かけたくないので今のところはこれで我慢します。&lt;/p&gt;
+
+&lt;p&gt;それと、今後の他ツールの動向によっては変えていくこともあるかと思います。&lt;/p&gt;
+
+&lt;h4 id="cui"&gt;CUI&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/ueshita/waifu2x-converter-glsl"&gt;ueshita/waifu2x-converter-glsl - GitHub&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;OpenGLで動かせるようにしたバージョン。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/WL-Amigo/waifu2x-converter-cpp"&gt;WL-Amigo/waifu2x-converter-cpp - GitHub&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;オリジナル版をc++で書きなおしたバージョン。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id="gui"&gt;GUI&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/khws4v1/waifu2x-converter-qt"&gt;khws4v1/waifu2x-converter-qt - GitHub&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Macでも動かせるフロントエンドツール。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id="この記事では扱わないが気になるwaifu2x"&gt;この記事では扱わないが気になるwaifu2x&lt;/h3&gt;
+
+&lt;p&gt;ここでは扱いませんが、個人的にここはチェックしておきたいなというものを書いておきます。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://waifu2x.udp.jp/"&gt;http://waifu2x.udp.jp/&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Webから使える。気になるというか、これでwaifu2xを知ったので。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/nagadomi/waifu2x"&gt;nagadomi/waifu2x - GitHub&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;waifu2xのオリジナル。luaで書かれているようです。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/tanakamura/waifu2x-converter-cpp"&gt;tanakamura/waifu2x-converter-cpp&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;現状いちばん頻繁に更新されてるので追っていきたいところですが、
+コード見るとWindowsとLinuxにしか対応してない箇所があって、そのままだとコンパイルエラーで通りませんでした。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/lltcggie/waifu2x-caffe"&gt;lltcggie/waifu2x-caffe - GitHub&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;GUIとCUI両方使えて機能も豊富な模様。&lt;br&gt;
+Caffeというフレームワーク（？）で実装されていてMacでも使えるようですが、開発環境を整えるのが面倒だったので今のところ何もしてません。
+でもよさそうなのでMacで使ってみたいですね。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id="1.-ライブラリのインストール"&gt;1. ライブラリのインストール&lt;/h2&gt;
+
+&lt;p&gt;セットアップに入っていきます。  &lt;/p&gt;
+
+&lt;p&gt;ライブラリのインストールにはHomebrewとgitを使います。
+また この後インストールする waifu2x-converter-glsl のソースビルドにXCodeを使用します。
+もしこれらが入っていなければ、他のサイトなどを参考にしてインストールしてください。&lt;/p&gt;
+
+&lt;p&gt;今回必要になるOpenCVとOpenGLのライブラリをインストールしていきます。
+バージョンは現時点（2015年6月15日）の最新版であるOpenGL3.1.1とOpenCV3.0.0で、
+両方ともHomebrewからインストールします。&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;brew tap homebrew/science
+&lt;span class="gp"&gt;$ &lt;/span&gt;brew install opencv3 --with-opengl --with-qt5 --with-tbb --c++11
+&lt;span class="gp"&gt;$ &lt;/span&gt;brew link --force opencv3
+
+&lt;span class="gp"&gt;$ &lt;/span&gt;brew install glfw3 --universal
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;brew install するのは opencv ではなく opencv3&lt;/strong&gt; である点に注意してください。（opencvを指定するとOpenCV2系のバージョンが入ります）&lt;/li&gt;
+&lt;li&gt;opencv3の &lt;code&gt;--with-qt5&lt;/code&gt; はフロントエンドの方で必要になります。
+他のオプションは必要そうなのを入れてますが、いらないものもあるかもしれません。&lt;br&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;--force&lt;/code&gt;でリンクするのは、opencv3の場合は自動的に &lt;code&gt;/usr/local/..&lt;/code&gt; にシンボリックリンクがはられないためです。
+このオプションを指定すると強制的にOpenCV3へのリンクがはられるので、すでに同ディレクトリにOpenCVが入っている人は実行しないほうがいいです。
+ただし、その場合はXCodeプロジェクトで設定されているパスを書き換えないといけないです。（その場合のパターンはここでは説明しません）&lt;br&gt;&lt;/li&gt;
+&lt;li&gt;glfw3の &lt;code&gt;--universal&lt;/code&gt; はスタティックライブラリを生成するオプションで、
+waifu2x-converter-glsl のXCodeプロジェクトで指定してるので、インストールと同時に生成しておきます。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id="2.-waifu2x(cui版)のセットアップ"&gt;2. waifu2x(CUI版)のセットアップ&lt;/h2&gt;
+
+&lt;p&gt;ここでは２つの派生版についてセットアップ手順を書いていきます。
+waifu2xを使うにはどちらか1つセットアップできてればいいので、どちらか使いたい方を見てください。
+簡単に違いを説明すると、&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;waifu2x-converter-glsl (ueshita)
+
+&lt;ul&gt;
+&lt;li&gt;GPUを使うので実行中はグラフィックまわりの処理に負荷がかかる&lt;/li&gt;
+&lt;li&gt;waifu2x-converter-cpp(WL-Amigo)に比べて処理速度が速い&lt;/li&gt;
+&lt;li&gt;XCodeを使ったビルドでセットアップ手順が少々煩雑&lt;/li&gt;
+&lt;li&gt;実行するときのカレントディレクトリはインストール場所固定&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;waifu2x-converter-cpp (WL-Amigo)
+
+&lt;ul&gt;
+&lt;li&gt;CPUを使うので実行中は全体的に重くなる&lt;/li&gt;
+&lt;li&gt;waifu2x-converter-glslに比べて処理速度が遅い&lt;/li&gt;
+&lt;li&gt;CMakeを使ったビルドでモノが揃ってれば手順が簡単&lt;/li&gt;
+&lt;li&gt;パスを通せば、実行するときのカレントディレクトリは任意（※オプション指定が必要）&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;といった感じです。 
+処理速度はだいぶ違ってて、waifu2x-converter-glslのほうが目に見えて速いです。&lt;/p&gt;
+
+&lt;h3 id="waifu2x-converter-glsl-(ueshita)"&gt;waifu2x-converter-glsl (ueshita)&lt;/h3&gt;
+
+&lt;p&gt;まずOpenGL版のほうから説明していきます。&lt;/p&gt;
+
+&lt;p&gt;git cloneしてディレクトリに移動します。&lt;br&gt;
+以降、このディレクトリでコマンドを入力していきます。&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;git clone https://github.com/ueshita/waifu2x-converter-glsl
+&lt;span class="gp"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;git cloneしたディレクトリ]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;私の場合は下記の場所にインストールしたのでそのディレクトリに移動してます。&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;pwd&lt;/span&gt;
+/Users/hoge/src/github.com/ueshita/waifu2x-converter-glsl
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;次にXCodeでビルドしていきます。&lt;br&gt;
+XCodeのプロジェクトは作者の方がリポジトリに含めてくれているので、それを使います。&lt;/p&gt;
+
+&lt;p&gt;まず、ビルドする前に一回XCodeのアプリケーションを起動してプロジェクトを開きます。
+そうしないとコマンドラインからのビルドでエラーになるからで、それを回避するためです。
+プロジェクトのワークスペースがないといけないのですが、XCodeを起動すると作られるようです。&lt;/p&gt;
+
+&lt;p&gt;マウスでアプリケーションを指定してプロジェクトを開いてもいいですし、
+コマンドラインから以下のように実行することでも起動できます。&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;open build/waifu2x-converter-glsl.xcodeproj
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;ワークスペースを作るためだけに開くので、起動したらすぐに終了していいです。&lt;/p&gt;
+
+&lt;p&gt;次のコマンドを実行するとXCodeでソースビルドを行います。
+オプションのパラメータをわかりやすくするため、&lt;code&gt;\&lt;/code&gt;で行を区切ってますが1行でもOKです。&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;xcodebuild &lt;span class="se"&gt;\&lt;/span&gt;
+-project build/waifu2x-converter-glsl.xcodeproj &lt;span class="se"&gt;\&lt;/span&gt;
+-scheme waifu2x-converter-glsl &lt;span class="se"&gt;\&lt;/span&gt;
+-configuration Release &lt;span class="se"&gt;\&lt;/span&gt;
+-derivedDataPath DerivedData
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;ちなみに、もしここで以下のエラーが表示されたらワークスペースが作られてませんので、
+XCodeを起動してプロジェクトを開いてください。（一つ前に書いた作業のことです）&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;xcodebuild: error: &lt;span class="s1"&gt;'build/waifu2x-converter-glsl.xcodeproj'&lt;/span&gt; does not exist.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;-derivedDataPath&lt;/code&gt; で指定しているのがリリースバイナリが作られるディレクトリです。
+このディレクトリに作られるファイルを起動出来る場所にコピーします。&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;cp DerivedData/Build/Products/Release/waifu2x-converter-glsl .
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;これで waifu2x-converter-glsl のセットアップは完了です。
+ちなみにこのときの構成は以下のようになっています。&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;pwd&lt;/span&gt;
+/Users/hoge/src/github.com/ueshita/waifu2x-converter-glsl
+
+&lt;span class="gp"&gt;$ &lt;/span&gt;tree -pugL 1
+.
+├── &lt;span class="o"&gt;[&lt;/span&gt;drwxr-xr-x hoge   staff   &lt;span class="o"&gt;]&lt;/span&gt;  DerivedData
+├── &lt;span class="o"&gt;[&lt;/span&gt;-rw-r--r-- hoge   staff   &lt;span class="o"&gt;]&lt;/span&gt;  LICENSE
+├── &lt;span class="o"&gt;[&lt;/span&gt;-rw-r--r-- hoge   staff   &lt;span class="o"&gt;]&lt;/span&gt;  README.md
+├── &lt;span class="o"&gt;[&lt;/span&gt;drwxr-xr-x hoge   staff   &lt;span class="o"&gt;]&lt;/span&gt;  build
+├── &lt;span class="o"&gt;[&lt;/span&gt;drwxr-xr-x hoge   staff   &lt;span class="o"&gt;]&lt;/span&gt;  include
+├── &lt;span class="o"&gt;[&lt;/span&gt;drwxr-xr-x hoge   staff   &lt;span class="o"&gt;]&lt;/span&gt;  models
+├── &lt;span class="o"&gt;[&lt;/span&gt;drwxr-xr-x hoge   staff   &lt;span class="o"&gt;]&lt;/span&gt;  shaders
+├── &lt;span class="o"&gt;[&lt;/span&gt;drwxr-xr-x hoge   staff   &lt;span class="o"&gt;]&lt;/span&gt;  src
+└── &lt;span class="o"&gt;[&lt;/span&gt;-rwxr-xr-x hoge   staff   &lt;span class="o"&gt;]&lt;/span&gt;  waifu2x-converter-glsl
+
+6 directories, 3 files
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;このディレクトリからファイルを実行することでwaifu2xが使えるようになります。&lt;/p&gt;
+
+&lt;p&gt;ただし、ここで注意点があります。&lt;br&gt;
+最初に書きましたが、これで使えるコマンドラインのほうは少々使いづらいです。
+理由は、実行するときはこのwaifu2x-converter-glslのディレクトリに移動してから実行しないと使えないからです。&lt;/p&gt;
+
+&lt;p&gt;作業ディレクトリに依存しているのは &lt;code&gt;models&lt;/code&gt; と &lt;code&gt;shaders&lt;/code&gt; にあるモジュールです。
+このうち、 &lt;code&gt;models&lt;/code&gt; に関してはwaifu2x-converter-glslのオプションに &lt;code&gt;--model_dir&lt;/code&gt; というのがあり、
+ここでパスを指定することで回避できますが、 &lt;code&gt;shaders&lt;/code&gt; に関しては同様のオプションがありません。
+なので作者の方にお願いするか、githubで公開されてるのでコードを修正してプルリクするなりしないといけないです。
+時間があれば見てみようかなと思いましたが、そこまで手が回らなかったので今のところこのままにしてます。&lt;/p&gt;
+
+&lt;p&gt;この問題に関してはインプット側の画像パスをフルパスにすればいいだけなので、
+少々不便ではありますがこれでも十分使えるかなと思ってます。&lt;/p&gt;
+
+&lt;p&gt;また、GUI版をインストールして waifu2x-converter-glsl を使うようにすれば
+この問題は関係なくなるので、GUI版メインで使う人は気にしなくていいです。&lt;/p&gt;
+
+&lt;h4 id="実行方法（例）"&gt;実行方法（例）&lt;/h4&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;$ cd ~/src/github.com/ueshita/waifu2x-converter-glsl
+$ waifu2x-converter-glsl -i ~/Documents/test.jpg -m noise_scale -j 8 --scale_ratio 2.0 --noise_level 2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id="実行結果"&gt;実行結果&lt;/h4&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;Noise reduction (Lv.2) filtering...
+split blocks 2x3 ...
+process block (1,1) ...
+[=======] ok
+:
+process block (6,4) ...
+[=======] ok
+process successfully done!
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id="waifu2x-converter-cpp-(wl-amigo)"&gt;waifu2x-converter-cpp (WL-Amigo)&lt;/h3&gt;
+
+&lt;p&gt;次に、他の派生版としてwaifu2x-converter-cpp(WL-Amigo)版もセットアップしてみます。&lt;/p&gt;
+
+&lt;p&gt;こちらもまずはgit cloneしてディレクトリを移動します。&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;git clone https://github.com/WL-Amigo/waifu2x-converter-cpp
+&lt;span class="gp"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;git cloneしたディレクトリ]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;私の場合は下記の場所にインストールしたのでそのディレクトリに移動してます。&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;pwd&lt;/span&gt;
+/Users/hoge/src/github.com/WL-Amigo/waifu2x-converter-cpp
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;カレントディレクトリに &lt;code&gt;CMakeLists.txt&lt;/code&gt; のファイルを作って、以下の内容を貼り付けます。&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;cmake_minimum_required&lt;span class="o"&gt;(&lt;/span&gt;VERSION 2.8&lt;span class="o"&gt;)&lt;/span&gt;
+
+project&lt;span class="o"&gt;(&lt;/span&gt;waifu2x-converter-cpp CXX&lt;span class="o"&gt;)&lt;/span&gt;
+
+&lt;span class="nb"&gt;set&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;CMAKE_CXX_FLAGS &lt;span class="s2"&gt;"-std=c++11 -stdlib=libc++"&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;span class="nb"&gt;set&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;OpenCV_DIR &lt;span class="s2"&gt;"/usr/local/opt/opencv3/share/OpenCV"&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;span class="nb"&gt;set&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;OpenCV_CONFIG_PATH &lt;span class="s2"&gt;"/usr/local/opt/opencv3/share/OpenCV"&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;span class="nb"&gt;set&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;OpenCV_INSTALL_PATH &lt;span class="s2"&gt;"/usr/local/opt/opencv3"&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+find_package&lt;span class="o"&gt;(&lt;/span&gt;OpenCV REQUIRED&lt;span class="o"&gt;)&lt;/span&gt;
+include_directories&lt;span class="o"&gt;(&lt;/span&gt;include &lt;span class="k"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;OpenCV_INCLUDE_DIRS&lt;/span&gt;&lt;span class="k"&gt;}&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+
+add_executable&lt;span class="o"&gt;(&lt;/span&gt;waifu2x-converter-cpp src/main.cpp src/modelHandler.cpp src/convertRoutine.cpp&lt;span class="o"&gt;)&lt;/span&gt;
+target_link_libraries&lt;span class="o"&gt;(&lt;/span&gt;waifu2x-converter-cpp &lt;span class="k"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;OpenCV_LIBS&lt;/span&gt;&lt;span class="k"&gt;}&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Homebrewの場合、OpenCVのライブラリは &lt;code&gt;/usr/local/opt/&lt;/code&gt; 配下にシンボリックリンクで作られるので、
+その場所を指定します。
+cmakeはあまり詳しくないので最適な書き方ではないかもしれませんが、私の場合はこれでいけました。&lt;/p&gt;
+
+&lt;p&gt;準備出来たのであとはコマンドを打つだけです。&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;cmake .
+&lt;span class="gp"&gt;$ &lt;/span&gt;make
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;これで以下のように、
+カレントディレクトリに &lt;code&gt;waifu2x-converter-cpp&lt;/code&gt; というファイルが生成されていれば成功です。&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;pwd&lt;/span&gt;
+/Users/hoge/src/github.com/WL-Amigo/waifu2x-converter-cpp
+
+&lt;span class="gp"&gt;$ &lt;/span&gt;tree -pugL 1
+.
+├── &lt;span class="o"&gt;[&lt;/span&gt;-rw-r--r-- hoge   staff   &lt;span class="o"&gt;]&lt;/span&gt;  CMakeCache.txt
+├── &lt;span class="o"&gt;[&lt;/span&gt;drwxr-xr-x hoge   staff   &lt;span class="o"&gt;]&lt;/span&gt;  CMakeFiles
+├── &lt;span class="o"&gt;[&lt;/span&gt;-rw-r--r-- hoge   staff   &lt;span class="o"&gt;]&lt;/span&gt;  CMakeLists.txt
+├── &lt;span class="o"&gt;[&lt;/span&gt;-rw-r--r-- hoge   staff   &lt;span class="o"&gt;]&lt;/span&gt;  LICENSE
+├── &lt;span class="o"&gt;[&lt;/span&gt;-rw-r--r-- hoge   staff   &lt;span class="o"&gt;]&lt;/span&gt;  Makefile
+├── &lt;span class="o"&gt;[&lt;/span&gt;-rw-r--r-- hoge   staff   &lt;span class="o"&gt;]&lt;/span&gt;  README.md
+├── &lt;span class="o"&gt;[&lt;/span&gt;drwxr-xr-x hoge   staff   &lt;span class="o"&gt;]&lt;/span&gt;  appendix
+├── &lt;span class="o"&gt;[&lt;/span&gt;-rw-r--r-- hoge   staff   &lt;span class="o"&gt;]&lt;/span&gt;  cmake_install.cmake
+├── &lt;span class="o"&gt;[&lt;/span&gt;drwxr-xr-x hoge   staff   &lt;span class="o"&gt;]&lt;/span&gt;  include
+├── &lt;span class="o"&gt;[&lt;/span&gt;drwxr-xr-x hoge   staff   &lt;span class="o"&gt;]&lt;/span&gt;  models
+├── &lt;span class="o"&gt;[&lt;/span&gt;drwxr-xr-x hoge   staff   &lt;span class="o"&gt;]&lt;/span&gt;  src
+└── &lt;span class="o"&gt;[&lt;/span&gt;-rwxr-xr-x hoge   staff   &lt;span class="o"&gt;]&lt;/span&gt;  waifu2x-converter-cpp
+
+5 directories, 7 files
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;あとはこのディレクトリに対してパスを通せば、どこからでも実行できるようになります。&lt;/p&gt;
+
+&lt;h4 id="実行方法（例）"&gt;実行方法（例）&lt;/h4&gt;
+
+&lt;p&gt;パスを通した場合、任意の位置で実行することができます。
+ただし、 &lt;code&gt;--model_dir&lt;/code&gt;のオプションで &lt;code&gt;models&lt;/code&gt; ディレクトリのパスを指定する必要は出てきます。&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;waifu2x-converter-cpp --model_dir ~/src/github.com/WL-Amigo/waifu2x-converter-cpp/models -i ~/Documents/test-cpp.jpg -m noise_scale -j 8 --scale_ratio 1.2 --noise_level 1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;パスを通さない場合は、waifu2x-converter-glslと同じ書き方になります。
+その代わり、 &lt;code&gt;--model_dir&lt;/code&gt; のオプションを指定しなくてもよくなります。&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; ~/src/github.com/WL-Amigo/waifu2x-converter-cpp/
+&lt;span class="gp"&gt;$ &lt;/span&gt;waifu2x-converter-cpp -i ~/Documents/test-cpp.jpg -m noise_scale -j 8 --scale_ratio 1.2 --noise_level 1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id="実行結果"&gt;実行結果&lt;/h4&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;start process block (0,0) ...
+Iteration #1...
+Iteration #2...
+:
+Iteration #6...
+Iteration #7...
+process successfully done!
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id="3.-waifu2x(gui版)のセットアップ"&gt;3. waifu2x(GUI版)のセットアップ&lt;/h2&gt;
+
+&lt;h3 id="waifu2x-converter-qt-(khws4v1)"&gt;waifu2x-converter-qt (khws4v1)&lt;/h3&gt;
+
+&lt;p&gt;GUI版のwaifu2xをセットアップです。&lt;br&gt;
+Mac用のパッケージがリポジトリにあるのでそれを使います。&lt;br&gt;
+&lt;a href="https://github.com/khws4v1/waifu2x-converter-qt/releases"&gt;https://github.com/khws4v1/waifu2x-converter-qt/releases&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;waifu2x-converter-qt_Mac.dmg というファイル名のリンクがあるので、クリックしてダウンロードしてください。
+ダウンロードしたファイルを展開すると &lt;strong&gt;waifu2x-converter-qt.app&lt;/strong&gt; というファイルがあるので、
+Applicationフォルダなど適当な場所においてください。&lt;/p&gt;
+
+&lt;p&gt;アプリケーションを起動すると以下の様なウィンドウが表示されます。&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="waifu2x-converter-qt フィルタ選択" src="/img/2015-06-15/waifu2x-converter-qt.png" /&gt;&lt;/p&gt;
+
+&lt;p&gt;この派生版にもwaifu2xが内蔵されていますが、私の環境では下記のエラーで動きませんでした。&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;dyld: Library not loaded: /opt/local/lib/libgstbase-1.0.0.dylib` 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;このエラーを調査してもいいですが、すでにコマンドラインで実行できる環境があるのでそちらを利用することにします。&lt;/p&gt;
+
+&lt;p&gt;ということで、設定画面を開きます。
+上部にあるメニューの「ツール」を選択して「設定」をクリックすると、次の設定ダイアログが開きます。&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="waifu2x-converter-qt 設定" src="/img/2015-06-15/settings.png" /&gt;&lt;/p&gt;
+
+&lt;p&gt;一つ目の入力欄の&lt;strong&gt;waifu2xの場所&lt;/strong&gt; に、先ほどインストールしたコマンドラインのフルパスを入力してください。
+私の環境であれば、それぞれ以下のように入れます。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;waifu2x-converter-glsl&lt;/strong&gt; を使う場合
+
+&lt;ul&gt;
+&lt;li&gt;/Users/hoge/src/github.com/ueshita/waifu2x-converter-glsl/waifu2x-converter-glsl&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;waifu2x-converter-cpp&lt;/strong&gt; を使う場合
+
+&lt;ul&gt;
+&lt;li&gt;/Users/hoge/src/github.com/WL-Amigo/waifu2x-converter-cpp/waifu2x-converter-cpp&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;OKボタンを押すと設定が反映されます。&lt;br&gt;
+これで準備が整いました。
+画像を選択して実行すると、ダイアログがポップアップして処理結果が表示されます。&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="waifu2x-converter-qt 処理結果" src="/img/2015-06-15/exec_result.png" /&gt;&lt;/p&gt;
+
+&lt;p&gt;これでGUIでwaifu2xが使えるようになりました。&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <title>「Global Game Jam 2015」に参加しました／DEAD EYE LANDの体験コーナーあります</title>
     <link rel="alternate" href="http://yuukiar.co/blog/2015/05/30/global-game-jam-2015/"/>
@@ -1567,34 +1978,6 @@ OS X インストーラが起動したら、まずはディスクフォーマッ
 &lt;p&gt;ただ、実際に起動して使用した感想ですが……レスポンスはあまりよくないです。
 とくにグラフィック回りが顕著で、ワンテンポ、ツーテンポぐらい遅れて反応する感覚です。&lt;br&gt;
 メモリを増やしたりCPUのコア数を増やしたりしてみましたが、改善は見られなかったので何らかの用途で使うにも忍耐がいるかもしれません。&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <title>Particle Designer／Glyph Designerがセール中！8月31日まで50％OFF！</title>
-    <link rel="alternate" href="http://yuukiar.co/blog/2014/08/26/discount-50-percent-particle-designer-and-glyph-designer/"/>
-    <id>http://yuukiar.co/blog/2014/08/26/discount-50-percent-particle-designer-and-glyph-designer/</id>
-    <published>2014-08-26T01:48:00+09:00</published>
-    <updated>2015-05-22T00:14:44+09:00</updated>
-    <author>
-      <name>yuuki-arc</name>
-    </author>
-    <content type="html">&lt;p&gt;Cocos2d-xやUnity3Dのゲーム開発支援ツールとしてよく使われているParticle DesignerとGlyph Designerが期間限定で50％OFFのセールをやってます！&lt;br&gt;
-&lt;a href="https://71squared.com/ja/"&gt;Bitmap Fonts &amp;amp; Particle Effects Game Development Tools - 71Squared&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;夏季期間のセールということで、8月22日〜31日まで50％OFFのようです。
-それぞれ次のような価格で安く買えます。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Glyph Desginer: 3,600円 → 1,800円&lt;/li&gt;
-&lt;li&gt;Particle Designer: 6,355円 → 3,178円&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;50％OFFで買う方法は、トップページに &lt;strong&gt;DISCOUNT CODES&lt;/strong&gt; が表示されているのでそれを入力します。&lt;br&gt;
-入力場所は、商品購入画面にある &lt;strong&gt;Do you have a coupon?&lt;/strong&gt; のリンクをクリックしてポップアップするダイアログにあります。&lt;br&gt;
-サイト見ればすぐにわかると思います！&lt;/p&gt;
-
-&lt;p&gt;Particle Designerは画面上のエフェクトを手軽に作れるツールで、Glyph Desginerはフォントをビットマップフォント化してくれるツールです。
-これらのツールがあるとゲーム開発の幅も広がると思いますので、ぜひこの機会に買っておきましょう！&lt;/p&gt;
 </content>
   </entry>
 </feed>
