@@ -10,7 +10,7 @@
     <link rel="alternate" href="http://yuukiar.co/blog/2015/06/15/setup-waifu2x-on-mac/"/>
     <id>http://yuukiar.co/blog/2015/06/15/setup-waifu2x-on-mac/</id>
     <published>2015-06-15T03:00:00+09:00</published>
-    <updated>2015-06-15T02:58:20+09:00</updated>
+    <updated>2015-06-15T03:29:29+09:00</updated>
     <author>
       <name>yuuki-arc</name>
     </author>
@@ -74,7 +74,7 @@ waifu2xは最近のトレンドのようで派生版があちこちにあるの�
 &lt;li&gt;&lt;a href="https://github.com/WL-Amigo/waifu2x-converter-cpp"&gt;WL-Amigo/waifu2x-converter-cpp - GitHub&lt;/a&gt;
 
 &lt;ul&gt;
-&lt;li&gt;オリジナル版をc++で書きなおしたバージョン。&lt;/li&gt;
+&lt;li&gt;オリジナル版をC++で書きなおしたバージョン。更新はもうされないそうです。&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -85,6 +85,8 @@ waifu2xは最近のトレンドのようで派生版があちこちにあるの�
 
 &lt;ul&gt;
 &lt;li&gt;Macでも動かせるフロントエンドツール。&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://khws4v1.myhome.cx/article/2015/06/07/waifu2x-converter-qt%E3%81%AE%E3%83%90%E3%82%A4%E3%83%8A%E3%83%AA%E9%85%8D%E5%B8%83/"&gt;waifu2x-converter-qtのバイナリ配布 | かひわし4v1.memo&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://khws4v1.myhome.cx/article/2015/06/01/waifu2x-converter-qt_linux_x64/"&gt;waifu2x-converter-cppのGUIフロントエンド”waifu2x-converter-qt”のバイナリを公開しました※ | かひわし4v1.memo&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -107,7 +109,8 @@ waifu2xは最近のトレンドのようで派生版があちこちにあるの�
 
 &lt;ul&gt;
 &lt;li&gt;現状いちばん頻繁に更新されてるので追っていきたいところですが、
-コード見るとWindowsとLinuxにしか対応してない箇所があって、そのままだとコンパイルエラーで通りませんでした。&lt;/li&gt;
+コード見るとWindowsとLinuxにしか対応してない箇所があって、そのままだとコンパイルエラーで通りませんでした。&lt;br&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://d.hatena.ne.jp/w_o/20150602#1433229756"&gt;waifu2x はやくした - J&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://github.com/lltcggie/waifu2x-caffe"&gt;lltcggie/waifu2x-caffe - GitHub&lt;/a&gt;
 
