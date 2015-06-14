@@ -45,11 +45,13 @@ waifu2xは最近のトレンドのようで派生版があちこちにあるの�
 - [ueshita/waifu2x-converter-glsl - GitHub](https://github.com/ueshita/waifu2x-converter-glsl)
   - OpenGLで動かせるようにしたバージョン。
 - [WL-Amigo/waifu2x-converter-cpp - GitHub](https://github.com/WL-Amigo/waifu2x-converter-cpp)
-  - オリジナル版をc++で書きなおしたバージョン。
+  - オリジナル版をC++で書きなおしたバージョン。更新はもうされないそうです。
 
 #### GUI
 - [khws4v1/waifu2x-converter-qt - GitHub](https://github.com/khws4v1/waifu2x-converter-qt)
   - Macでも動かせるフロントエンドツール。
+  - [waifu2x-converter-qtのバイナリ配布 | かひわし4v1.memo](http://khws4v1.myhome.cx/article/2015/06/07/waifu2x-converter-qt%E3%81%AE%E3%83%90%E3%82%A4%E3%83%8A%E3%83%AA%E9%85%8D%E5%B8%83/)
+  - [waifu2x-converter-cppのGUIフロントエンド”waifu2x-converter-qt”のバイナリを公開しました※ | かひわし4v1.memo](http://khws4v1.myhome.cx/article/2015/06/01/waifu2x-converter-qt_linux_x64/)
 
 ### この記事では扱わないが気になるwaifu2x
 ここでは扱いませんが、個人的にここはチェックしておきたいなというものを書いておきます。
@@ -60,7 +62,8 @@ waifu2xは最近のトレンドのようで派生版があちこちにあるの�
   - waifu2xのオリジナル。luaで書かれているようです。
 - [tanakamura/waifu2x-converter-cpp](https://github.com/tanakamura/waifu2x-converter-cpp)
   - 現状いちばん頻繁に更新されてるので追っていきたいところですが、
-    コード見るとWindowsとLinuxにしか対応してない箇所があって、そのままだとコンパイルエラーで通りませんでした。
+    コード見るとWindowsとLinuxにしか対応してない箇所があって、そのままだとコンパイルエラーで通りませんでした。  
+  - [waifu2x はやくした - J](http://d.hatena.ne.jp/w_o/20150602#1433229756)
 - [lltcggie/waifu2x-caffe - GitHub](https://github.com/lltcggie/waifu2x-caffe)
   - GUIとCUI両方使えて機能も豊富な模様。  
     Caffeというフレームワーク（？）で実装されていてMacでも使えるようですが、開発環境を整えるのが面倒だったので今のところ何もしてません。
