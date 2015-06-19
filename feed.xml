@@ -10,7 +10,7 @@
     <link rel="alternate" href="http://yuukiar.co/blog/2015/06/15/setup-waifu2x-on-mac/"/>
     <id>http://yuukiar.co/blog/2015/06/15/setup-waifu2x-on-mac/</id>
     <published>2015-06-15T03:00:00+09:00</published>
-    <updated>2015-06-15T03:29:29+09:00</updated>
+    <updated>2015-06-20T08:52:54+09:00</updated>
     <author>
       <name>yuuki-arc</name>
     </author>
@@ -136,6 +136,7 @@ Caffeというフレームワーク（？）で実装されていてMacでも使
 &lt;span class="gp"&gt;$ &lt;/span&gt;brew install opencv3 --with-opengl --with-qt5 --with-tbb --c++11
 &lt;span class="gp"&gt;$ &lt;/span&gt;brew link --force opencv3
 
+&lt;span class="gp"&gt;$ &lt;/span&gt;brew tap homebrew/versions
 &lt;span class="gp"&gt;$ &lt;/span&gt;brew install glfw3 --universal
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -175,7 +176,7 @@ waifu2xを使うにはどちらか1つセットアップできてればいいの
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;といった感じです。 
+&lt;p&gt;といった感じです。
 処理速度はだいぶ違ってて、waifu2x-converter-glslのほうが目に見えて速いです。&lt;/p&gt;
 
 &lt;h3 id="waifu2x-converter-glsl-(ueshita)"&gt;waifu2x-converter-glsl (ueshita)&lt;/h3&gt;
@@ -384,7 +385,7 @@ Applicationフォルダなど適当な場所においてください。&lt;/p&gt
 &lt;p&gt;&lt;img alt="waifu2x-converter-qt フィルタ選択" src="/img/2015-06-15/waifu2x-converter-qt.png" /&gt;&lt;/p&gt;
 
 &lt;p&gt;この派生版にもwaifu2xが内蔵されていますが、私の環境では下記のエラーで動きませんでした。&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;&lt;code&gt;dyld: Library not loaded: /opt/local/lib/libgstbase-1.0.0.dylib` 
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;dyld: Library not loaded: /opt/local/lib/libgstbase-1.0.0.dylib`
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;このエラーを調査してもいいですが、すでにコマンドラインで実行できる環境があるのでそちらを利用することにします。&lt;/p&gt;
