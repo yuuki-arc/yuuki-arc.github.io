@@ -86,6 +86,7 @@ $ brew tap homebrew/science
 $ brew install opencv3 --with-opengl --with-qt5 --with-tbb --c++11
 $ brew link --force opencv3
 
+$ brew tap homebrew/versions
 $ brew install glfw3 --universal
 ```
 
@@ -115,7 +116,7 @@ waifu2xを使うにはどちらか1つセットアップできてればいいの
   - CMakeを使ったビルドでモノが揃ってれば手順が簡単
   - パスを通せば、実行するときのカレントディレクトリは任意（※オプション指定が必要）
 
-といった感じです。 
+といった感じです。
 処理速度はだいぶ違ってて、waifu2x-converter-glslのほうが目に見えて速いです。
 
 ### waifu2x-converter-glsl (ueshita)
@@ -359,7 +360,7 @@ Applicationフォルダなど適当な場所においてください。
 この派生版にもwaifu2xが内蔵されていますが、私の環境では下記のエラーで動きませんでした。
 
 ```
-dyld: Library not loaded: /opt/local/lib/libgstbase-1.0.0.dylib` 
+dyld: Library not loaded: /opt/local/lib/libgstbase-1.0.0.dylib`
 ```
 
 このエラーを調査してもいいですが、すでにコマンドラインで実行できる環境があるのでそちらを利用することにします。
